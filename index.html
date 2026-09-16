@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#FF90BC" />
 <title>كتاكيت KATAKIT | حقيبة ميكي ماوس الكيوت — 149 درهم فقط</title>
-<meta name="description" content="حقيبة ميكي ماوس الكيوت بجودة عالية — 3 ألوان، توصيل مجاني لجميع مدن المغرب والدفع عند الاستلام. العرض محدود!" />
+<meta name="description" content="حقيبة ميكي ماوس الكيوت بجودة عالية — 5 ألوان، توصيل مجاني لجميع مدن المغرب والدفع عند الاستلام. العرض محدود!" />
 
 <!-- ===================== خط Tajawal ===================== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,12 +20,12 @@
       extend: {
         colors: {
           brand: {
-            pink:      '#FF90BC',  // وردي فاتح
+            pink:      '#FF90BC',
             pinkDark:  '#F0649B',
             pinkLight: '#FFE3EF',
-            yellow:    '#FFD93D',  // أصفر
+            yellow:    '#FFD93D',
             yellowLight:'#FFF7DA',
-            dark:      '#111111',  // أسود
+            dark:      '#111111',
           }
         },
         fontFamily: {
@@ -74,11 +74,9 @@
   html { scroll-behavior: smooth; }
   body { -webkit-tap-highlight-color: transparent; }
 
-  /* ظهور العناصر عند التمرير */
   [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
   [data-reveal].is-visible { opacity: 1; transform: none; }
 
-  /* لمعة زر الطلب */
   .btn-shine::after {
     content: '';
     position: absolute;
@@ -95,14 +93,13 @@
     100% { transform: translateX(340%) skewX(-20deg); }
   }
 
-  /* أزرار الألوان في قسم Hero */
   .color-chip {
     border: 2px solid #eeeeee;
     background: #fff;
     transition: all .25s ease;
     cursor: pointer;
   }
-  .color-chip:hover { border-color: #FFD93D; }
+  .color-chip:hover { border-color: #FFD93D; transform: translateY(-2px); }
   .color-chip.is-active {
     border-color: #FF90BC;
     background: #FFE3EF;
@@ -110,7 +107,6 @@
     box-shadow: 0 10px 22px -10px rgba(255,144,188,1);
   }
 
-  /* سبينر التحميل */
   .spinner {
     width: 18px; height: 18px;
     border: 3px solid rgba(255,255,255,.35);
@@ -121,14 +117,17 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* إخفاء شريط التمرير الأفقي في الألوان */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-  /* أكورديون FAQ */
   .faq-body { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s ease; }
   .faq-item.is-open .faq-body { max-height: 320px; }
   .faq-item.is-open .faq-icon { transform: rotate(45deg); background: #FF90BC; color: #fff; }
+
+  /* نبض خفيف لعداد المخزون */
+  @keyframes stockPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.12); color: #e11d48; }
+    100% { transform: scale(1); }
+  }
+  .stock-pulse { animation: stockPulse .7s ease-out; }
 </style>
 </head>
 
@@ -143,7 +142,7 @@
 </div>
 
 <!-- ============================================================
-     2) الهيدر
+     2) الهيدر — الشعار + زر واتساب فقط (بلا اتصال هاتفي)
      ============================================================ -->
 <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-brand-pinkLight">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -156,12 +155,11 @@
       </div>
     </a>
 
-    <!-- رقم الهاتف : ⚠️ بدّل الرقم هنا وفي متغير WHATSAPP_NUMBER -->
-    <a href="tel:+2126XXXXXXXX"
-       class="inline-flex items-center gap-2 rounded-2xl border-2 border-brand-pink/30 bg-brand-pinkLight/60 px-3.5 py-2 text-[13px] font-extrabold text-brand-pinkDark transition hover:bg-brand-pinkLight">
-      <span>📞</span>
-      <span class="hidden sm:inline">اتصل بنا:</span>
-      <span dir="ltr">06 XX XX XX XX</span>
+    <!-- زر واتساب فقط — ⚠️ بدّل الرقم هنا وفي متغير WHATSAPP_NUMBER -->
+    <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener"
+       class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2 text-[13px] font-extrabold text-white shadow-lg shadow-green-500/30 transition hover:bg-green-600 hover:-translate-y-0.5">
+      <span>💬</span>
+      <span>واتساب</span>
     </a>
   </div>
 </header>
@@ -169,14 +167,13 @@
 <!-- ============================================================
      3) قسم Hero
      ============================================================ -->
-<section class="relative overflow-hidden">
-  <!-- خلفيات مزخرفة -->
+<section class="relative overflow-hidden bg-gradient-to-b from-brand-pinkLight/40 via-white to-brand-yellowLight/50">
   <div class="pointer-events-none absolute -top-32 -right-24 w-80 h-80 bg-brand-yellow/25 rounded-full blur-3xl"></div>
   <div class="pointer-events-none absolute top-52 -left-28 w-80 h-80 bg-brand-pink/25 rounded-full blur-3xl"></div>
 
   <div class="relative max-w-6xl mx-auto px-4 py-10 sm:py-14 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-    <!-- ===== يمين: صور المنتج + سلايدر الألوان ===== -->
+    <!-- ===== يمين: صور المنتج + الألوان + المخزون ===== -->
     <div data-reveal class="relative">
       <!-- شارة الخصم -->
       <div class="absolute -top-4 right-6 z-20 bg-brand-yellow text-brand-dark font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10">
@@ -187,33 +184,41 @@
                   border border-white shadow-[0_35px_70px_-35px_rgba(255,144,188,.95)]">
         <div class="relative overflow-hidden rounded-[2rem] bg-white">
 
-          <!-- 🖼️ الصورة الرئيسية — رابطها كيتبدل من متغير IMAGES في الجافاسكريبت -->
+          <!-- 🖼️ الصورة الرئيسية — الرابط كيتبدل من متغير IMGS فالأسفل -->
           <img id="mainImage"
-               src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
+               src="https://placehold.co/600x600/FFE3EF/FF90BC?text=KATAKIT"
                alt="حقيبة ميكي ماوس الكيوت - كتاكيت"
                class="w-full h-[320px] sm:h-[440px] object-cover transition-all duration-500" />
-
-          <!-- شارة المخزون -->
-          <div class="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-brand-dark/85 px-3.5 py-2 text-[12px] font-extrabold text-white backdrop-blur">
-            <span class="relative flex h-2 w-2">
-              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
-              <span class="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
-            </span>
-            باقي غير <span id="stockCount" class="text-brand-yellow">9</span> قطع
-          </div>
         </div>
       </div>
 
-      <!-- أزرار اختيار اللون (تغيّر الصورة الرئيسية) -->
-      <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
-        <button type="button" data-color="أسود" class="color-chip is-active flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-extrabold">
-          <span class="w-5 h-5 rounded-full bg-black ring-2 ring-white shadow"></span> أسود
-        </button>
-        <button type="button" data-color="أحمر" class="color-chip flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-extrabold">
+      <!-- ✅ عداد المخزون — نص صغير تحت الصور (من 14 إلى 4) -->
+      <div class="mt-4 flex items-center justify-center gap-2 text-[13px] font-extrabold text-gray-500">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+        </span>
+        <span>باقي فقط</span>
+        <span id="stockCount" class="inline-block min-w-[22px] text-center text-brand-pinkDark text-[15px] font-black">14</span>
+        <span>قطعة فالمخزون</span>
+      </div>
+
+      <!-- أزرار اختيار اللون — 5 ألوان -->
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+        <button type="button" data-color="أحمر" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
           <span class="w-5 h-5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر
         </button>
-        <button type="button" data-color="بيج" class="color-chip flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-extrabold">
-          <span class="w-5 h-5 rounded-full bg-[#E8D5B7] ring-2 ring-white shadow"></span> بيج
+        <button type="button" data-color="وردي" class="color-chip is-active flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
+          <span class="w-5 h-5 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي
+        </button>
+        <button type="button" data-color="أبيض منقط" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
+          <span class="w-5 h-5 rounded-full bg-white ring-2 ring-gray-200 shadow" style="background-image:radial-gradient(#111 1.2px, transparent 1.3px); background-size:5px 5px;"></span> أبيض منقط
+        </button>
+        <button type="button" data-color="أسود" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
+          <span class="w-5 h-5 rounded-full bg-black ring-2 ring-white shadow"></span> أسود
+        </button>
+        <button type="button" data-color="بنفسجي" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
+          <span class="w-5 h-5 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي
         </button>
       </div>
 
@@ -246,16 +251,15 @@
         اختاري اللون اللي كتعجبك وأطلبي الآن — <span class="font-extrabold text-brand-dark">الدفع عند الاستلام</span>.
       </p>
 
-      <!-- المميزات -->
       <ul data-reveal class="mt-6 space-y-3 text-right inline-block">
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> تصميم ميكي ماوس الأصلي بجودة عالية</li>
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> قماش متين ما كيتقطعش ولا كيبهت</li>
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> واسعة: دفاتر + مقلمة + قنينة الماء</li>
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> حمالات مبطنة مريحة على الكتاف</li>
-        <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> متوفرة بـ 3 ألوان: أسود / أحمر / بيج</li>
+        <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> متوفرة بـ 5 ألوان كيوت</li>
       </ul>
 
-      <!-- السعر -->
+      <!-- السعر — ثابت 149 بدل 249 -->
       <div data-reveal class="mt-7 flex items-end justify-center lg:justify-start gap-3">
         <span class="text-5xl sm:text-6xl font-black text-brand-pink leading-none">149</span>
         <span class="text-xl font-extrabold text-brand-pink mb-1">درهم</span>
@@ -278,11 +282,10 @@
       </div>
 
       <!-- زر الطلب -->
-      <a href="#order" data-reveal class="btn-main btn-shine mt-6 w-full sm:w-auto sm:px-12 animate-pulse-slow">
+      <a href="#order" data-reveal class="btn-main btn-shine mt-6 w-full sm:w-auto sm:px-12">
         🛒 اطلبي الآن — الدفع عند الاستلام
       </a>
 
-      <!-- شارات الثقة -->
       <div data-reveal class="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 text-[12.5px] font-extrabold text-gray-500">
         <span class="flex items-center gap-1.5">🔒 الدفع عند الاستلام</span>
         <span class="flex items-center gap-1.5">🚚 توصيل مجاني</span>
@@ -304,25 +307,21 @@
     </div>
 
     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <!-- 1 -->
       <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,144,188,1)]" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty">🎨</div>
         <h3 class="mt-5 font-black text-lg">تصميم كيوت بزاف</h3>
         <p class="mt-2 text-sm leading-relaxed text-gray-600 font-medium">رسومات ميكي ماوس بألوان زاهية كتخلي الحقيبة ملفتة فالمدرسة.</p>
       </div>
-      <!-- 2 -->
       <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,217,61,1)]" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-yellowLight grid place-items-center text-3xl animate-floaty" style="animation-delay:.4s">🧵</div>
         <h3 class="mt-5 font-black text-lg">جودة كتدوم</h3>
         <p class="mt-2 text-sm leading-relaxed text-gray-600 font-medium">قماش سميك وخياطة مقواة، كتصبر مع الاستعمال اليومي عام كامل.</p>
       </div>
-      <!-- 3 -->
       <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,144,188,1)]" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty" style="animation-delay:.8s">📚</div>
         <h3 class="mt-5 font-black text-lg">واسعة ومنظمة</h3>
         <p class="mt-2 text-sm leading-relaxed text-gray-600 font-medium">جيب كبير للدفاتر + جيوب صغيرة للمقلمة والهاتف وقنينة الماء.</p>
       </div>
-      <!-- 4 -->
       <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,217,61,1)]" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-yellowLight grid place-items-center text-3xl animate-floaty" style="animation-delay:1.2s">🎒</div>
         <h3 class="mt-5 font-black text-lg">مريحة على الظهر</h3>
@@ -345,7 +344,6 @@
 
     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-      <!-- بطاقة 1 -->
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow grid place-items-center text-white font-black text-lg">ف</div>
@@ -361,7 +359,6 @@
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">🎒</div>
       </article>
 
-      <!-- بطاقة 2 -->
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pink grid place-items-center text-white font-black text-lg">س</div>
@@ -377,7 +374,6 @@
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">🛍️</div>
       </article>
 
-      <!-- بطاقة 3 -->
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-pinkDark grid place-items-center text-white font-black text-lg">ي</div>
@@ -393,7 +389,6 @@
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">🎁</div>
       </article>
 
-      <!-- بطاقة 4 -->
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pink grid place-items-center text-white font-black text-lg">ه</div>
@@ -409,7 +404,6 @@
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">✨</div>
       </article>
 
-      <!-- بطاقة 5 -->
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pinkDark to-brand-pink grid place-items-center text-white font-black text-lg">م</div>
@@ -425,7 +419,6 @@
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">📦</div>
       </article>
 
-      <!-- بطاقة 6 -->
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pinkDark grid place-items-center text-white font-black text-lg">ن</div>
@@ -512,7 +505,7 @@
         </button>
         <div class="faq-body px-5">
           <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            متوفرة بـ 3 ألوان: الأسود، الأحمر، والبيج. كتختاري اللون اللي بغيتي فاستمارة الطلب تحت.
+            متوفرة بـ 5 ألوان: الأحمر، الوردي، الأبيض المنقط، الأسود، والبنفسجي. كتختاري اللون اللي بغيتي فاستمارة الطلب تحت.
           </p>
         </div>
       </div>
@@ -524,7 +517,7 @@
         </button>
         <div class="faq-body px-5">
           <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            عبر الواتساب أو الهاتف، وكنجاوبو من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع.
+            عبر الواتساب فقط، وكنجاوبو من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع.
           </p>
         </div>
       </div>
@@ -534,7 +527,7 @@
 </section>
 
 <!-- ============================================================
-     7) استمارة الطلب (أهم قسم)
+     7) استمارة الطلب
      ============================================================ -->
 <section id="order" class="py-14 sm:py-20 bg-brand-dark relative overflow-hidden">
   <div class="pointer-events-none absolute -top-24 right-0 w-72 h-72 bg-brand-pink/20 rounded-full blur-3xl"></div>
@@ -550,7 +543,6 @@
 
     <div class="mt-10 rounded-[2rem] bg-white p-5 sm:p-8 shadow-2xl" data-reveal>
 
-      <!-- رسالة النجاح -->
       <div id="formSuccess" class="hidden mb-6 rounded-2xl border-2 border-green-200 bg-green-50 p-5 text-center animate-popIn">
         <div class="text-4xl">✅</div>
         <h3 class="mt-2 font-black text-lg text-green-700">تم استلام طلبك، سنتواصل معك</h3>
@@ -559,7 +551,6 @@
 
       <form id="orderForm" novalidate class="grid gap-5">
 
-        <!-- الاسم + الهاتف -->
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fName" class="mb-2 block text-[13.5px] font-extrabold">الاسم الكامل <span class="text-brand-pink">*</span></label>
@@ -573,7 +564,6 @@
           </div>
         </div>
 
-        <!-- المدينة + اللون -->
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fCity" class="mb-2 block text-[13.5px] font-extrabold">المدينة <span class="text-brand-pink">*</span></label>
@@ -586,28 +576,39 @@
             <span class="mb-2 block text-[13.5px] font-extrabold">اللون <span class="text-brand-pink">*</span></span>
             <div class="flex flex-wrap gap-2">
               <label class="cursor-pointer">
-                <input type="radio" name="color" value="أسود" class="peer sr-only" checked />
-                <span class="flex items-center gap-2 rounded-2xl border-2 border-gray-200 px-3.5 py-2.5 text-[13px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
-                  <span class="h-4 w-4 rounded-full bg-black ring-2 ring-white shadow"></span> أسود
-                </span>
-              </label>
-              <label class="cursor-pointer">
                 <input type="radio" name="color" value="أحمر" class="peer sr-only" />
-                <span class="flex items-center gap-2 rounded-2xl border-2 border-gray-200 px-3.5 py-2.5 text-[13px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
                   <span class="h-4 w-4 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر
                 </span>
               </label>
               <label class="cursor-pointer">
-                <input type="radio" name="color" value="بيج" class="peer sr-only" />
-                <span class="flex items-center gap-2 rounded-2xl border-2 border-gray-200 px-3.5 py-2.5 text-[13px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
-                  <span class="h-4 w-4 rounded-full bg-[#E8D5B7] ring-2 ring-white shadow"></span> بيج
+                <input type="radio" name="color" value="وردي" class="peer sr-only" checked />
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
+                  <span class="h-4 w-4 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="color" value="أبيض منقط" class="peer sr-only" />
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
+                  <span class="h-4 w-4 rounded-full bg-white ring-2 ring-gray-200 shadow" style="background-image:radial-gradient(#111 1px, transparent 1.1px); background-size:4px 4px;"></span> أبيض منقط
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="color" value="أسود" class="peer sr-only" />
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
+                  <span class="h-4 w-4 rounded-full bg-black ring-2 ring-white shadow"></span> أسود
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="color" value="بنفسجي" class="peer sr-only" />
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
+                  <span class="h-4 w-4 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي
                 </span>
               </label>
             </div>
           </div>
         </div>
 
-        <!-- الكمية -->
         <div>
           <span class="mb-2 block text-[13.5px] font-extrabold">الكمية</span>
           <div class="flex items-center gap-3">
@@ -618,14 +619,12 @@
           </div>
         </div>
 
-        <!-- العنوان -->
         <div>
           <label for="fAddress" class="mb-2 block text-[13.5px] font-extrabold">العنوان الكامل <span class="text-brand-pink">*</span></label>
           <textarea id="fAddress" rows="3" class="input resize-none" placeholder="الحي، الزنقة، رقم الدار، أقرب نقطة معروفة..."></textarea>
           <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي العنوان بالتفصيل</p>
         </div>
 
-        <!-- ملخص الطلب -->
         <div class="rounded-2xl border-2 border-dashed border-brand-pink/40 bg-brand-pinkLight/40 p-5">
           <div class="flex items-center justify-between text-[14px] font-bold">
             <span>حقيبة ميكي ماوس الكيوت</span>
@@ -645,13 +644,12 @@
           </div>
         </div>
 
-        <!-- زر التأكيد -->
         <button type="submit" id="submitBtn" class="btn-main btn-shine w-full !py-5 !text-lg">
           ✅ تأكيد الطلب — الدفع عند الاستلام
         </button>
 
         <p class="text-center text-[12px] font-bold text-gray-400">
-          بالضغط على "تأكيد الطلب" كتوافقي على أن نتواصلو معاك لتأكيد الطلبية 📞
+          بالضغط على "تأكيد الطلب" كتوافقي على أن نتواصلو معاك عبر الواتساب لتأكيد الطلبية 💬
         </p>
       </form>
     </div>
@@ -659,13 +657,12 @@
 </section>
 
 <!-- ============================================================
-     8) الفوتر
+     8) الفوتر — بلا رقم هاتف، فقط واتساب + انستغرام
      ============================================================ -->
 <footer class="bg-white border-t border-gray-100 pt-12 pb-8">
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid sm:grid-cols-3 gap-8 items-start">
 
-      <!-- الشعار -->
       <div>
         <div class="flex items-center gap-2.5">
           <div class="w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl">🐭</div>
@@ -679,7 +676,6 @@
         </p>
       </div>
 
-      <!-- روابط -->
       <div>
         <h4 class="font-black text-[15px]">روابط سريعة</h4>
         <ul class="mt-4 space-y-2.5 text-[13.5px] font-bold text-gray-500">
@@ -689,7 +685,6 @@
         </ul>
       </div>
 
-      <!-- تواصل -->
       <div>
         <h4 class="font-black text-[15px]">تواصلي معنا</h4>
         <div class="mt-4 flex flex-wrap gap-3">
@@ -704,7 +699,6 @@
             📸 انستغرام
           </a>
         </div>
-        <p class="mt-4 text-[13px] font-bold text-gray-500" dir="ltr">+212 6XX XX XX XX</p>
       </div>
     </div>
 
@@ -715,7 +709,7 @@
 </footer>
 
 <!-- ============================================================
-     إشعارات وهمية (Toast)
+     إشعارات وهمية
      ============================================================ -->
 <div id="toast" class="pointer-events-none fixed bottom-5 right-4 z-50 hidden w-[min(320px,calc(100vw-2rem))]">
   <div class="flex items-center gap-3 rounded-3xl border border-brand-pinkLight bg-white p-3 shadow-[0_20px_50px_-20px_rgba(0,0,0,.4)]">
@@ -729,7 +723,7 @@
   </div>
 </div>
 
-<!-- زر واتساب عائم -->
+<!-- زر واتساب عائم (الوحيد للتواصل) -->
 <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener"
    class="fixed bottom-5 left-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-green-500 text-2xl text-white shadow-2xl transition hover:scale-110 hover:bg-green-600"
    aria-label="تواصل معنا على واتساب">
@@ -750,24 +744,23 @@ const SHEET_URL = "ضع هنا رابط Google Apps Script";
 /* 2) رقم الواتساب — بلا + وبلا أصفار وبلا مسافات */
 const WHATSAPP_NUMBER = "2126XXXXXXXX";
 
-/* 3) الثمن */
-const PRICE = 149;        // الثمن الحالي بالدرهم
-const OLD_PRICE = 249;    // الثمن القديم
+/* 3) الثمن — ثابت 149 بدل 249 */
+const PRICE = 149;
+const OLD_PRICE = 249;
 
-/* 4) 🖼️ روابط الصور — بدّل كل رابط برابط imgbb ديالك */
-const IMAGES = {
-  "أسود": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600",
-  "أحمر": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600",
-  "بيج":  "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
+/* 4) 🖼️🖼️🖼️  روابط الصور الحقيقية (5 صور)  🖼️🖼️🖼️
+   ⚠️⚠️ ضع هنا روابط imgbb ديالك فكل سطر حسب اللون  ⚠️⚠️  */
+const IMGS = {
+  "أحمر":       "https://i.ibb.co/XXXXXXXX/red.jpg",        // ← رابط صورة اللون الأحمر
+  "وردي":       "https://i.ibb.co/XXXXXXXX/pink.jpg",       // ← رابط صورة اللون الوردي
+  "أبيض منقط":  "https://i.ibb.co/XXXXXXXX/white-dot.jpg",  // ← رابط صورة اللون الأبيض المنقط
+  "أسود":       "https://i.ibb.co/XXXXXXXX/black.jpg",      // ← رابط صورة اللون الأسود
+  "بنفسجي":     "https://i.ibb.co/XXXXXXXX/purple.jpg"      // ← رابط صورة اللون البنفسجي
 };
 
-/* فلاتر مؤقتة باش يبان تبديل اللون فالتجربة —
-   ⚠️ ملي تحط روابط حقيقية لكل لون، حيّد هاد الفلاتر (خليهم "none") */
-const FILTERS = {
-  "أسود": "grayscale(.85) contrast(1.05)",
-  "أحمر": "hue-rotate(-25deg) saturate(1.5)",
-  "بيج":  "sepia(.35) saturate(1.15)"
-};
+/* 5) المخزون: كينقص من 14 حتى 4 */
+const STOCK_START = 14;
+const STOCK_MIN   = 4;
 
 /* ================================================================
    مدن المغرب
@@ -798,12 +791,12 @@ const NOTIFS = [
 ];
 
 /* ================================================================
-   الحالة العامة
+   الحالة
    ================================================================ */
 const state = {
-  color: "أسود",
+  color: "وردي",
   qty: 1,
-  stock: 9,
+  stock: STOCK_START,
   userPickedColor: false
 };
 
@@ -823,7 +816,7 @@ const state = {
 /* ================================================================
    2) العدّاد التنازلي
    ================================================================ */
-let countdown = 2 * 3600 + 14 * 60 + 33; // 02:14:33
+let countdown = 2 * 3600 + 14 * 60 + 33;
 
 function renderCountdown() {
   const h = Math.floor(countdown / 3600);
@@ -837,79 +830,72 @@ function renderCountdown() {
 
 setInterval(() => {
   countdown--;
-  if (countdown < 0) countdown = 2 * 3600 + 14 * 60 + 33; // كيرجع من جديد
+  if (countdown < 0) countdown = 2 * 3600 + 14 * 60 + 33;
   renderCountdown();
 }, 1000);
 renderCountdown();
 
 /* ================================================================
-   3) عداد المخزون (كينقص ديناميكياً)
+   3) عداد المخزون — ينقص من 14 إلى 4 (تحت الصور)
    ================================================================ */
 const stockEl = document.getElementById("stockCount");
 
 function decreaseStock() {
-  if (state.stock > 3) {
+  if (state.stock > STOCK_MIN) {
     state.stock--;
     stockEl.textContent = state.stock;
-    stockEl.animate(
-      [{ transform: "scale(1.6)", color: "#FF4444" }, { transform: "scale(1)", color: "#FFD93D" }],
-      { duration: 600, easing: "ease-out" }
-    );
+    stockEl.classList.remove("stock-pulse");
+    void stockEl.offsetWidth; // إعادة تشغيل الأنيميشن
+    stockEl.classList.add("stock-pulse");
+    setTimeout(decreaseStock, 28000 + Math.random() * 22000);
   }
-  // كينقص كل ما بين 25 و 45 ثانية
-  setTimeout(decreaseStock, 25000 + Math.random() * 20000);
+  // إلا وصل 4 كيتوقف العد
 }
-setTimeout(decreaseStock, 18000);
+setTimeout(decreaseStock, 15000);
 
 /* ================================================================
-   4) تبديل اللون + تغيير الصورة الرئيسية
+   4) تبديل اللون + الصورة الرئيسية
    ================================================================ */
 const mainImage = document.getElementById("mainImage");
 
 function applyColor(color, fromUser = true) {
+  if (!IMGS[color]) color = "وردي";
   state.color = color;
 
-  // تبديل الصورة مع تأثير fade
   mainImage.style.opacity = "0";
   setTimeout(() => {
-    mainImage.src = IMAGES[color] || IMAGES["أسود"];
-    mainImage.style.filter = FILTERS[color] || "none";
+    mainImage.src = IMGS[color];
     mainImage.style.opacity = "1";
   }, 180);
 
-  // تحديث أزرار الألوان فـ Hero
   document.querySelectorAll("[data-color]").forEach(el => {
     el.classList.toggle("is-active", el.dataset.color === color);
   });
 
-  // تحديث راديو الاستمارة
   const radio = document.querySelector(`input[name="color"][value="${color}"]`);
   if (radio) radio.checked = true;
 
   if (fromUser) state.userPickedColor = true;
 }
 
-// أزرار الألوان
 document.querySelectorAll("[data-color]").forEach(btn => {
   btn.addEventListener("click", () => applyColor(btn.dataset.color, true));
 });
 
-// راديو الاستمارة
 document.querySelectorAll('input[name="color"]').forEach(r => {
   r.addEventListener("change", () => applyColor(r.value, true));
 });
 
-// سلايدر تلقائي (كيتوقف ملي تختار الزبونة لون بيدها)
-const colorKeys = Object.keys(IMAGES);
-let sliderIdx = 0;
+/* سلايدر تلقائي كيتوقف ملي تختار الزبونة لون بيدها */
+const colorKeys = Object.keys(IMGS);
+let sliderIdx = colorKeys.indexOf("وردي");
 setInterval(() => {
   if (state.userPickedColor) return;
   sliderIdx = (sliderIdx + 1) % colorKeys.length;
   applyColor(colorKeys[sliderIdx], false);
 }, 4500);
 
-// تطبيق اللون الافتراضي
-applyColor("أسود", false);
+applyColor("وردي", false);
 
 /* ================================================================
    5) الكمية + ملخص الطلب
@@ -937,7 +923,7 @@ document.getElementById("qtyMinus").addEventListener("click", () => {
 renderQty();
 
 /* ================================================================
-   6) التقييمات المتحركة (نجوم + رقم)
+   6) التقييمات المتحركة
    ================================================================ */
 (function buildStars() {
   const row = document.getElementById("starsRow");
@@ -954,15 +940,13 @@ function playRating() {
   if (ratingPlayed) return;
   ratingPlayed = true;
 
-  const stars = document.querySelectorAll("#starsRow span");
-  stars.forEach((s, i) => {
+  document.querySelectorAll("#starsRow span").forEach((s, i) => {
     setTimeout(() => {
       s.style.animation = `starPop .55s cubic-bezier(.2,.8,.3,1.4) both`;
       s.style.opacity = "1";
     }, i * 130);
   });
 
-  // عدّاد الرقم 0 → 4.9
   const el = document.getElementById("ratingValue");
   let v = 0;
   const target = 4.9;
@@ -973,7 +957,6 @@ function playRating() {
     el.textContent = v.toFixed(1);
   }, 24);
 
-  // عدّاد عدد الزبناء 0 → 1240
   const cnt = document.getElementById("ratingCount");
   let c = 0;
   const tc = 1240;
@@ -985,7 +968,7 @@ function playRating() {
 }
 
 /* ================================================================
-   7) ظهور العناصر عند التمرير + تشغيل التقييم
+   7) ظهور العناصر عند التمرير
    ================================================================ */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -998,7 +981,6 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll("[data-reveal]").forEach(el => io.observe(el));
 
-// تشغيل النجوم ملي تبان منطقة التقييم
 const starsObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { playRating(); starsObserver.disconnect(); } });
 }, { threshold: 0.4 });
@@ -1049,7 +1031,6 @@ const form       = document.getElementById("orderForm");
 const submitBtn  = document.getElementById("submitBtn");
 const successBox = document.getElementById("formSuccess");
 
-// دالة إظهار الخطأ
 function setError(input, show) {
   const err = input.parentElement.querySelector(".err");
   if (err) err.classList.toggle("hidden", !show);
@@ -1057,32 +1038,25 @@ function setError(input, show) {
   input.classList.toggle("!bg-red-50", show);
 }
 
-// إرسال البيانات إلى Google Sheet
 async function sendToSheet(payload) {
-  // إلا ما كانش الرابط مضبوط، كنتخطاو هاد الخطوة
   if (!SHEET_URL || SHEET_URL.includes("ضع هنا")) {
     console.warn("⚠️ SHEET_URL غير مضبوط — تم تخطي إرسال البيانات للشيت.");
     return;
   }
-
   try {
     await Promise.race([
       fetch(SHEET_URL, {
         method: "POST",
-        // ملاحظة: كنستعملو text/plain حيت Google Apps Script ما كيديرش preflight (OPTIONS)
-        // الجسم (body) كيبقى JSON عادي
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       }),
-      new Promise(resolve => setTimeout(resolve, 4000)) // مهلة 4 ثواني
+      new Promise(resolve => setTimeout(resolve, 4000))
     ]);
   } catch (err) {
-    // ما كنوقفوش العملية إلا فشل الإرسال — الطلب كيكمل للواتساب
     console.warn("تعذر إرسال البيانات للشيت:", err);
   }
 }
 
-// معالجة إرسال الاستمارة
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -1098,12 +1072,10 @@ form.addEventListener("submit", async (e) => {
   const color   = document.querySelector('input[name="color"]:checked')?.value || state.color;
   const qty     = state.qty;
 
-  /* ---------- التحقق ---------- */
   let valid = true;
 
   if (name.length < 3) { setError(nameEl, true); valid = false; } else setError(nameEl, false);
 
-  // رقم مغربي: 10 أرقام كيبدا بـ 06/07/05 أو 9 أرقام بلا صفر
   const phoneOk = /^(0[5-7]\d{8})$/.test(phone) || /^([5-7]\d{8})$/.test(phone);
   if (!phoneOk) { setError(phoneEl, true); valid = false; } else setError(phoneEl, false);
 
@@ -1116,16 +1088,14 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  /* ---------- نفتح نافذة واتساب مسبقاً لتجنب حجب المتصفح ---------- */
+  /* نفتح نافذة واتساب مسبقاً */
   let waWin = null;
   try { waWin = window.open("", "_blank"); } catch (_) {}
 
-  /* ---------- حالة التحميل ---------- */
   const originalHTML = submitBtn.innerHTML;
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<span class="spinner"></span> جاري إرسال الطلب...';
 
-  /* ---------- البيانات ---------- */
   const payload = {
     name: name,
     phone: phone,
@@ -1139,10 +1109,10 @@ form.addEventListener("submit", async (e) => {
     date: new Date().toLocaleString("ar-MA")
   };
 
-  /* ---------- الخطوة A: إرسال للشيت ---------- */
+  /* الخطوة A: Google Sheet */
   await sendToSheet(payload);
 
-  /* ---------- الخطوة B: فتح واتساب ---------- */
+  /* الخطوة B: واتساب */
   const message =
     `سلام كتاكيت، بغيت حقيبة ميكي اللون ${color} الكمية ${qty} المدينة ${city} السمية ${name}`;
 
@@ -1154,19 +1124,18 @@ form.addEventListener("submit", async (e) => {
     window.open(waURL, "_blank");
   }
 
-  /* ---------- رسالة النجاح ---------- */
+  /* رسالة النجاح */
   submitBtn.innerHTML = "✅ تم إرسال طلبك بنجاح";
   successBox.classList.remove("hidden");
   successBox.scrollIntoView({ behavior: "smooth", block: "center" });
 
-  // تصفير الاستمارة بعد شوية
   setTimeout(() => {
     form.reset();
     state.qty = 1;
     renderQty();
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalHTML;
-    applyColor("أسود", false);
+    applyColor("وردي", false);
   }, 6000);
 });
 
