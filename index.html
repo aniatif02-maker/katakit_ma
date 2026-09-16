@@ -121,7 +121,6 @@
   .faq-item.is-open .faq-body { max-height: 320px; }
   .faq-item.is-open .faq-icon { transform: rotate(45deg); background: #FF90BC; color: #fff; }
 
-  /* نبض خفيف لعداد المخزون */
   @keyframes stockPulse {
     0%   { transform: scale(1); }
     50%  { transform: scale(1.12); color: #e11d48; }
@@ -134,7 +133,7 @@
 <body class="font-tajawal bg-white text-brand-dark antialiased overflow-x-hidden">
 
 <!-- ============================================================
-     1) الشريط العلوي الأسود
+     1) الشريط العلوي
      ============================================================ -->
 <div class="bg-brand-dark text-white text-center text-[12.5px] sm:text-sm py-2.5 px-4 font-bold tracking-wide">
   <span class="inline-block animate-wiggle">🚚</span>
@@ -142,11 +141,10 @@
 </div>
 
 <!-- ============================================================
-     2) الهيدر — الشعار + زر واتساب فقط (بلا اتصال هاتفي)
+     2) الهيدر
      ============================================================ -->
 <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-brand-pinkLight">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-    <!-- الشعار -->
     <a href="#" class="flex items-center gap-2.5">
       <div class="w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl shadow-lg shadow-brand-pink/40">🐭</div>
       <div class="leading-none">
@@ -155,7 +153,7 @@
       </div>
     </a>
 
-    <!-- زر واتساب فقط — ⚠️ بدّل الرقم هنا وفي متغير WHATSAPP_NUMBER -->
+    <!-- ⚠️ بدّل رقم الواتساب هنا (بلا + وبلا مسافات) -->
     <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener"
        class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2 text-[13px] font-extrabold text-white shadow-lg shadow-green-500/30 transition hover:bg-green-600 hover:-translate-y-0.5">
       <span>💬</span>
@@ -173,9 +171,8 @@
 
   <div class="relative max-w-6xl mx-auto px-4 py-10 sm:py-14 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-    <!-- ===== يمين: صور المنتج + الألوان + المخزون ===== -->
+    <!-- ===== يمين: صور المنتج ===== -->
     <div data-reveal class="relative">
-      <!-- شارة الخصم -->
       <div class="absolute -top-4 right-6 z-20 bg-brand-yellow text-brand-dark font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10">
         خصم 40% 🔥
       </div>
@@ -183,8 +180,7 @@
       <div class="relative rounded-[2.5rem] bg-gradient-to-br from-brand-pinkLight via-white to-brand-yellowLight p-3 sm:p-4
                   border border-white shadow-[0_35px_70px_-35px_rgba(255,144,188,.95)]">
         <div class="relative overflow-hidden rounded-[2rem] bg-white">
-
-          <!-- 🖼️ الصورة الرئيسية — الرابط كيتبدل من متغير IMGS فالأسفل -->
+          <!-- 🖼️ الصورة الرئيسية — الرابط كيتبدل تلقائياً حسب اللون المختار -->
           <img id="mainImage"
                src="https://placehold.co/600x600/FFE3EF/FF90BC?text=KATAKIT"
                alt="حقيبة ميكي ماوس الكيوت - كتاكيت"
@@ -192,7 +188,7 @@
         </div>
       </div>
 
-      <!-- ✅ عداد المخزون — نص صغير تحت الصور (من 14 إلى 4) -->
+      <!-- عداد المخزون تحت الصور -->
       <div class="mt-4 flex items-center justify-center gap-2 text-[13px] font-extrabold text-gray-500">
         <span class="relative flex h-2 w-2">
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
@@ -203,7 +199,7 @@
         <span>قطعة فالمخزون</span>
       </div>
 
-      <!-- أزرار اختيار اللون — 5 ألوان -->
+      <!-- أزرار الألوان — 5 ألوان -->
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2.5">
         <button type="button" data-color="أحمر" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
           <span class="w-5 h-5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر
@@ -231,7 +227,7 @@
       </div>
     </div>
 
-    <!-- ===== يسار: النص والسعر ===== -->
+    <!-- ===== يسار: النص ===== -->
     <div class="text-center lg:text-right">
       <span data-reveal class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-2 text-[13px] font-extrabold text-brand-pinkDark">
         ✨ الأكثر مبيعاً في المغرب هاد الشهر
@@ -259,7 +255,7 @@
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> متوفرة بـ 5 ألوان كيوت</li>
       </ul>
 
-      <!-- السعر — ثابت 149 بدل 249 -->
+      <!-- السعر -->
       <div data-reveal class="mt-7 flex items-end justify-center lg:justify-start gap-3">
         <span class="text-5xl sm:text-6xl font-black text-brand-pink leading-none">149</span>
         <span class="text-xl font-extrabold text-brand-pink mb-1">درهم</span>
@@ -281,7 +277,6 @@
         </div>
       </div>
 
-      <!-- زر الطلب -->
       <a href="#order" data-reveal class="btn-main btn-shine mt-6 w-full sm:w-auto sm:px-12">
         🛒 اطلبي الآن — الدفع عند الاستلام
       </a>
@@ -332,7 +327,7 @@
 </section>
 
 <!-- ============================================================
-     5) صور وآراء الزبناء
+     5) آراء الزبناء
      ============================================================ -->
 <section class="py-14 sm:py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4">
@@ -549,17 +544,18 @@
         <p class="mt-1 text-sm font-medium text-green-600">غادي نتواصلو معاك فالواتساب فأقرب وقت باش نأكدو التوصيل. شكراً على ثقتك ف كتاكيت 💕</p>
       </div>
 
-      <form id="orderForm" novalidate class="grid gap-5">
+      <form id="orderForm" novalidate autocomplete="off" class="grid gap-5">
 
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fName" class="mb-2 block text-[13.5px] font-extrabold">الاسم الكامل <span class="text-brand-pink">*</span></label>
-            <input id="fName" type="text" class="input" placeholder="مثال: فاطمة الزهراء" autocomplete="name" />
+            <input id="fName" type="text" class="input" placeholder="مثال: فاطمة الزهراء" autocomplete="off" />
             <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي الاسم الكامل</p>
           </div>
           <div>
-            <label for="fPhone" class="mb-2 block text-[13.5px] font-extrabold">رقم الواتساب <span class="text-brand-pink">*</span></label>
-            <input id="fPhone" type="tel" inputmode="numeric" class="input" placeholder="06XXXXXXXX" autocomplete="tel" dir="ltr" />
+            <!-- ✅ تم التعديل: "رقم الهاتف" بدل "رقم الواتساب" -->
+            <label for="fPhone" class="mb-2 block text-[13.5px] font-extrabold">رقم الهاتف <span class="text-brand-pink">*</span></label>
+            <input id="fPhone" type="tel" inputmode="numeric" class="input text-right" placeholder="06XXXXXXXX" autocomplete="off" />
             <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي رقم صحيح (10 أرقام)</p>
           </div>
         </div>
@@ -621,7 +617,7 @@
 
         <div>
           <label for="fAddress" class="mb-2 block text-[13.5px] font-extrabold">العنوان الكامل <span class="text-brand-pink">*</span></label>
-          <textarea id="fAddress" rows="3" class="input resize-none" placeholder="الحي، الزنقة، رقم الدار، أقرب نقطة معروفة..."></textarea>
+          <textarea id="fAddress" rows="3" class="input resize-none" placeholder="الحي، الزنقة، رقم الدار، أقرب نقطة معروفة..." autocomplete="off"></textarea>
           <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي العنوان بالتفصيل</p>
         </div>
 
@@ -657,7 +653,7 @@
 </section>
 
 <!-- ============================================================
-     8) الفوتر — بلا رقم هاتف، فقط واتساب + انستغرام
+     8) الفوتر
      ============================================================ -->
 <footer class="bg-white border-t border-gray-100 pt-12 pb-8">
   <div class="max-w-6xl mx-auto px-4">
@@ -723,7 +719,7 @@
   </div>
 </div>
 
-<!-- زر واتساب عائم (الوحيد للتواصل) -->
+<!-- زر واتساب عائم -->
 <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener"
    class="fixed bottom-5 left-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-green-500 text-2xl text-white shadow-2xl transition hover:scale-110 hover:bg-green-600"
    aria-label="تواصل معنا على واتساب">
@@ -735,6 +731,30 @@
      ============================================================ -->
 <script>
 /* ================================================================
+   🛑 منع الهبوط التلقائي على الاستمارة عند فتح الرابط
+   ================================================================ */
+(function forceTopOnLoad() {
+  // 1) حيّد أي #hash من الرابط باش المتصفح ما يهبطش مباشرة
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  // 2) فرض التمرير للأعلى فوراً
+  window.scrollTo(0, 0);
+
+  // 3) عاود فرضها بعد التحميل الكامل (باش نتفاداو الـ autofill)
+  window.addEventListener('load', function () {
+    window.scrollTo(0, 0);
+    if (document.activeElement && document.activeElement !== document.body) {
+      document.activeElement.blur();
+    }
+  });
+
+  // 4) حماية إضافية: عاود فرضها بعد 300ms و 800ms
+  setTimeout(() => window.scrollTo(0, 0), 300);
+  setTimeout(() => window.scrollTo(0, 0), 800);
+})();
+
+/* ================================================================
    ⚙️⚙️  الإعدادات — غيّر هذي القيم فقط ⚙️⚙️
    ================================================================ */
 
@@ -744,21 +764,29 @@ const SHEET_URL = "ضع هنا رابط Google Apps Script";
 /* 2) رقم الواتساب — بلا + وبلا أصفار وبلا مسافات */
 const WHATSAPP_NUMBER = "2126XXXXXXXX";
 
-/* 3) الثمن — ثابت 149 بدل 249 */
+/* 3) الثمن */
 const PRICE = 149;
-const OLD_PRICE = 249;
 
-/* 4) 🖼️🖼️🖼️  روابط الصور الحقيقية (5 صور)  🖼️🖼️🖼️
-   ⚠️⚠️ ضع هنا روابط imgbb ديالك فكل سطر حسب اللون  ⚠️⚠️  */
+/* ================================================================
+   ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+   📸📸📸  هنا كتدخل روابط الصور ديالك (5 صور)
+   
+   ⚠️ بدّل فقط الرابط بين علامات التنصيص "..."
+   ⚠️ خلي اسم اللون بحال ما هو (أحمر، وردي، أبيض منقط، أسود، بنفسجي)
+   ⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️
+   ================================================================ */
 const IMGS = {
-  "أحمر":       "https://i.ibb.co/XXXXXXXX/red.jpg",        // ← رابط صورة اللون الأحمر
-  "وردي":       "https://i.ibb.co/XXXXXXXX/pink.jpg",       // ← رابط صورة اللون الوردي
-  "أبيض منقط":  "https://i.ibb.co/XXXXXXXX/white-dot.jpg",  // ← رابط صورة اللون الأبيض المنقط
-  "أسود":       "https://i.ibb.co/XXXXXXXX/black.jpg",      // ← رابط صورة اللون الأسود
-  "بنفسجي":     "https://i.ibb.co/XXXXXXXX/purple.jpg"      // ← رابط صورة اللون البنفسجي
+  "أحمر":       "https://i.ibb.co/XXXXXXXX/red.jpg",         // ← حط هنا رابط صورة اللون الأحمر
+  "وردي":       "https://i.ibb.co/XXXXXXXX/pink.jpg",        // ← حط هنا رابط صورة اللون الوردي
+  "أبيض منقط":  "https://i.ibb.co/XXXXXXXX/white-dot.jpg",   // ← حط هنا رابط صورة اللون الأبيض المنقط
+  "أسود":       "https://i.ibb.co/XXXXXXXX/black.jpg",       // ← حط هنا رابط صورة اللون الأسود
+  "بنفسجي":     "https://i.ibb.co/XXXXXXXX/purple.jpg"       // ← حط هنا رابط صورة اللون البنفسجي
 };
+/* ================================================================
+   ⬆️⬆️⬆️ نهاية قسم الصور — ما تبدلش شي حاجة تحت هاد السطر
+   ================================================================ */
 
-/* 5) المخزون: كينقص من 14 حتى 4 */
+/* 4) المخزون: كينقص من 14 حتى 4 */
 const STOCK_START = 14;
 const STOCK_MIN   = 4;
 
@@ -836,7 +864,7 @@ setInterval(() => {
 renderCountdown();
 
 /* ================================================================
-   3) عداد المخزون — ينقص من 14 إلى 4 (تحت الصور)
+   3) عداد المخزون
    ================================================================ */
 const stockEl = document.getElementById("stockCount");
 
@@ -845,11 +873,10 @@ function decreaseStock() {
     state.stock--;
     stockEl.textContent = state.stock;
     stockEl.classList.remove("stock-pulse");
-    void stockEl.offsetWidth; // إعادة تشغيل الأنيميشن
+    void stockEl.offsetWidth;
     stockEl.classList.add("stock-pulse");
     setTimeout(decreaseStock, 28000 + Math.random() * 22000);
   }
-  // إلا وصل 4 كيتوقف العد
 }
 setTimeout(decreaseStock, 15000);
 
