@@ -7,12 +7,10 @@
 <title>كتاكيت KATAKIT | حقيبة ميكي ماوس الكيوت — 149 درهم فقط</title>
 <meta name="description" content="حقيبة ميكي ماوس الكيوت بجودة عالية — 5 ألوان، توصيل مجاني لجميع مدن المغرب والدفع عند الاستلام. العرض محدود!" />
 
-<!-- ===================== خط Tajawal ===================== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
-<!-- ===================== Tailwind CSS (CDN) ===================== -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -28,9 +26,7 @@
             dark:      '#111111',
           }
         },
-        fontFamily: {
-          tajawal: ['Tajawal', 'system-ui', 'sans-serif'],
-        },
+        fontFamily: { tajawal: ['Tajawal', 'system-ui', 'sans-serif'] },
         keyframes: {
           floaty:   { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
           popIn:    { '0%': { opacity: 0, transform: 'scale(.85) translateY(12px)' }, '100%': { opacity: 1, transform: 'scale(1) translateY(0)' } },
@@ -51,7 +47,6 @@
   }
 </script>
 
-<!-- ===================== كلاسات مخصصة ===================== -->
 <style type="text/tailwindcss">
   @layer components {
     .input {
@@ -132,17 +127,11 @@
 
 <body class="font-tajawal bg-white text-brand-dark antialiased overflow-x-hidden">
 
-<!-- ============================================================
-     1) الشريط العلوي
-     ============================================================ -->
 <div class="bg-brand-dark text-white text-center text-[12.5px] sm:text-sm py-2.5 px-4 font-bold tracking-wide">
   <span class="inline-block animate-wiggle">🚚</span>
   توصيل مجاني اليوم + الدفع عند الاستلام
 </div>
 
-<!-- ============================================================
-     2) الهيدر
-     ============================================================ -->
 <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-brand-pinkLight">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-2.5">
@@ -152,43 +141,34 @@
         <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
       </div>
     </a>
-
-    <!-- ⚠️ بدّل رقم الواتساب هنا (بلا + وبلا مسافات) -->
+    <!-- ⚠️ بدّل رقم الواتساب هنا -->
     <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener"
        class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2 text-[13px] font-extrabold text-white shadow-lg shadow-green-500/30 transition hover:bg-green-600 hover:-translate-y-0.5">
-      <span>💬</span>
-      <span>واتساب</span>
+      <span>💬</span><span>واتساب</span>
     </a>
   </div>
 </header>
 
-<!-- ============================================================
-     3) قسم Hero
-     ============================================================ -->
 <section class="relative overflow-hidden bg-gradient-to-b from-brand-pinkLight/40 via-white to-brand-yellowLight/50">
   <div class="pointer-events-none absolute -top-32 -right-24 w-80 h-80 bg-brand-yellow/25 rounded-full blur-3xl"></div>
   <div class="pointer-events-none absolute top-52 -left-28 w-80 h-80 bg-brand-pink/25 rounded-full blur-3xl"></div>
 
   <div class="relative max-w-6xl mx-auto px-4 py-10 sm:py-14 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-    <!-- ===== يمين: صور المنتج ===== -->
     <div data-reveal class="relative">
       <div class="absolute -top-4 right-6 z-20 bg-brand-yellow text-brand-dark font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10">
         خصم 40% 🔥
       </div>
-
       <div class="relative rounded-[2.5rem] bg-gradient-to-br from-brand-pinkLight via-white to-brand-yellowLight p-3 sm:p-4
                   border border-white shadow-[0_35px_70px_-35px_rgba(255,144,188,.95)]">
         <div class="relative overflow-hidden rounded-[2rem] bg-white">
-          <!-- 🖼️ الصورة الرئيسية — الرابط كيتبدل تلقائياً حسب اللون المختار -->
           <img id="mainImage"
-               src="https://placehold.co/600x600/FFE3EF/FF90BC?text=KATAKIT"
+               src="https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg"
                alt="حقيبة ميكي ماوس الكيوت - كتاكيت"
                class="w-full h-[320px] sm:h-[440px] object-cover transition-all duration-500" />
         </div>
       </div>
 
-      <!-- عداد المخزون تحت الصور -->
       <div class="mt-4 flex items-center justify-center gap-2 text-[13px] font-extrabold text-gray-500">
         <span class="relative flex h-2 w-2">
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
@@ -199,7 +179,6 @@
         <span>قطعة فالمخزون</span>
       </div>
 
-      <!-- أزرار الألوان — 5 ألوان -->
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2.5">
         <button type="button" data-color="أحمر" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
           <span class="w-5 h-5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر
@@ -218,7 +197,6 @@
         </button>
       </div>
 
-      <!-- التقييم -->
       <div class="mt-5 flex items-center justify-center gap-2 text-sm">
         <div id="starsRow" class="flex gap-0.5 text-2xl text-brand-yellow"></div>
         <span class="font-black text-brand-dark" id="ratingValue">0.0</span>
@@ -227,12 +205,10 @@
       </div>
     </div>
 
-    <!-- ===== يسار: النص ===== -->
     <div class="text-center lg:text-right">
       <span data-reveal class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-2 text-[13px] font-extrabold text-brand-pinkDark">
         ✨ الأكثر مبيعاً في المغرب هاد الشهر
       </span>
-
       <h1 data-reveal class="mt-5 text-[30px] leading-[1.25] sm:text-4xl lg:text-[44px] lg:leading-[1.2] font-black">
         حقيبة ميكي اللي كل البنات
         <span class="relative inline-block">
@@ -241,12 +217,10 @@
         </span>
         🎒
       </h1>
-
       <p data-reveal class="mt-4 text-[15px] sm:text-base leading-relaxed text-gray-600 font-medium">
         حقيبة مدرسية كيوت بتصميم ميكي ماوس الأصلي، قماش متين وخياطة قوية، واسعة بزاف ومريحة للظهر.
         اختاري اللون اللي كتعجبك وأطلبي الآن — <span class="font-extrabold text-brand-dark">الدفع عند الاستلام</span>.
       </p>
-
       <ul data-reveal class="mt-6 space-y-3 text-right inline-block">
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> تصميم ميكي ماوس الأصلي بجودة عالية</li>
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> قماش متين ما كيتقطعش ولا كيبهت</li>
@@ -254,19 +228,14 @@
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> حمالات مبطنة مريحة على الكتاف</li>
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> متوفرة بـ 5 ألوان كيوت</li>
       </ul>
-
-      <!-- السعر -->
       <div data-reveal class="mt-7 flex items-end justify-center lg:justify-start gap-3">
         <span class="text-5xl sm:text-6xl font-black text-brand-pink leading-none">149</span>
         <span class="text-xl font-extrabold text-brand-pink mb-1">درهم</span>
         <span class="text-lg font-extrabold text-gray-400 line-through mb-1">249 درهم</span>
       </div>
-
-      <!-- العداد التنازلي -->
       <div data-reveal class="mt-6 rounded-3xl bg-brand-dark px-5 py-4 flex items-center justify-between gap-3 shadow-xl">
         <div class="flex items-center gap-2 text-sm font-extrabold text-white">
-          <span class="text-brand-yellow text-lg">⏳</span>
-          <span>العرض ينتهي بعد</span>
+          <span class="text-brand-yellow text-lg">⏳</span><span>العرض ينتهي بعد</span>
         </div>
         <div class="flex items-center gap-1.5 font-black text-lg text-white" dir="ltr">
           <span id="cdH" class="rounded-xl bg-white/10 px-2.5 py-1 tabular-nums">02</span>
@@ -276,11 +245,9 @@
           <span id="cdS" class="rounded-xl bg-white/10 px-2.5 py-1 tabular-nums">33</span>
         </div>
       </div>
-
       <a href="#order" data-reveal class="btn-main btn-shine mt-6 w-full sm:w-auto sm:px-12">
         🛒 اطلبي الآن — الدفع عند الاستلام
       </a>
-
       <div data-reveal class="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 text-[12.5px] font-extrabold text-gray-500">
         <span class="flex items-center gap-1.5">🔒 الدفع عند الاستلام</span>
         <span class="flex items-center gap-1.5">🚚 توصيل مجاني</span>
@@ -290,9 +257,6 @@
   </div>
 </section>
 
-<!-- ============================================================
-     4) لماذا سيحبها طفلك
-     ============================================================ -->
 <section class="bg-gradient-to-b from-white to-brand-pinkLight/40 py-14 sm:py-20">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
@@ -300,7 +264,6 @@
       <h2 class="mt-4 text-3xl sm:text-4xl font-black">لماذا سيحبها طفلك؟</h2>
       <p class="mt-3 text-gray-600 font-medium">4 أسباب كتخلي بنتك ما تفارقش هاد الحقيبة 😍</p>
     </div>
-
     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,144,188,1)]" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty">🎨</div>
@@ -326,9 +289,6 @@
   </div>
 </section>
 
-<!-- ============================================================
-     5) آراء الزبناء
-     ============================================================ -->
 <section class="py-14 sm:py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
@@ -336,216 +296,134 @@
       <h2 class="mt-4 text-3xl sm:text-4xl font-black">شنو قالو الزبناء علينا؟</h2>
       <p class="mt-3 text-gray-600 font-medium">أكثر من 1240 أم مغربية طلبو الحقيبة وعجبهم الحال 💕</p>
     </div>
-
     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow grid place-items-center text-white font-black text-lg">ف</div>
-          <div>
-            <h4 class="font-black text-[14px]">فاطمة الزهراء</h4>
-            <p class="text-[12px] text-gray-500 font-bold">الدار البيضاء</p>
-          </div>
+          <div><h4 class="font-black text-[14px]">فاطمة الزهراء</h4><p class="text-[12px] text-gray-500 font-bold">الدار البيضاء</p></div>
           <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
         </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">
-          "بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة. توصيل سريع والدفع عند الاستلام."
-        </p>
+        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة. توصيل سريع والدفع عند الاستلام."</p>
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">🎒</div>
       </article>
-
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pink grid place-items-center text-white font-black text-lg">س</div>
-          <div>
-            <h4 class="font-black text-[14px]">سلمى بنعلي</h4>
-            <p class="text-[12px] text-gray-500 font-bold">الرباط</p>
-          </div>
+          <div><h4 class="font-black text-[14px]">سلمى بنعلي</h4><p class="text-[12px] text-gray-500 font-bold">الرباط</p></div>
           <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
         </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">
-          "الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي وتا هوما طلبو."
-        </p>
+        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي وتا هوما طلبو."</p>
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">🛍️</div>
       </article>
-
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-pinkDark grid place-items-center text-white font-black text-lg">ي</div>
-          <div>
-            <h4 class="font-black text-[14px]">ياسمين الإدريسي</h4>
-            <p class="text-[12px] text-gray-500 font-bold">مراكش</p>
-          </div>
+          <div><h4 class="font-black text-[14px]">ياسمين الإدريسي</h4><p class="text-[12px] text-gray-500 font-bold">مراكش</p></div>
           <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
         </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">
-          "الخدمة زوينة بزاف، تواصلو معايا فالواتساب وأكدو ليا الطلبية. وصلاتني بعد 24 ساعة. شكرا كتاكيت!"
-        </p>
+        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"الخدمة زوينة بزاف، تواصلو معايا فالواتساب وأكدو ليا الطلبية. وصلاتني بعد 24 ساعة. شكرا كتاكيت!"</p>
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">🎁</div>
       </article>
-
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pink grid place-items-center text-white font-black text-lg">ه</div>
-          <div>
-            <h4 class="font-black text-[14px]">هند الطاهري</h4>
-            <p class="text-[12px] text-gray-500 font-bold">طنجة</p>
-          </div>
+          <div><h4 class="font-black text-[14px]">هند الطاهري</h4><p class="text-[12px] text-gray-500 font-bold">طنجة</p></div>
           <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
         </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">
-          "خديت اللون البيج وطلع روعة، راقي وأنيق. بنتي كتفرح بيها كل صباح ملي كتمشي للمدرسة."
-        </p>
+        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"خديت اللون البيج وطلع روعة، راقي وأنيق. بنتي كتفرح بيها كل صباح ملي كتمشي للمدرسة."</p>
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">✨</div>
       </article>
-
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pinkDark to-brand-pink grid place-items-center text-white font-black text-lg">م</div>
-          <div>
-            <h4 class="font-black text-[14px]">مريم الشرقاوي</h4>
-            <p class="text-[12px] text-gray-500 font-bold">أكادير</p>
-          </div>
+          <div><h4 class="font-black text-[14px]">مريم الشرقاوي</h4><p class="text-[12px] text-gray-500 font-bold">أكادير</p></div>
           <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
         </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">
-          "الثمن مناسب مقارنة مع الجودة. صراحة تستاهل أكثر من 149 درهم. غنعاود نشري وحدة لأختي الصغيرة."
-        </p>
+        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"الثمن مناسب مقارنة مع الجودة. صراحة تستاهل أكثر من 149 درهم. غنعاود نشري وحدة لأختي الصغيرة."</p>
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">📦</div>
       </article>
-
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pinkDark grid place-items-center text-white font-black text-lg">ن</div>
-          <div>
-            <h4 class="font-black text-[14px]">نور الهدى</h4>
-            <p class="text-[12px] text-gray-500 font-bold">فاس</p>
-          </div>
+          <div><h4 class="font-black text-[14px]">نور الهدى</h4><p class="text-[12px] text-gray-500 font-bold">فاس</p></div>
           <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
         </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">
-          "أحسن حقيبة شريت لبناتي. الحمالات مريحة والظرف كافيها كلشي. تعامل محترم وتوصيل مجاني."
-        </p>
+        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"أحسن حقيبة شريت لبناتي. الحمالات مريحة والظرف كافيها كلشي. تعامل محترم وتوصيل مجاني."</p>
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">👧</div>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     6) الأسئلة الشائعة
-     ============================================================ -->
 <section class="py-14 sm:py-20 bg-gradient-to-b from-brand-yellowLight/50 to-white">
   <div class="max-w-3xl mx-auto px-4">
     <div class="text-center" data-reveal>
       <span class="inline-block rounded-full bg-brand-yellow/50 px-4 py-1.5 text-[13px] font-extrabold text-brand-dark">❓ الأسئلة الشائعة</span>
       <h2 class="mt-4 text-3xl sm:text-4xl font-black">كل ما بغيتي تعرفي</h2>
     </div>
-
     <div class="mt-10 space-y-3" id="faqWrap">
-
       <div class="faq-item card !p-0 overflow-hidden" data-reveal>
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
           <span class="font-extrabold text-[15px]">واش الدفع عند الاستلام؟</span>
           <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
         </button>
-        <div class="faq-body px-5">
-          <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            نعم 100%. كتخلصي غير ملي توصلك الطلبية ليد داركم وكتشوفي الحقيبة بعينيك قبل ما تخلصي. بلا أي مخاطرة.
-          </p>
-        </div>
+        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">نعم 100%. كتخلصي غير ملي توصلك الطلبية ليد داركم وكتشوفي الحقيبة بعينيك قبل ما تخلصي. بلا أي مخاطرة.</p></div>
       </div>
-
       <div class="faq-item card !p-0 overflow-hidden" data-reveal>
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
           <span class="font-extrabold text-[15px]">شحال كتاخد الطلبية باش توصل؟</span>
           <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
         </button>
-        <div class="faq-body px-5">
-          <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            بين 24 و 48 ساعة فالمدن الكبرى، وبين 48 و 72 ساعة فالمناطق البعيدة. وكنتواصلو معاك فالواتساب قبل التوصيل.
-          </p>
-        </div>
+        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">بين 24 و 48 ساعة فالمدن الكبرى، وبين 48 و 72 ساعة فالمناطق البعيدة. وكنتواصلو معاك فالواتساب قبل التوصيل.</p></div>
       </div>
-
       <div class="faq-item card !p-0 overflow-hidden" data-reveal>
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
           <span class="font-extrabold text-[15px]">واش التوصيل مجاني؟</span>
           <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
         </button>
-        <div class="faq-body px-5">
-          <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            نعم، التوصيل مجاني لجميع مدن المغرب بلا أي زيادة. الثمن اللي كتشوفي هو الثمن اللي كتخلصي.
-          </p>
-        </div>
+        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">نعم، التوصيل مجاني لجميع مدن المغرب بلا أي زيادة. الثمن اللي كتشوفي هو الثمن اللي كتخلصي.</p></div>
       </div>
-
       <div class="faq-item card !p-0 overflow-hidden" data-reveal>
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
           <span class="font-extrabold text-[15px]">واش كاين ضمان إلا ما عجباتنيش؟</span>
           <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
         </button>
-        <div class="faq-body px-5">
-          <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            أكيد. إلا وصلتك الحقيبة فيها عيب فالصناعة أو ما عجباتكش، كترجعيها وكنرجعو ليك فلوسك كاملين. رضاك هو الأولوية.
-          </p>
-        </div>
+        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">أكيد. إلا وصلتك الحقيبة فيها عيب فالصناعة أو ما عجباتكش، كترجعيها وكنرجعو ليك فلوسك كاملين. رضاك هو الأولوية.</p></div>
       </div>
-
       <div class="faq-item card !p-0 overflow-hidden" data-reveal>
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
           <span class="font-extrabold text-[15px]">شمن ألوان متوفرة؟</span>
           <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
         </button>
-        <div class="faq-body px-5">
-          <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            متوفرة بـ 5 ألوان: الأحمر، الوردي، الأبيض المنقط، الأسود، والبنفسجي. كتختاري اللون اللي بغيتي فاستمارة الطلب تحت.
-          </p>
-        </div>
+        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">متوفرة بـ 5 ألوان: الأحمر، الوردي، الأبيض المنقط، الأسود، والبنفسجي. كتختاري اللون اللي بغيتي فاستمارة الطلب تحت.</p></div>
       </div>
-
       <div class="faq-item card !p-0 overflow-hidden" data-reveal>
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
           <span class="font-extrabold text-[15px]">كيفاش نتواصل معاكم؟</span>
           <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
         </button>
-        <div class="faq-body px-5">
-          <p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">
-            عبر الواتساب فقط، وكنجاوبو من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع.
-          </p>
-        </div>
+        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">عبر الواتساب فقط، وكنجاوبو من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع.</p></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     7) استمارة الطلب
-     ============================================================ -->
 <section id="order" class="py-14 sm:py-20 bg-brand-dark relative overflow-hidden">
   <div class="pointer-events-none absolute -top-24 right-0 w-72 h-72 bg-brand-pink/20 rounded-full blur-3xl"></div>
   <div class="pointer-events-none absolute bottom-0 -left-20 w-72 h-72 bg-brand-yellow/20 rounded-full blur-3xl"></div>
-
   <div class="relative max-w-3xl mx-auto px-4">
-
     <div class="text-center" data-reveal>
       <span class="inline-block rounded-full bg-brand-yellow px-4 py-1.5 text-[13px] font-black text-brand-dark">📝 استمارة الطلب</span>
       <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white">أطلبي الآن — الدفع عند الاستلام</h2>
       <p class="mt-3 text-gray-300 font-medium">عمري المعلومات وحنا كنتواصلو معاك فالواتساب باش نأكدو الطلبية ✅</p>
     </div>
-
     <div class="mt-10 rounded-[2rem] bg-white p-5 sm:p-8 shadow-2xl" data-reveal>
-
       <div id="formSuccess" class="hidden mb-6 rounded-2xl border-2 border-green-200 bg-green-50 p-5 text-center animate-popIn">
         <div class="text-4xl">✅</div>
         <h3 class="mt-2 font-black text-lg text-green-700">تم استلام طلبك، سنتواصل معك</h3>
         <p class="mt-1 text-sm font-medium text-green-600">غادي نتواصلو معاك فالواتساب فأقرب وقت باش نأكدو التوصيل. شكراً على ثقتك ف كتاكيت 💕</p>
       </div>
-
       <form id="orderForm" novalidate autocomplete="off" class="grid gap-5">
-
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fName" class="mb-2 block text-[13.5px] font-extrabold">الاسم الكامل <span class="text-brand-pink">*</span></label>
@@ -553,19 +431,15 @@
             <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي الاسم الكامل</p>
           </div>
           <div>
-            <!-- ✅ تم التعديل: "رقم الهاتف" بدل "رقم الواتساب" -->
             <label for="fPhone" class="mb-2 block text-[13.5px] font-extrabold">رقم الهاتف <span class="text-brand-pink">*</span></label>
             <input id="fPhone" type="tel" inputmode="numeric" class="input text-right" placeholder="06XXXXXXXX" autocomplete="off" />
             <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي رقم صحيح (10 أرقام)</p>
           </div>
         </div>
-
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fCity" class="mb-2 block text-[13.5px] font-extrabold">المدينة <span class="text-brand-pink">*</span></label>
-            <select id="fCity" class="input">
-              <option value="" selected disabled>اختاري مدينتك</option>
-            </select>
+            <select id="fCity" class="input"><option value="" selected disabled>اختاري مدينتك</option></select>
             <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك اختاري المدينة</p>
           </div>
           <div>
@@ -573,38 +447,27 @@
             <div class="flex flex-wrap gap-2">
               <label class="cursor-pointer">
                 <input type="radio" name="color" value="أحمر" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
-                  <span class="h-4 w-4 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر
-                </span>
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</span>
               </label>
               <label class="cursor-pointer">
                 <input type="radio" name="color" value="وردي" class="peer sr-only" checked />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
-                  <span class="h-4 w-4 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي
-                </span>
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</span>
               </label>
               <label class="cursor-pointer">
                 <input type="radio" name="color" value="أبيض منقط" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
-                  <span class="h-4 w-4 rounded-full bg-white ring-2 ring-gray-200 shadow" style="background-image:radial-gradient(#111 1px, transparent 1.1px); background-size:4px 4px;"></span> أبيض منقط
-                </span>
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-white ring-2 ring-gray-200 shadow" style="background-image:radial-gradient(#111 1px, transparent 1.1px); background-size:4px 4px;"></span> أبيض منقط</span>
               </label>
               <label class="cursor-pointer">
                 <input type="radio" name="color" value="أسود" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
-                  <span class="h-4 w-4 rounded-full bg-black ring-2 ring-white shadow"></span> أسود
-                </span>
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-black ring-2 ring-white shadow"></span> أسود</span>
               </label>
               <label class="cursor-pointer">
                 <input type="radio" name="color" value="بنفسجي" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark">
-                  <span class="h-4 w-4 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي
-                </span>
+                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي</span>
               </label>
             </div>
           </div>
         </div>
-
         <div>
           <span class="mb-2 block text-[13.5px] font-extrabold">الكمية</span>
           <div class="flex items-center gap-3">
@@ -614,64 +477,34 @@
             <span class="ms-auto text-[13px] font-bold text-gray-500">الحد الأقصى: 5 قطع</span>
           </div>
         </div>
-
         <div>
           <label for="fAddress" class="mb-2 block text-[13.5px] font-extrabold">العنوان الكامل <span class="text-brand-pink">*</span></label>
           <textarea id="fAddress" rows="3" class="input resize-none" placeholder="الحي، الزنقة، رقم الدار، أقرب نقطة معروفة..." autocomplete="off"></textarea>
           <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي العنوان بالتفصيل</p>
         </div>
-
         <div class="rounded-2xl border-2 border-dashed border-brand-pink/40 bg-brand-pinkLight/40 p-5">
-          <div class="flex items-center justify-between text-[14px] font-bold">
-            <span>حقيبة ميكي ماوس الكيوت</span>
-            <span class="tabular-nums"><span id="sumUnit">149</span> درهم</span>
-          </div>
-          <div class="mt-2 flex items-center justify-between text-[14px] font-bold">
-            <span>الكمية</span>
-            <span class="tabular-nums">× <span id="sumQty">1</span></span>
-          </div>
-          <div class="mt-2 flex items-center justify-between text-[14px] font-bold">
-            <span>التوصيل</span>
-            <span class="text-green-600">مجاني 🚚</span>
-          </div>
-          <div class="mt-3 flex items-center justify-between border-t-2 border-dashed border-brand-pink/40 pt-3">
-            <span class="font-black">المجموع</span>
-            <span class="text-2xl font-black text-brand-pink tabular-nums"><span id="sumTotal">149</span> درهم</span>
-          </div>
+          <div class="flex items-center justify-between text-[14px] font-bold"><span>حقيبة ميكي ماوس الكيوت</span><span class="tabular-nums"><span id="sumUnit">149</span> درهم</span></div>
+          <div class="mt-2 flex items-center justify-between text-[14px] font-bold"><span>الكمية</span><span class="tabular-nums">× <span id="sumQty">1</span></span></div>
+          <div class="mt-2 flex items-center justify-between text-[14px] font-bold"><span>التوصيل</span><span class="text-green-600">مجاني 🚚</span></div>
+          <div class="mt-3 flex items-center justify-between border-t-2 border-dashed border-brand-pink/40 pt-3"><span class="font-black">المجموع</span><span class="text-2xl font-black text-brand-pink tabular-nums"><span id="sumTotal">149</span> درهم</span></div>
         </div>
-
-        <button type="submit" id="submitBtn" class="btn-main btn-shine w-full !py-5 !text-lg">
-          ✅ تأكيد الطلب — الدفع عند الاستلام
-        </button>
-
-        <p class="text-center text-[12px] font-bold text-gray-400">
-          بالضغط على "تأكيد الطلب" كتوافقي على أن نتواصلو معاك عبر الواتساب لتأكيد الطلبية 💬
-        </p>
+        <button type="submit" id="submitBtn" class="btn-main btn-shine w-full !py-5 !text-lg">✅ تأكيد الطلب — الدفع عند الاستلام</button>
+        <p class="text-center text-[12px] font-bold text-gray-400">بالضغط على "تأكيد الطلب" كتوافقي على أن نتواصلو معاك عبر الواتساب لتأكيد الطلبية 💬</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     8) الفوتر
-     ============================================================ -->
 <footer class="bg-white border-t border-gray-100 pt-12 pb-8">
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid sm:grid-cols-3 gap-8 items-start">
-
       <div>
         <div class="flex items-center gap-2.5">
           <div class="w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl">🐭</div>
-          <div class="leading-none">
-            <div class="font-black text-xl">KATAKIT</div>
-            <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
-          </div>
+          <div class="leading-none"><div class="font-black text-xl">KATAKIT</div><div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div></div>
         </div>
-        <p class="mt-4 text-[13px] leading-relaxed text-gray-500 font-medium">
-          متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال. جودة عالية، أثمنة مناسبة، وخدمة زبناء محترمة.
-        </p>
+        <p class="mt-4 text-[13px] leading-relaxed text-gray-500 font-medium">متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال. جودة عالية، أثمنة مناسبة، وخدمة زبناء محترمة.</p>
       </div>
-
       <div>
         <h4 class="font-black text-[15px]">روابط سريعة</h4>
         <ul class="mt-4 space-y-2.5 text-[13.5px] font-bold text-gray-500">
@@ -680,119 +513,68 @@
           <li><a href="#order" class="transition hover:text-brand-pink">سياسة الإرجاع</a></li>
         </ul>
       </div>
-
       <div>
         <h4 class="font-black text-[15px]">تواصلي معنا</h4>
         <div class="mt-4 flex flex-wrap gap-3">
-          <!-- ⚠️ بدّل رقم الواتساب هنا -->
-          <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2.5 text-[13px] font-extrabold text-white transition hover:bg-green-600">
-            💬 واتساب
-          </a>
-          <!-- ⚠️ بدّل رابط انستغرام هنا -->
-          <a href="https://instagram.com/katakit" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow px-4 py-2.5 text-[13px] font-extrabold text-white transition hover:opacity-90">
-            📸 انستغرام
-          </a>
+          <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2.5 text-[13px] font-extrabold text-white transition hover:bg-green-600">💬 واتساب</a>
+          <a href="https://instagram.com/katakit" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow px-4 py-2.5 text-[13px] font-extrabold text-white transition hover:opacity-90">📸 انستغرام</a>
         </div>
       </div>
     </div>
-
-    <div class="mt-10 border-t border-gray-100 pt-6 text-center text-[12.5px] font-bold text-gray-400">
-      © <span id="year">2025</span> KATAKIT — كتاكيت. جميع الحقوق محفوظة.
-    </div>
+    <div class="mt-10 border-t border-gray-100 pt-6 text-center text-[12.5px] font-bold text-gray-400">© <span id="year">2025</span> KATAKIT — كتاكيت. جميع الحقوق محفوظة.</div>
   </div>
 </footer>
 
-<!-- ============================================================
-     إشعارات وهمية
-     ============================================================ -->
 <div id="toast" class="pointer-events-none fixed bottom-5 right-4 z-50 hidden w-[min(320px,calc(100vw-2rem))]">
   <div class="flex items-center gap-3 rounded-3xl border border-brand-pinkLight bg-white p-3 shadow-[0_20px_50px_-20px_rgba(0,0,0,.4)]">
     <div class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-pinkLight text-2xl">🎒</div>
     <div class="min-w-0">
-      <p class="truncate text-[13px] font-black">
-        <span id="toastName">فاطمة</span> من <span id="toastCity">الدار البيضاء</span>
-      </p>
+      <p class="truncate text-[13px] font-black"><span id="toastName">فاطمة</span> من <span id="toastCity">الدار البيضاء</span></p>
       <p class="text-[11.5px] font-bold text-gray-500">اشترت <span id="toastTime">قبل دقيقة</span> ✅</p>
     </div>
   </div>
 </div>
 
-<!-- زر واتساب عائم -->
-<a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener"
-   class="fixed bottom-5 left-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-green-500 text-2xl text-white shadow-2xl transition hover:scale-110 hover:bg-green-600"
-   aria-label="تواصل معنا على واتساب">
-  💬
-</a>
+<a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener" class="fixed bottom-5 left-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-green-500 text-2xl text-white shadow-2xl transition hover:scale-110 hover:bg-green-600" aria-label="تواصل معنا على واتساب">💬</a>
 
-<!-- ============================================================
-     الجافاسكريبت
-     ============================================================ -->
 <script>
 /* ================================================================
-   🛑 منع الهبوط التلقائي على الاستمارة عند فتح الرابط
+   🛑 منع الهبوط التلقائي على الاستمارة
    ================================================================ */
 (function forceTopOnLoad() {
-  // 1) حيّد أي #hash من الرابط باش المتصفح ما يهبطش مباشرة
   if (window.location.hash) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
-  // 2) فرض التمرير للأعلى فوراً
   window.scrollTo(0, 0);
-
-  // 3) عاود فرضها بعد التحميل الكامل (باش نتفاداو الـ autofill)
   window.addEventListener('load', function () {
     window.scrollTo(0, 0);
-    if (document.activeElement && document.activeElement !== document.body) {
-      document.activeElement.blur();
-    }
+    if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
   });
-
-  // 4) حماية إضافية: عاود فرضها بعد 300ms و 800ms
   setTimeout(() => window.scrollTo(0, 0), 300);
   setTimeout(() => window.scrollTo(0, 0), 800);
 })();
 
 /* ================================================================
-   ⚙️⚙️  الإعدادات — غيّر هذي القيم فقط ⚙️⚙️
+   ⚙️ الإعدادات
    ================================================================ */
-
-/* 1) رابط Google Apps Script (Google Sheet) */
 const SHEET_URL = "ضع هنا رابط Google Apps Script";
-
-/* 2) رقم الواتساب — بلا + وبلا أصفار وبلا مسافات */
 const WHATSAPP_NUMBER = "2126XXXXXXXX";
-
-/* 3) الثمن */
 const PRICE = 149;
 
 /* ================================================================
-   ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-   📸📸📸  هنا كتدخل روابط الصور ديالك (5 صور)
-   
-   ⚠️ بدّل فقط الرابط بين علامات التنصيص "..."
-   ⚠️ خلي اسم اللون بحال ما هو (أحمر، وردي، أبيض منقط، أسود، بنفسجي)
-   ⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️
+   📸 روابط الصور (تم تحديثها من ImgBB)
    ================================================================ */
 const IMGS = {
-  "أحمر":       "https://i.ibb.co/XXXXXXXX/red.jpg",         // ← حط هنا رابط صورة اللون الأحمر
-  "وردي":       "https://i.ibb.co/XXXXXXXX/pink.jpg",        // ← حط هنا رابط صورة اللون الوردي
-  "أبيض منقط":  "https://i.ibb.co/XXXXXXXX/white-dot.jpg",   // ← حط هنا رابط صورة اللون الأبيض المنقط
-  "أسود":       "https://i.ibb.co/XXXXXXXX/black.jpg",       // ← حط هنا رابط صورة اللون الأسود
-  "بنفسجي":     "https://i.ibb.co/XXXXXXXX/purple.jpg"       // ← حط هنا رابط صورة اللون البنفسجي
+  "أحمر":       "https://i.ibb.co/x866ZgHS/Whats-App-Image-2026-09-16-at-22-03-30-2.jpg",
+  "وردي":       "https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg",
+  "أبيض منقط":  "https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg",
+  "أسود":       "https://i.ibb.co/99b4400J/Whats-App-Image-2026-09-16-at-22-03-30.jpg",
+  "بنفسجي":     "https://i.ibb.co/qFMh7CzR/Whats-App-Image-2026-09-16-at-22-03-29-1.jpg"
 };
-/* ================================================================
-   ⬆️⬆️⬆️ نهاية قسم الصور — ما تبدلش شي حاجة تحت هاد السطر
-   ================================================================ */
 
-/* 4) المخزون: كينقص من 14 حتى 4 */
 const STOCK_START = 14;
 const STOCK_MIN   = 4;
 
-/* ================================================================
-   مدن المغرب
-   ================================================================ */
 const CITIES = [
   "الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان",
   "سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة",
@@ -802,9 +584,6 @@ const CITIES = [
   "الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"
 ];
 
-/* ================================================================
-   الإشعارات الوهمية
-   ================================================================ */
 const NOTIFS = [
   { name: "فاطمة",  city: "الدار البيضاء", time: "قبل دقيقة"   },
   { name: "سلمى",   city: "الرباط",        time: "قبل 3 دقائق" },
@@ -818,34 +597,17 @@ const NOTIFS = [
   { name: "أمينة",  city: "القنيطرة",      time: "قبل دقيقة"   }
 ];
 
-/* ================================================================
-   الحالة
-   ================================================================ */
-const state = {
-  color: "وردي",
-  qty: 1,
-  stock: STOCK_START,
-  userPickedColor: false
-};
+const state = { color: "وردي", qty: 1, stock: STOCK_START, userPickedColor: false };
 
-/* ================================================================
-   1) تعمير قائمة المدن
-   ================================================================ */
 (function fillCities() {
   const sel = document.getElementById("fCity");
   CITIES.forEach(c => {
     const o = document.createElement("option");
-    o.value = c;
-    o.textContent = c;
-    sel.appendChild(o);
+    o.value = c; o.textContent = c; sel.appendChild(o);
   });
 })();
 
-/* ================================================================
-   2) العدّاد التنازلي
-   ================================================================ */
 let countdown = 2 * 3600 + 14 * 60 + 33;
-
 function renderCountdown() {
   const h = Math.floor(countdown / 3600);
   const m = Math.floor((countdown % 3600) / 60);
@@ -855,19 +617,10 @@ function renderCountdown() {
   document.getElementById("cdM").textContent = p(m);
   document.getElementById("cdS").textContent = p(s);
 }
-
-setInterval(() => {
-  countdown--;
-  if (countdown < 0) countdown = 2 * 3600 + 14 * 60 + 33;
-  renderCountdown();
-}, 1000);
+setInterval(() => { countdown--; if (countdown < 0) countdown = 2 * 3600 + 14 * 60 + 33; renderCountdown(); }, 1000);
 renderCountdown();
 
-/* ================================================================
-   3) عداد المخزون
-   ================================================================ */
 const stockEl = document.getElementById("stockCount");
-
 function decreaseStock() {
   if (state.stock > STOCK_MIN) {
     state.stock--;
@@ -880,40 +633,20 @@ function decreaseStock() {
 }
 setTimeout(decreaseStock, 15000);
 
-/* ================================================================
-   4) تبديل اللون + الصورة الرئيسية
-   ================================================================ */
 const mainImage = document.getElementById("mainImage");
-
 function applyColor(color, fromUser = true) {
   if (!IMGS[color]) color = "وردي";
   state.color = color;
-
   mainImage.style.opacity = "0";
-  setTimeout(() => {
-    mainImage.src = IMGS[color];
-    mainImage.style.opacity = "1";
-  }, 180);
-
-  document.querySelectorAll("[data-color]").forEach(el => {
-    el.classList.toggle("is-active", el.dataset.color === color);
-  });
-
+  setTimeout(() => { mainImage.src = IMGS[color]; mainImage.style.opacity = "1"; }, 180);
+  document.querySelectorAll("[data-color]").forEach(el => el.classList.toggle("is-active", el.dataset.color === color));
   const radio = document.querySelector(`input[name="color"][value="${color}"]`);
   if (radio) radio.checked = true;
-
   if (fromUser) state.userPickedColor = true;
 }
+document.querySelectorAll("[data-color]").forEach(btn => btn.addEventListener("click", () => applyColor(btn.dataset.color, true)));
+document.querySelectorAll('input[name="color"]').forEach(r => r.addEventListener("change", () => applyColor(r.value, true)));
 
-document.querySelectorAll("[data-color]").forEach(btn => {
-  btn.addEventListener("click", () => applyColor(btn.dataset.color, true));
-});
-
-document.querySelectorAll('input[name="color"]').forEach(r => {
-  r.addEventListener("change", () => applyColor(r.value, true));
-});
-
-/* سلايدر تلقائي كيتوقف ملي تختار الزبونة لون بيدها */
 const colorKeys = Object.keys(IMGS);
 let sliderIdx = colorKeys.indexOf("وردي");
 setInterval(() => {
@@ -921,44 +654,27 @@ setInterval(() => {
   sliderIdx = (sliderIdx + 1) % colorKeys.length;
   applyColor(colorKeys[sliderIdx], false);
 }, 4500);
-
 applyColor("وردي", false);
 
-/* ================================================================
-   5) الكمية + ملخص الطلب
-   ================================================================ */
 const qtyValue = document.getElementById("qtyValue");
 const sumQty   = document.getElementById("sumQty");
 const sumTotal = document.getElementById("sumTotal");
 const sumUnit  = document.getElementById("sumUnit");
-
 function renderQty() {
   qtyValue.textContent = state.qty;
   sumQty.textContent   = state.qty;
   sumUnit.textContent  = PRICE;
   sumTotal.textContent = PRICE * state.qty;
 }
-
-document.getElementById("qtyPlus").addEventListener("click", () => {
-  if (state.qty < 5) { state.qty++; renderQty(); }
-});
-
-document.getElementById("qtyMinus").addEventListener("click", () => {
-  if (state.qty > 1) { state.qty--; renderQty(); }
-});
-
+document.getElementById("qtyPlus").addEventListener("click", () => { if (state.qty < 5) { state.qty++; renderQty(); } });
+document.getElementById("qtyMinus").addEventListener("click", () => { if (state.qty > 1) { state.qty--; renderQty(); } });
 renderQty();
 
-/* ================================================================
-   6) التقييمات المتحركة
-   ================================================================ */
 (function buildStars() {
   const row = document.getElementById("starsRow");
   for (let i = 0; i < 5; i++) {
     const s = document.createElement("span");
-    s.textContent = "★";
-    s.style.opacity = "0";
-    row.appendChild(s);
+    s.textContent = "★"; s.style.opacity = "0"; row.appendChild(s);
   }
 })();
 
@@ -966,46 +682,20 @@ let ratingPlayed = false;
 function playRating() {
   if (ratingPlayed) return;
   ratingPlayed = true;
-
   document.querySelectorAll("#starsRow span").forEach((s, i) => {
-    setTimeout(() => {
-      s.style.animation = `starPop .55s cubic-bezier(.2,.8,.3,1.4) both`;
-      s.style.opacity = "1";
-    }, i * 130);
+    setTimeout(() => { s.style.animation = `starPop .55s cubic-bezier(.2,.8,.3,1.4) both`; s.style.opacity = "1"; }, i * 130);
   });
-
   const el = document.getElementById("ratingValue");
-  let v = 0;
-  const target = 4.9;
-  const step = target / 45;
-  const t = setInterval(() => {
-    v += step;
-    if (v >= target) { v = target; clearInterval(t); }
-    el.textContent = v.toFixed(1);
-  }, 24);
-
+  let v = 0; const target = 4.9; const step = target / 45;
+  const t = setInterval(() => { v += step; if (v >= target) { v = target; clearInterval(t); } el.textContent = v.toFixed(1); }, 24);
   const cnt = document.getElementById("ratingCount");
-  let c = 0;
-  const tc = 1240;
-  const tc2 = setInterval(() => {
-    c += Math.ceil(tc / 45);
-    if (c >= tc) { c = tc; clearInterval(tc2); }
-    cnt.textContent = c;
-  }, 24);
+  let c = 0; const tc = 1240;
+  const tc2 = setInterval(() => { c += Math.ceil(tc / 45); if (c >= tc) { c = tc; clearInterval(tc2); } cnt.textContent = c; }, 24);
 }
 
-/* ================================================================
-   7) ظهور العناصر عند التمرير
-   ================================================================ */
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add("is-visible");
-      io.unobserve(e.target);
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
 }, { threshold: 0.12 });
-
 document.querySelectorAll("[data-reveal]").forEach(el => io.observe(el));
 
 const starsObserver = new IntersectionObserver((entries) => {
@@ -1013,35 +703,23 @@ const starsObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.4 });
 starsObserver.observe(document.getElementById("starsRow"));
 
-/* ================================================================
-   8) الإشعارات الوهمية كل 7 ثواني
-   ================================================================ */
 const toast = document.getElementById("toast");
 let notifIdx = 0;
-
 function showToast() {
-  const n = NOTIFS[notifIdx % NOTIFS.length];
-  notifIdx++;
-
+  const n = NOTIFS[notifIdx % NOTIFS.length]; notifIdx++;
   document.getElementById("toastName").textContent = n.name;
   document.getElementById("toastCity").textContent = n.city;
   document.getElementById("toastTime").textContent = n.time;
-
   toast.classList.remove("hidden");
   toast.firstElementChild.style.animation = "slideIn .45s cubic-bezier(.2,.8,.3,1) both";
-
   setTimeout(() => {
     toast.firstElementChild.style.animation = "slideOut .4s ease-in both";
     setTimeout(() => toast.classList.add("hidden"), 400);
   }, 5000);
 }
-
 setTimeout(showToast, 4000);
 setInterval(showToast, 7000);
 
-/* ================================================================
-   9) الأكورديون (FAQ)
-   ================================================================ */
 document.querySelectorAll(".faq-head").forEach(head => {
   head.addEventListener("click", () => {
     const item = head.closest(".faq-item");
@@ -1051,9 +729,6 @@ document.querySelectorAll(".faq-head").forEach(head => {
   });
 });
 
-/* ================================================================
-   10) إرسال الاستمارة → Google Sheet + واتساب
-   ================================================================ */
 const form       = document.getElementById("orderForm");
 const submitBtn  = document.getElementById("submitBtn");
 const successBox = document.getElementById("formSuccess");
@@ -1066,27 +741,17 @@ function setError(input, show) {
 }
 
 async function sendToSheet(payload) {
-  if (!SHEET_URL || SHEET_URL.includes("ضع هنا")) {
-    console.warn("⚠️ SHEET_URL غير مضبوط — تم تخطي إرسال البيانات للشيت.");
-    return;
-  }
+  if (!SHEET_URL || SHEET_URL.includes("ضع هنا")) { console.warn("⚠️ SHEET_URL غير مضبوط"); return; }
   try {
     await Promise.race([
-      fetch(SHEET_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
-      }),
+      fetch(SHEET_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }),
       new Promise(resolve => setTimeout(resolve, 4000))
     ]);
-  } catch (err) {
-    console.warn("تعذر إرسال البيانات للشيت:", err);
-  }
+  } catch (err) { console.warn("تعذر إرسال البيانات للشيت:", err); }
 }
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
   const nameEl    = document.getElementById("fName");
   const phoneEl   = document.getElementById("fPhone");
   const cityEl    = document.getElementById("fCity");
@@ -1100,22 +765,13 @@ form.addEventListener("submit", async (e) => {
   const qty     = state.qty;
 
   let valid = true;
-
   if (name.length < 3) { setError(nameEl, true); valid = false; } else setError(nameEl, false);
-
   const phoneOk = /^(0[5-7]\d{8})$/.test(phone) || /^([5-7]\d{8})$/.test(phone);
   if (!phoneOk) { setError(phoneEl, true); valid = false; } else setError(phoneEl, false);
-
   if (!city) { setError(cityEl, true); valid = false; } else setError(cityEl, false);
-
   if (address.length < 8) { setError(addressEl, true); valid = false; } else setError(addressEl, false);
+  if (!valid) { form.querySelector(".!border-red-400")?.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
 
-  if (!valid) {
-    form.querySelector(".!border-red-400")?.scrollIntoView({ behavior: "smooth", block: "center" });
-    return;
-  }
-
-  /* نفتح نافذة واتساب مسبقاً */
   let waWin = null;
   try { waWin = window.open("", "_blank"); } catch (_) {}
 
@@ -1124,51 +780,29 @@ form.addEventListener("submit", async (e) => {
   submitBtn.innerHTML = '<span class="spinner"></span> جاري إرسال الطلب...';
 
   const payload = {
-    name: name,
-    phone: phone,
-    city: city,
-    color: color,
-    qty: qty,
-    address: address,
-    product: "حقيبة ميكي",
-    price: PRICE,
-    total: PRICE * qty,
+    name, phone, city, color, qty, address,
+    product: "حقيبة ميكي", price: PRICE, total: PRICE * qty,
     date: new Date().toLocaleString("ar-MA")
   };
 
-  /* الخطوة A: Google Sheet */
   await sendToSheet(payload);
 
-  /* الخطوة B: واتساب */
-  const message =
-    `سلام كتاكيت، بغيت حقيبة ميكي اللون ${color} الكمية ${qty} المدينة ${city} السمية ${name}`;
-
+  const message = `سلام كتاكيت، بغيت حقيبة ميكي اللون ${color} الكمية ${qty} المدينة ${city} السمية ${name}`;
   const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-  if (waWin && !waWin.closed) {
-    waWin.location.href = waURL;
-  } else {
-    window.open(waURL, "_blank");
-  }
+  if (waWin && !waWin.closed) { waWin.location.href = waURL; } else { window.open(waURL, "_blank"); }
 
-  /* رسالة النجاح */
   submitBtn.innerHTML = "✅ تم إرسال طلبك بنجاح";
   successBox.classList.remove("hidden");
   successBox.scrollIntoView({ behavior: "smooth", block: "center" });
 
   setTimeout(() => {
-    form.reset();
-    state.qty = 1;
-    renderQty();
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalHTML;
+    form.reset(); state.qty = 1; renderQty();
+    submitBtn.disabled = false; submitBtn.innerHTML = originalHTML;
     applyColor("وردي", false);
   }, 6000);
 });
 
-/* ================================================================
-   11) السنة فالفوستر
-   ================================================================ */
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
