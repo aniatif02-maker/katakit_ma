@@ -142,7 +142,6 @@
         <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
       </div>
     </a>
-    <!-- ✅ تم تحديث رقم الواتساب -->
     <a href="https://wa.me/212693605086" target="_blank" rel="noopener"
        class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2 text-[13px] font-extrabold text-white shadow-lg shadow-green-500/30 transition hover:bg-green-600 hover:-translate-y-0.5">
       <span>💬</span><span>واتساب</span>
@@ -159,7 +158,6 @@
 
   <div class="relative max-w-6xl mx-auto px-4 py-10 sm:py-14 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-    <!-- ===== يمين: صور المنتج ===== -->
     <div data-reveal class="relative">
       <div class="absolute -top-4 right-6 z-20 bg-brand-yellow text-brand-dark font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10">
         خصم 40% 🔥
@@ -207,7 +205,6 @@
       </div>
     </div>
 
-    <!-- ===== يسار: النص ===== -->
     <div class="text-center lg:text-right">
       <span data-reveal class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-2 text-[13px] font-extrabold text-brand-pinkDark">
         ✨ الأكثر مبيعاً في المغرب هاد الشهر
@@ -592,7 +589,6 @@
       <div>
         <h4 class="font-black text-[15px]">تواصلي معنا</h4>
         <div class="mt-4 flex flex-wrap gap-3">
-          <!-- ✅ تم تحديث رقم الواتساب -->
           <a href="https://wa.me/212693605086" target="_blank" rel="noopener"
              class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2.5 text-[13px] font-extrabold text-white transition hover:bg-green-600">
             💬 واتساب
@@ -627,7 +623,7 @@
   </div>
 </div>
 
-<!-- ✅ زر واتساب عائم — تم تحديث الرقم -->
+<!-- زر واتساب عائم -->
 <a href="https://wa.me/212693605086" target="_blank" rel="noopener"
    class="fixed bottom-5 left-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-green-500 text-2xl text-white shadow-2xl transition hover:scale-110 hover:bg-green-600"
    aria-label="تواصل معنا على واتساب">
@@ -658,17 +654,17 @@
    ⚙️ الإعدادات — ✅ تم وضع القيم ديالك
    ================================================================ */
 
-/* 1) ✅ رابط Google Apps Script ديالك */
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwPP8vKPQO4iwANjmUmgV0-BCzid5eG5kCvQAZuEyf4-pDZpeFiAdz1AH709sp2UcmHrw/exec";
+/* 1) ✅ رابط Google Apps Script الجديد */
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
 
-/* 2) ✅ رقم الواتساب ديالك (بلا + وبلا صفر فالأول) */
+/* 2) ✅ رقم الواتساب ديالك */
 const WHATSAPP_NUMBER = "212693605086";
 
 /* 3) الثمن */
 const PRICE = 149;
 
 /* ================================================================
-   📸 روابط الصور — مصححة حسب ترتيب ImgBB الصحيح
+   📸 روابط الصور
    ================================================================ */
 const IMGS = {
   "أحمر":       "https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg",
@@ -775,7 +771,7 @@ document.querySelectorAll('input[name="color"]').forEach(r => {
   r.addEventListener("change", () => applyColor(r.value, true));
 });
 
-/* سلايدر تلقائي كيتوقف ملي تختار الزبونة لون بيدها */
+/* سلايدر تلقائي */
 const colorKeys = Object.keys(IMGS);
 let sliderIdx = colorKeys.indexOf("وردي");
 setInterval(() => {
@@ -977,7 +973,6 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  /* نفتح نافذة واتساب مسبقاً */
   let waWin = null;
   try { waWin = window.open("", "_blank"); } catch (_) {}
 
@@ -998,10 +993,8 @@ form.addEventListener("submit", async (e) => {
     date: new Date().toLocaleString("ar-MA")
   };
 
-  /* الخطوة A: Google Sheet */
   await sendToSheet(payload);
 
-  /* الخطوة B: واتساب */
   const message =
     `سلام كتاكيت، بغيت حقيبة ميكي اللون ${color} الكمية ${qty} المدينة ${city} السمية ${name}`;
 
@@ -1013,7 +1006,6 @@ form.addEventListener("submit", async (e) => {
     window.open(waURL, "_blank");
   }
 
-  /* رسالة النجاح */
   submitBtn.innerHTML = "✅ تم إرسال طلبك بنجاح";
   successBox.classList.remove("hidden");
   successBox.scrollIntoView({ behavior: "smooth", block: "center" });
