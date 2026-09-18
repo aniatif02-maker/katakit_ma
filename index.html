@@ -1,232 +1,107 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#FF90BC" />
-<title>كتاكيت KATAKIT | حقيبة ميكي ماوس الكيوت — 149 درهم فقط</title>
-<meta name="description" content="حقيبة ميكي ماوس الكيوت بجودة عالية — 5 ألوان، توصيل مجاني لجميع مدن المغرب والدفع عند الاستلام. العرض محدود!" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#FF90BC">
+<title>كتاكيت KATAKIT | حقيبة ميكي ماوس — 149 درهم</title>
+<meta name="description" content="حقيبة ميكي ماوس الكيوت — 5 ألوان، توصيل مجاني، الدفع عند الاستلام.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: {
-            pink:      '#FF90BC',
-            pinkDark:  '#F0649B',
-            pinkLight: '#FFE3EF',
-            yellow:    '#FFD93D',
-            yellowLight:'#FFF7DA',
-            dark:      '#111111',
-          }
-        },
-        fontFamily: { tajawal: ['Tajawal', 'system-ui', 'sans-serif'] },
-        keyframes: {
-          floaty:   { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
-          popIn:    { '0%': { opacity: 0, transform: 'scale(.85) translateY(12px)' }, '100%': { opacity: 1, transform: 'scale(1) translateY(0)' } },
-          slideIn:  { '0%': { opacity: 0, transform: 'translateX(60px)' }, '100%': { opacity: 1, transform: 'translateX(0)' } },
-          slideOut: { '0%': { opacity: 1, transform: 'translateX(0)' }, '100%': { opacity: 0, transform: 'translateX(60px)' } },
-          starPop:  { '0%': { opacity: 0, transform: 'scale(0) rotate(-45deg)' }, '70%': { transform: 'scale(1.35) rotate(8deg)' }, '100%': { opacity: 1, transform: 'scale(1) rotate(0)' } },
-          wiggle:   { '0%,100%': { transform: 'rotate(-3deg)' }, '50%': { transform: 'rotate(3deg)' } },
-          blink:    { '0%,100%': { opacity: 1 }, '50%': { opacity: .55 } },
-        },
-        animation: {
-          floaty:  'floaty 3.5s ease-in-out infinite',
-          popIn:   'popIn .5s cubic-bezier(.2,.8,.3,1.2) both',
-          slideIn: 'slideIn .45s cubic-bezier(.2,.8,.3,1) both',
-          starPop: 'starPop .55s cubic-bezier(.2,.8,.3,1.4) both',
-          wiggle:  'wiggle 2.2s ease-in-out infinite',
-          blink:   'blink 1.4s ease-in-out infinite',
-        }
-      }
-    }
-  }
+tailwind.config={theme:{extend:{colors:{brand:{pink:'#FF90BC',pinkDark:'#F0649B',pinkLight:'#FFE3EF',yellow:'#FFD93D',yellowLight:'#FFF7DA',dark:'#111'}},fontFamily:{tajawal:['Tajawal','sans-serif']},keyframes:{floaty:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-12px)'}},popIn:{'0%':{opacity:0,transform:'scale(.85)'},'100%':{opacity:1,transform:'scale(1)'}},slideIn:{'0%':{opacity:0,transform:'translateX(60px)'},'100%':{opacity:1,transform:'translateX(0)'}},slideOut:{'0%':{opacity:1},'100%':{opacity:0,transform:'translateX(60px)'}},starPop:{'0%':{opacity:0,transform:'scale(0)'},'70%':{transform:'scale(1.35)'},'100%':{opacity:1,transform:'scale(1)'}},wiggle:{'0%,100%':{transform:'rotate(-3deg)'},'50%':{transform:'rotate(3deg)'}},blink:{'0%,100%':{opacity:1},'50%':{opacity:.55}}},animation:{floaty:'floaty 3.5s ease-in-out infinite',popIn:'popIn .5s both',slideIn:'slideIn .45s both',starPop:'starPop .55s both',wiggle:'wiggle 2.2s infinite',blink:'blink 1.4s infinite'}}}}
 </script>
-
-<style type="text/tailwindcss">
-  @layer components {
-    .input {
-      @apply w-full rounded-2xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-[15px] font-medium text-brand-dark outline-none transition
-             focus:border-brand-pink focus:bg-white focus:ring-4 focus:ring-brand-pink/20;
-    }
-    .card {
-      @apply rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_18px_50px_-30px_rgba(0,0,0,.35)];
-    }
-    .btn-main {
-      @apply relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-6 py-4
-             text-white font-extrabold text-base sm:text-lg shadow-[0_18px_35px_-15px_rgba(255,144,188,1)]
-             transition-all duration-300 hover:bg-brand-pinkDark hover:-translate-y-0.5 active:translate-y-0
-             disabled:opacity-70 disabled:cursor-not-allowed;
-    }
-  }
-</style>
-
 <style>
-  html { scroll-behavior: smooth; }
-  body { -webkit-tap-highlight-color: transparent; padding-bottom: 84px; }
-
-  [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
-  [data-reveal].is-visible { opacity: 1; transform: none; }
-
-  .btn-shine::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 45%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
-    transform: translateX(-160%) skewX(-20deg);
-    animation: shineMove 3s infinite;
-    pointer-events: none;
-  }
-  @keyframes shineMove {
-    0%   { transform: translateX(-160%) skewX(-20deg); }
-    55%  { transform: translateX(340%) skewX(-20deg); }
-    100% { transform: translateX(340%) skewX(-20deg); }
-  }
-
-  .color-chip {
-    border: 2px solid #eeeeee;
-    background: #fff;
-    transition: all .25s ease;
-    cursor: pointer;
-  }
-  .color-chip:hover { border-color: #FFD93D; transform: translateY(-2px); }
-  .color-chip.is-active {
-    border-color: #FF90BC;
-    background: #FFE3EF;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 22px -10px rgba(255,144,188,1);
-  }
-
-  .spinner {
-    width: 18px; height: 18px;
-    border: 3px solid rgba(255,255,255,.35);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin .7s linear infinite;
-    display: inline-block;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .faq-body { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s ease; }
-  .faq-item.is-open .faq-body { max-height: 320px; }
-  .faq-item.is-open .faq-icon { transform: rotate(45deg); background: #FF90BC; color: #fff; }
-
-  @keyframes pulse-shadow {
-    0%, 100% { box-shadow: 0 8px 0 0 rgba(17,17,17,1), 0 0 0 0 rgba(255,217,61,.7); }
-    50%      { box-shadow: 0 8px 0 0 rgba(17,17,17,1), 0 0 0 16px rgba(255,217,61,0); }
-  }
-  .btn-confirm { animation: pulse-shadow 2s infinite; }
-
-  /* ✅ اللوغو */
-  .logo-box img { width: 100%; height: 100%; object-fit: contain; display: block; }
+*{-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{padding-bottom:84px;font-family:Tajawal,sans-serif}
+[data-reveal]{opacity:0;transform:translateY(26px);transition:all .7s cubic-bezier(.2,.7,.3,1)}
+[data-reveal].is-visible{opacity:1;transform:none}
+.input{width:100%;border-radius:1rem;border:2px solid #e5e7eb;background:#f9fafb;padding:.75rem 1rem;font-size:15px;font-weight:500;outline:0;transition:.2s}
+.input:focus{border-color:#FF90BC;background:#fff;box-shadow:0 0 0 4px rgba(255,144,188,.2)}
+.card{border-radius:1.5rem;border:1px solid #f3f4f6;background:#fff;padding:1.5rem;box-shadow:0 18px 50px -30px rgba(0,0,0,.35)}
+.btn-shine{position:relative;overflow:hidden}
+.btn-shine::after{content:'';position:absolute;top:0;left:0;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-160%) skewX(-20deg);animation:shine 3s infinite}
+@keyframes shine{0%{transform:translateX(-160%) skewX(-20deg)}55%{transform:translateX(340%) skewX(-20deg)}100%{transform:translateX(340%) skewX(-20deg)}}
+.color-chip{border:2px solid #eee;background:#fff;cursor:pointer;transition:.25s}
+.color-chip:hover{border-color:#FFD93D;transform:translateY(-2px)}
+.color-chip.is-active{border-color:#FF90BC;background:#FFE3EF;transform:translateY(-3px);box-shadow:0 10px 22px -10px rgba(255,144,188,1)}
+.spinner{width:18px;height:18px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .4s}
+.faq-item.is-open .faq-body{max-height:320px}
+.faq-item.is-open .faq-icon{transform:rotate(45deg);background:#FF90BC;color:#fff}
+@keyframes pulseShadow{0%,100%{box-shadow:0 8px 0 0 #111,0 0 0 0 rgba(255,217,61,.7)}50%{box-shadow:0 8px 0 0 #111,0 0 0 16px rgba(255,217,61,0)}}
+.btn-confirm{animation:pulseShadow 2s infinite}
+.logo-box img{width:100%;height:100%;object-fit:contain;display:block}
 </style>
 </head>
+<body class="bg-white text-brand-dark antialiased overflow-x-hidden">
 
-<body class="font-tajawal bg-white text-brand-dark antialiased overflow-x-hidden">
-
-<div class="bg-brand-dark text-white text-center text-[12.5px] sm:text-sm py-2.5 px-4 font-bold tracking-wide">
-  <span class="inline-block animate-wiggle">🚚</span>
-  توصيل مجاني اليوم + الدفع عند الاستلام
+<!-- TOP BAR -->
+<div class="bg-brand-dark text-white text-center text-[12.5px] sm:text-sm py-2.5 px-4 font-bold">
+  <span class="inline-block animate-wiggle">🚚</span> توصيل مجاني اليوم + الدفع عند الاستلام
 </div>
 
+<!-- HEADER -->
 <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-brand-pinkLight">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-2.5">
-      <!-- ✅ اللوغو فالهيدر -->
-      <div class="logo-box w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl shadow-lg shadow-brand-pink/40 overflow-hidden">
-        <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" />
+      <div class="w-10 h-10 rounded-2xl bg-brand-pink overflow-hidden shadow-lg shadow-brand-pink/40">
+        <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" class="w-full h-full object-contain">
       </div>
       <div class="leading-none">
-        <div class="font-black text-xl tracking-tight">KATAKIT</div>
+        <div class="font-black text-xl">KATAKIT</div>
         <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
       </div>
     </a>
-    <a href="https://wa.me/212691071441" target="_blank" rel="noopener"
-       class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2 text-[13px] font-extrabold text-white shadow-lg shadow-green-500/30 transition hover:bg-green-600 hover:-translate-y-0.5">
+    <a href="https://wa.me/212691071441" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2 text-[13px] font-extrabold text-white shadow-lg shadow-green-500/30 hover:bg-green-600">
       <span>💬</span><span>واتساب</span>
     </a>
   </div>
 </header>
 
+<!-- HERO -->
 <section class="relative overflow-hidden bg-gradient-to-b from-brand-pinkLight/40 via-white to-brand-yellowLight/50">
   <div class="pointer-events-none absolute -top-32 -right-24 w-80 h-80 bg-brand-yellow/25 rounded-full blur-3xl"></div>
   <div class="pointer-events-none absolute top-52 -left-28 w-80 h-80 bg-brand-pink/25 rounded-full blur-3xl"></div>
-
-  <div class="relative max-w-6xl mx-auto px-4 py-10 sm:py-14 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+  <div class="relative max-w-6xl mx-auto px-4 py-10 sm:py-14 grid lg:grid-cols-2 gap-10 items-center">
 
     <div data-reveal class="relative">
-      <div class="absolute -top-4 right-6 z-20 bg-brand-yellow text-brand-dark font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10">
-        خصم 40% 🔥
-      </div>
-
-      <div class="relative rounded-[2.5rem] bg-gradient-to-br from-brand-pinkLight via-white to-brand-yellowLight p-3 sm:p-4
-                  border border-white shadow-[0_35px_70px_-35px_rgba(255,144,188,.95)]">
+      <div class="absolute -top-4 right-6 z-20 bg-brand-yellow font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10">خصم 40% 🔥</div>
+      <div class="relative rounded-[2.5rem] bg-gradient-to-br from-brand-pinkLight via-white to-brand-yellowLight p-3 sm:p-4 border border-white shadow-[0_35px_70px_-35px_rgba(255,144,188,.95)]">
         <div class="relative overflow-hidden rounded-[2rem] bg-white">
-          <img id="mainImage"
-               src="https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg"
-               alt="حقيبة ميكي ماوس الكيوت - كتاكيت"
-               class="w-full h-[320px] sm:h-[440px] object-cover transition-all duration-500" />
+          <img id="mainImage" src="https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg" alt="حقيبة ميكي ماوس" class="w-full h-[320px] sm:h-[440px] object-cover transition-all duration-500">
         </div>
       </div>
-
       <div class="mt-4 flex items-center justify-center gap-2 text-[14px] font-black text-brand-pinkDark animate-blink">
-        <span>⚡</span>
-        <span>المخزون محدود — سارع قبل ما يسالي</span>
-        <span>⚡</span>
+        <span>⚡</span><span>المخزون محدود — سارع قبل ما يسالي</span><span>⚡</span>
       </div>
-
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2.5">
-        <button type="button" data-color="أحمر" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
-          <span class="w-5 h-5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر
-        </button>
-        <button type="button" data-color="وردي" class="color-chip is-active flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
-          <span class="w-5 h-5 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي
-        </button>
-        <button type="button" data-color="أبيض منقط" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
-          <span class="w-5 h-5 rounded-full bg-white ring-2 ring-gray-200 shadow" style="background-image:radial-gradient(#111 1.2px, transparent 1.3px); background-size:5px 5px;"></span> أبيض منقط
-        </button>
-        <button type="button" data-color="أسود" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
-          <span class="w-5 h-5 rounded-full bg-black ring-2 ring-white shadow"></span> أسود
-        </button>
-        <button type="button" data-color="بنفسجي" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold">
-          <span class="w-5 h-5 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي
-        </button>
+        <button type="button" data-color="أحمر" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold"><span class="w-5 h-5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</button>
+        <button type="button" data-color="وردي" class="color-chip is-active flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold"><span class="w-5 h-5 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</button>
+        <button type="button" data-color="أبيض منقط" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold"><span class="w-5 h-5 rounded-full bg-white ring-2 ring-gray-200 shadow" style="background-image:radial-gradient(#111 1.2px,transparent 1.3px);background-size:5px 5px"></span> أبيض منقط</button>
+        <button type="button" data-color="أسود" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold"><span class="w-5 h-5 rounded-full bg-black ring-2 ring-white shadow"></span> أسود</button>
+        <button type="button" data-color="بنفسجي" class="color-chip flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-[13px] font-extrabold"><span class="w-5 h-5 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي</button>
       </div>
-
       <div class="mt-5 flex items-center justify-center gap-2 text-sm">
         <div id="starsRow" class="flex gap-0.5 text-2xl text-brand-yellow"></div>
-        <span class="font-black text-brand-dark" id="ratingValue">0.0</span>
+        <span class="font-black" id="ratingValue">0.0</span>
         <span class="text-gray-400 font-bold">/5</span>
         <span class="text-gray-500 font-bold">(<span id="ratingCount">0</span>+ زبونة)</span>
       </div>
     </div>
 
     <div class="text-center lg:text-right">
-      <span data-reveal class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-2 text-[13px] font-extrabold text-brand-pinkDark">
-        ✨ الأكثر مبيعاً في المغرب هاد الشهر
-      </span>
-
-      <h1 data-reveal class="mt-5 text-[30px] leading-[1.25] sm:text-4xl lg:text-[44px] lg:leading-[1.2] font-black">
-        حقيبة ميكي اللي كل البنات
-        <span class="relative inline-block">
-          <span class="relative z-10">هبلو عليها</span>
-          <span class="absolute inset-x-0 bottom-1 z-0 h-3.5 rounded-full bg-brand-yellow/70"></span>
-        </span>
-        🎒
+      <span data-reveal class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-2 text-[13px] font-extrabold text-brand-pinkDark">✨ الأكثر مبيعاً فالمغرب</span>
+      <h1 data-reveal class="mt-5 text-[30px] leading-tight sm:text-4xl lg:text-[44px] font-black">
+        حقيبة ميكي اللي كل البنات <span class="relative inline-block"><span class="relative z-10">هبلو عليها</span><span class="absolute inset-x-0 bottom-1 z-0 h-3.5 rounded-full bg-brand-yellow/70"></span></span> 🎒
       </h1>
-
       <p data-reveal class="mt-4 text-[15px] sm:text-base leading-relaxed text-gray-600 font-medium">
-        حقيبة مدرسية كيوت بتصميم ميكي ماوس الأصلي، قماش متين وخياطة قوية، واسعة بزاف ومريحة للظهر.
-        اختاري اللون اللي كتعجبك وأطلبي الآن — <span class="font-extrabold text-brand-dark">الدفع عند الاستلام</span>.
+        حقيبة مدرسية كيوت بتصميم ميكي ماوس الأصلي، قماش متين وخياطة قوية، واسعة بزاف ومريحة للظهر. اختاري اللون وأطلبي — <span class="font-extrabold">الدفع عند الاستلام</span>.
       </p>
-
       <ul data-reveal class="mt-6 space-y-3 text-right inline-block">
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> تصميم ميكي ماوس الأصلي بجودة عالية</li>
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> قماش متين ما كيتقطعش ولا كيبهت</li>
@@ -234,763 +109,412 @@
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> حمالات مبطنة مريحة على الكتاف</li>
         <li class="flex items-center gap-2.5 text-[15px] font-bold"><span class="text-green-500 text-lg">✅</span> متوفرة بـ 5 ألوان كيوت</li>
       </ul>
-
       <div data-reveal class="mt-7 flex items-end justify-center lg:justify-start gap-3">
         <span class="text-5xl sm:text-6xl font-black text-brand-pink leading-none">149</span>
         <span class="text-xl font-extrabold text-brand-pink mb-1">درهم</span>
         <span class="text-lg font-extrabold text-gray-400 line-through mb-1">249 درهم</span>
       </div>
-
       <div data-reveal class="mt-6 rounded-3xl bg-brand-dark px-5 py-4 flex items-center justify-between gap-3 shadow-xl">
-        <div class="flex items-center gap-2 text-sm font-extrabold text-white">
-          <span class="text-brand-yellow text-lg">⏳</span><span>العرض ينتهي بعد</span>
-        </div>
+        <div class="flex items-center gap-2 text-sm font-extrabold text-white"><span class="text-brand-yellow text-lg">⏳</span><span>العرض ينتهي بعد</span></div>
         <div class="flex items-center gap-1.5 font-black text-lg text-white" dir="ltr">
-          <span id="cdH" class="rounded-xl bg-white/10 px-2.5 py-1 tabular-nums">02</span>
-          <span class="text-brand-yellow">:</span>
-          <span id="cdM" class="rounded-xl bg-white/10 px-2.5 py-1 tabular-nums">14</span>
-          <span class="text-brand-yellow">:</span>
-          <span id="cdS" class="rounded-xl bg-white/10 px-2.5 py-1 tabular-nums">33</span>
+          <span id="cdH" class="rounded-xl bg-white/10 px-2.5 py-1">02</span><span class="text-brand-yellow">:</span>
+          <span id="cdM" class="rounded-xl bg-white/10 px-2.5 py-1">14</span><span class="text-brand-yellow">:</span>
+          <span id="cdS" class="rounded-xl bg-white/10 px-2.5 py-1">33</span>
         </div>
       </div>
-
-      <a href="#order" data-reveal class="btn-main btn-shine mt-6 w-full sm:w-auto sm:px-12">
-        🛒 اطلبي الآن — الدفع عند الاستلام
-      </a>
-
+      <a href="#order" data-reveal class="btn-shine inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-6 py-4 text-white font-extrabold text-base sm:text-lg shadow-[0_18px_35px_-15px_rgba(255,144,188,1)] hover:bg-brand-pinkDark mt-6 w-full sm:w-auto sm:px-12">🛒 اطلبي الآن — الدفع عند الاستلام</a>
       <div data-reveal class="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 text-[12.5px] font-extrabold text-gray-500">
-        <span class="flex items-center gap-1.5">🔒 الدفع عند الاستلام</span>
-        <span class="flex items-center gap-1.5">🚚 توصيل مجاني</span>
-        <span class="flex items-center gap-1.5">↩️ ضمان الإرجاع</span>
+        <span>🔒 الدفع عند الاستلام</span><span>🚚 توصيل مجاني</span><span>↩️ ضمان الإرجاع</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FEATURES -->
 <section class="bg-gradient-to-b from-white to-brand-pinkLight/40 py-14 sm:py-20">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
-      <span class="inline-block rounded-full bg-brand-yellow/40 px-4 py-1.5 text-[13px] font-extrabold text-brand-dark">💛 لماذا كتعجب البنات</span>
+      <span class="inline-block rounded-full bg-brand-yellow/40 px-4 py-1.5 text-[13px] font-extrabold">💛 لماذا كتعجب البنات</span>
       <h2 class="mt-4 text-3xl sm:text-4xl font-black">لماذا سيحبها طفلك؟</h2>
-      <p class="mt-3 text-gray-600 font-medium">4 أسباب كتخلي بنتك ما تفارقش هاد الحقيبة 😍</p>
     </div>
-
     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,144,188,1)]" data-reveal>
+      <div class="card text-center hover:-translate-y-2 transition" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty">🎨</div>
-        <h3 class="mt-5 font-black text-lg">تصميم كيوت بزاف</h3>
-        <p class="mt-2 text-sm leading-relaxed text-gray-600 font-medium">رسومات ميكي ماوس بألوان زاهية كتخلي الحقيبة ملفتة فالمدرسة.</p>
+        <h3 class="mt-5 font-black text-lg">تصميم كيوت</h3>
+        <p class="mt-2 text-sm text-gray-600 font-medium">رسومات ميكي ماوس بألوان زاهية.</p>
       </div>
-      <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,217,61,1)]" data-reveal>
+      <div class="card text-center hover:-translate-y-2 transition" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-yellowLight grid place-items-center text-3xl animate-floaty" style="animation-delay:.4s">🧵</div>
         <h3 class="mt-5 font-black text-lg">جودة كتدوم</h3>
-        <p class="mt-2 text-sm leading-relaxed text-gray-600 font-medium">قماش سميك وخياطة مقواة، كتصبر مع الاستعمال اليومي عام كامل.</p>
+        <p class="mt-2 text-sm text-gray-600 font-medium">قماش سميك وخياطة مقواة.</p>
       </div>
-      <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,144,188,1)]" data-reveal>
+      <div class="card text-center hover:-translate-y-2 transition" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty" style="animation-delay:.8s">📚</div>
         <h3 class="mt-5 font-black text-lg">واسعة ومنظمة</h3>
-        <p class="mt-2 text-sm leading-relaxed text-gray-600 font-medium">جيب كبير للدفاتر + جيوب صغيرة للمقلمة والهاتف وقنينة الماء.</p>
+        <p class="mt-2 text-sm text-gray-600 font-medium">جيب كبير + جيوب صغيرة.</p>
       </div>
-      <div class="card text-center transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(255,217,61,1)]" data-reveal>
+      <div class="card text-center hover:-translate-y-2 transition" data-reveal>
         <div class="mx-auto w-16 h-16 rounded-3xl bg-brand-yellowLight grid place-items-center text-3xl animate-floaty" style="animation-delay:1.2s">🎒</div>
         <h3 class="mt-5 font-black text-lg">مريحة على الظهر</h3>
-        <p class="mt-2 text-sm leading-relaxed text-gray-600 font-medium">حمالات مبطنة وخفيفة، كتحمي ظهر بنتك من التعب.</p>
+        <p class="mt-2 text-sm text-gray-600 font-medium">حمالات مبطنة وخفيفة.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- REVIEWS -->
 <section class="py-14 sm:py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
       <span class="inline-block rounded-full bg-brand-pinkLight px-4 py-1.5 text-[13px] font-extrabold text-brand-pinkDark">⭐ آراء حقيقية</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-black">شنو قالو الزبناء علينا؟</h2>
-      <p class="mt-3 text-gray-600 font-medium">أكثر من 1240 أم مغربية طلبو الحقيبة وعجبهم الحال 💕</p>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-black">شنو قالو الزبناء؟</h2>
+      <p class="mt-3 text-gray-600 font-medium">أكثر من 1240 أم مغربية عجبهم الحال 💕</p>
     </div>
-
-    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <article class="card" data-reveal>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow grid place-items-center text-white font-black text-lg">ف</div>
-          <div><h4 class="font-black text-[14px]">فاطمة الزهراء</h4><p class="text-[12px] text-gray-500 font-bold">الدار البيضاء</p></div>
-          <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
-        </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة. توصيل سريع والدفع عند الاستلام."</p>
-        <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">🎒</div>
-      </article>
-
-      <article class="card" data-reveal>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pink grid place-items-center text-white font-black text-lg">س</div>
-          <div><h4 class="font-black text-[14px]">سلمى بنعلي</h4><p class="text-[12px] text-gray-500 font-bold">الرباط</p></div>
-          <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
-        </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي وتا هوما طلبو."</p>
-        <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">🛍️</div>
-      </article>
-
-      <article class="card" data-reveal>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-pinkDark grid place-items-center text-white font-black text-lg">ي</div>
-          <div><h4 class="font-black text-[14px]">ياسمين الإدريسي</h4><p class="text-[12px] text-gray-500 font-bold">مراكش</p></div>
-          <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
-        </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"الخدمة زوينة بزاف، تواصلو معايا فالواتساب وأكدو ليا الطلبية. وصلاتني بعد 24 ساعة. شكرا كتاكيت!"</p>
-        <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">🎁</div>
-      </article>
-
-      <article class="card" data-reveal>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pink grid place-items-center text-white font-black text-lg">ه</div>
-          <div><h4 class="font-black text-[14px]">هند الطاهري</h4><p class="text-[12px] text-gray-500 font-bold">طنجة</p></div>
-          <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
-        </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"خديت اللون البيج وطلع روعة، راقي وأنيق. بنتي كتفرح بيها كل صباح ملي كتمشي للمدرسة."</p>
-        <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">✨</div>
-      </article>
-
-      <article class="card" data-reveal>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pinkDark to-brand-pink grid place-items-center text-white font-black text-lg">م</div>
-          <div><h4 class="font-black text-[14px]">مريم الشرقاوي</h4><p class="text-[12px] text-gray-500 font-bold">أكادير</p></div>
-          <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
-        </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"الثمن مناسب مقارنة مع الجودة. صراحة تستاهل أكثر من 149 درهم. غنعاود نشري وحدة لأختي الصغيرة."</p>
-        <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">📦</div>
-      </article>
-
-      <article class="card" data-reveal>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-yellow to-brand-pinkDark grid place-items-center text-white font-black text-lg">ن</div>
-          <div><h4 class="font-black text-[14px]">نور الهدى</h4><p class="text-[12px] text-gray-500 font-bold">فاس</p></div>
-          <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
-        </div>
-        <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"أحسن حقيبة شريت لبناتي. الحمالات مريحة والظرف كافيها كلشي. تعامل محترم وتوصيل مجاني."</p>
-        <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">👧</div>
-      </article>
-    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="reviewsWrap"></div>
   </div>
 </section>
 
+<!-- FAQ -->
 <section class="py-14 sm:py-20 bg-gradient-to-b from-brand-yellowLight/50 to-white">
   <div class="max-w-3xl mx-auto px-4">
     <div class="text-center" data-reveal>
-      <span class="inline-block rounded-full bg-brand-yellow/50 px-4 py-1.5 text-[13px] font-extrabold text-brand-dark">❓ الأسئلة الشائعة</span>
+      <span class="inline-block rounded-full bg-brand-yellow/50 px-4 py-1.5 text-[13px] font-extrabold">❓ الأسئلة الشائعة</span>
       <h2 class="mt-4 text-3xl sm:text-4xl font-black">كل ما بغيتي تعرفي</h2>
     </div>
-
-    <div class="mt-10 space-y-3" id="faqWrap">
-      <div class="faq-item card !p-0 overflow-hidden" data-reveal>
-        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
-          <span class="font-extrabold text-[15px]">واش الدفع عند الاستلام؟</span>
-          <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
-        </button>
-        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">نعم 100%. كتخلصي غير ملي توصلك الطلبية ليد داركم وكتشوفي الحقيبة بعينيك قبل ما تخلصي. بلا أي مخاطرة.</p></div>
-      </div>
-
-      <div class="faq-item card !p-0 overflow-hidden" data-reveal>
-        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
-          <span class="font-extrabold text-[15px]">شحال كتاخد الطلبية باش توصل؟</span>
-          <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
-        </button>
-        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">بين 24 و 48 ساعة فالمدن الكبرى، وبين 48 و 72 ساعة فالمناطق البعيدة. وكنتواصلو معاك فالواتساب قبل التوصيل.</p></div>
-      </div>
-
-      <div class="faq-item card !p-0 overflow-hidden" data-reveal>
-        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
-          <span class="font-extrabold text-[15px]">واش التوصيل مجاني؟</span>
-          <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
-        </button>
-        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">نعم، التوصيل مجاني لجميع مدن المغرب بلا أي زيادة. الثمن اللي كتشوفي هو الثمن اللي كتخلصي.</p></div>
-      </div>
-
-      <div class="faq-item card !p-0 overflow-hidden" data-reveal>
-        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
-          <span class="font-extrabold text-[15px]">واش كاين ضمان إلا ما عجباتنيش؟</span>
-          <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
-        </button>
-        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">أكيد. إلا وصلتك الحقيبة فيها عيب فالصناعة أو ما عجباتكش، كترجعيها وكنرجعو ليك فلوسك كاملين. رضاك هو الأولوية.</p></div>
-      </div>
-
-      <div class="faq-item card !p-0 overflow-hidden" data-reveal>
-        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
-          <span class="font-extrabold text-[15px]">شمن ألوان متوفرة؟</span>
-          <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
-        </button>
-        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">متوفرة بـ 5 ألوان: الأحمر، الوردي، الأبيض المنقط، الأسود، والبنفسجي. كتختاري اللون اللي بغيتي فاستمارة الطلب تحت.</p></div>
-      </div>
-
-      <div class="faq-item card !p-0 overflow-hidden" data-reveal>
-        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
-          <span class="font-extrabold text-[15px]">كيفاش نتواصل معاكم؟</span>
-          <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all duration-300">+</span>
-        </button>
-        <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">عبر الواتساب فقط، وكنجاوبو من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع.</p></div>
-      </div>
-    </div>
+    <div class="mt-10 space-y-3" id="faqWrap"></div>
   </div>
 </section>
 
+<!-- ORDER FORM -->
 <section id="order" class="py-14 sm:py-20 bg-brand-dark relative overflow-hidden scroll-mt-20">
   <div class="pointer-events-none absolute -top-24 right-0 w-72 h-72 bg-brand-pink/20 rounded-full blur-3xl"></div>
   <div class="pointer-events-none absolute bottom-0 -left-20 w-72 h-72 bg-brand-yellow/20 rounded-full blur-3xl"></div>
-
   <div class="relative max-w-3xl mx-auto px-4">
     <div class="text-center" data-reveal>
-      <span class="inline-block rounded-full bg-brand-yellow px-4 py-1.5 text-[13px] font-black text-brand-dark">📝 استمارة الطلب</span>
+      <span class="inline-block rounded-full bg-brand-yellow px-4 py-1.5 text-[13px] font-black">📝 استمارة الطلب</span>
       <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white">أطلبي الآن — الدفع عند الاستلام</h2>
-      <p class="mt-3 text-gray-300 font-medium">عمري المعلومات وحنا كنتواصلو معاك فالواتساب باش نأكدو الطلبية ✅</p>
+      <p class="mt-3 text-gray-300 font-medium">عمري المعلومات وحنا كنتواصلو معاك فالواتساب ✅</p>
     </div>
-
     <div class="mt-10 rounded-[2rem] bg-white p-5 sm:p-8 shadow-2xl" data-reveal>
       <div id="formSuccess" class="hidden mb-6 rounded-2xl border-2 border-green-200 bg-green-50 p-5 text-center animate-popIn">
         <div class="text-4xl">✅</div>
         <h3 class="mt-2 font-black text-lg text-green-700">تم استلام طلبك، سنتواصل معك</h3>
-        <p class="mt-1 text-sm font-medium text-green-600">غادي نتواصلو معاك فالواتساب فأقرب وقت باش نأكدو التوصيل. شكراً على ثقتك ف كتاكيت 💕</p>
+        <p class="mt-1 text-sm font-medium text-green-600">غادي نتواصلو معاك فالواتساب. شكراً على ثقتك 💕</p>
       </div>
-
       <form id="orderForm" novalidate autocomplete="off" class="grid gap-5">
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fName" class="mb-2 block text-[13.5px] font-extrabold">الاسم الكامل <span class="text-brand-pink">*</span></label>
-            <input id="fName" type="text" class="input" placeholder="مثال: فاطمة الزهراء" autocomplete="off" />
+            <input id="fName" type="text" class="input" placeholder="فاطمة الزهراء" autocomplete="off">
             <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي الاسم الكامل</p>
           </div>
           <div>
             <label for="fPhone" class="mb-2 block text-[13.5px] font-extrabold">رقم الهاتف <span class="text-brand-pink">*</span></label>
-            <input id="fPhone" type="tel" inputmode="numeric" class="input text-right" placeholder="06XXXXXXXX" autocomplete="off" />
-            <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي رقم صحيح (10 أرقام)</p>
+            <input id="fPhone" type="tel" inputmode="numeric" class="input text-right" placeholder="06XXXXXXXX" autocomplete="off">
+            <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">رقم صحيح (10 أرقام)</p>
           </div>
         </div>
-
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fCity" class="mb-2 block text-[13.5px] font-extrabold">المدينة <span class="text-brand-pink">*</span></label>
             <select id="fCity" class="input"><option value="" selected disabled>اختاري مدينتك</option></select>
-            <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك اختاري المدينة</p>
+            <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">اختاري المدينة</p>
           </div>
           <div>
             <span class="mb-2 block text-[13.5px] font-extrabold">اللون <span class="text-brand-pink">*</span></span>
             <div class="flex flex-wrap gap-2">
-              <label class="cursor-pointer">
-                <input type="radio" name="color" value="أحمر" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</span>
-              </label>
-              <label class="cursor-pointer">
-                <input type="radio" name="color" value="وردي" class="peer sr-only" checked />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</span>
-              </label>
-              <label class="cursor-pointer">
-                <input type="radio" name="color" value="أبيض منقط" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-white ring-2 ring-gray-200 shadow" style="background-image:radial-gradient(#111 1px, transparent 1.1px); background-size:4px 4px;"></span> أبيض منقط</span>
-              </label>
-              <label class="cursor-pointer">
-                <input type="radio" name="color" value="أسود" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-black ring-2 ring-white shadow"></span> أسود</span>
-              </label>
-              <label class="cursor-pointer">
-                <input type="radio" name="color" value="بنفسجي" class="peer sr-only" />
-                <span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight peer-checked:text-brand-pinkDark"><span class="h-4 w-4 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي</span>
-              </label>
+              <label class="cursor-pointer"><input type="radio" name="color" value="أحمر" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-4 w-4 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</span></label>
+              <label class="cursor-pointer"><input type="radio" name="color" value="وردي" class="peer sr-only" checked><span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-4 w-4 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</span></label>
+              <label class="cursor-pointer"><input type="radio" name="color" value="أبيض منقط" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-4 w-4 rounded-full bg-white ring-2 ring-gray-200 shadow"></span> أبيض منقط</span></label>
+              <label class="cursor-pointer"><input type="radio" name="color" value="أسود" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-4 w-4 rounded-full bg-black ring-2 ring-white shadow"></span> أسود</span></label>
+              <label class="cursor-pointer"><input type="radio" name="color" value="بنفسجي" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-2xl border-2 border-gray-200 px-3 py-2 text-[12.5px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-4 w-4 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي</span></label>
             </div>
           </div>
         </div>
-
         <div>
           <span class="mb-2 block text-[13.5px] font-extrabold">الكمية</span>
           <div class="flex items-center gap-3">
-            <button type="button" id="qtyMinus" class="h-12 w-12 rounded-2xl bg-gray-100 text-xl font-black transition hover:bg-gray-200 active:scale-95">−</button>
-            <span id="qtyValue" class="w-14 text-center text-xl font-black tabular-nums">1</span>
-            <button type="button" id="qtyPlus" class="h-12 w-12 rounded-2xl bg-brand-yellow text-xl font-black transition hover:brightness-95 active:scale-95">+</button>
-            <span class="ms-auto text-[13px] font-bold text-gray-500">الحد الأقصى: 5 قطع</span>
+            <button type="button" id="qtyMinus" class="h-12 w-12 rounded-2xl bg-gray-100 text-xl font-black hover:bg-gray-200">−</button>
+            <span id="qtyValue" class="w-14 text-center text-xl font-black">1</span>
+            <button type="button" id="qtyPlus" class="h-12 w-12 rounded-2xl bg-brand-yellow text-xl font-black">+</button>
+            <span class="ms-auto text-[13px] font-bold text-gray-500">الحد الأقصى: 5</span>
           </div>
         </div>
-
         <div>
           <label for="fAddress" class="mb-2 block text-[13.5px] font-extrabold">العنوان الكامل <span class="text-brand-pink">*</span></label>
-          <textarea id="fAddress" rows="3" class="input resize-none" placeholder="الحي، الزنقة، رقم الدار، أقرب نقطة معروفة..." autocomplete="off"></textarea>
-          <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">عافاك كتبي العنوان بالتفصيل</p>
+          <textarea id="fAddress" rows="3" class="input resize-none" placeholder="الحي، الزنقة، رقم الدار..." autocomplete="off"></textarea>
+          <p class="err mt-1.5 hidden text-[12px] font-bold text-red-500">كتبي العنوان بالتفصيل</p>
         </div>
-
         <div class="rounded-2xl border-2 border-dashed border-brand-pink/40 bg-brand-pinkLight/40 p-5">
-          <div class="flex items-center justify-between text-[14px] font-bold">
-            <span>حقيبة ميكي ماوس الكيوت</span>
-            <span class="tabular-nums"><span id="sumUnit">149</span> درهم</span>
-          </div>
-          <div class="mt-2 flex items-center justify-between text-[14px] font-bold">
-            <span>الكمية</span>
-            <span class="tabular-nums">× <span id="sumQty">1</span></span>
-          </div>
-          <div class="mt-2 flex items-center justify-between text-[14px] font-bold">
-            <span>التوصيل</span>
-            <span class="text-green-600">مجاني 🚚</span>
-          </div>
+          <div class="flex items-center justify-between text-[14px] font-bold"><span>حقيبة ميكي ماوس الكيوت</span><span><span id="sumUnit">149</span> درهم</span></div>
+          <div class="mt-2 flex items-center justify-between text-[14px] font-bold"><span>الكمية</span><span>× <span id="sumQty">1</span></span></div>
+          <div class="mt-2 flex items-center justify-between text-[14px] font-bold"><span>التوصيل</span><span class="text-green-600">مجاني 🚚</span></div>
           <div class="mt-3 flex items-center justify-between border-t-2 border-dashed border-brand-pink/40 pt-3">
             <span class="font-black">المجموع</span>
-            <span class="text-2xl font-black text-brand-pink tabular-nums"><span id="sumTotal">149</span> درهم</span>
+            <span class="text-2xl font-black text-brand-pink"><span id="sumTotal">149</span> درهم</span>
           </div>
         </div>
-
-        <button type="submit" id="submitBtn"
-          class="btn-confirm w-full rounded-2xl bg-brand-yellow py-5 text-lg sm:text-xl font-black text-brand-dark border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70 disabled:cursor-not-allowed">
+        <button type="submit" id="submitBtn" class="btn-confirm w-full rounded-2xl bg-brand-yellow py-5 text-lg sm:text-xl font-black border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70">
           ✅ تأكيد الطلب — الدفع عند الاستلام
         </button>
-
-        <p class="text-center text-[12px] font-bold text-gray-400">
-          بالضغط على "تأكيد الطلب" كتوافقي على أن نتواصلو معاك عبر الواتساب لتأكيد الطلبية 💬
-        </p>
+        <p class="text-center text-[12px] font-bold text-gray-400">بالضغط على "تأكيد الطلب" كتوافقي على أن نتواصلو معاك 💬</p>
       </form>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="bg-white border-t border-gray-100 pt-12 pb-8">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="grid sm:grid-cols-3 gap-8 items-start">
+    <div class="grid sm:grid-cols-3 gap-8">
       <div>
         <div class="flex items-center gap-2.5">
-          <!-- ✅ اللوغو فالفوتر -->
-          <div class="logo-box w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl overflow-hidden">
-            <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" />
+          <div class="w-10 h-10 rounded-2xl bg-brand-pink overflow-hidden">
+            <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" class="w-full h-full object-contain">
           </div>
           <div class="leading-none">
             <div class="font-black text-xl">KATAKIT</div>
             <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
           </div>
         </div>
-        <p class="mt-4 text-[13px] leading-relaxed text-gray-500 font-medium">متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال. جودة عالية، أثمنة مناسبة، وخدمة زبناء محترمة.</p>
+        <p class="mt-4 text-[13px] leading-relaxed text-gray-500 font-medium">متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال.</p>
       </div>
-
       <div>
         <h4 class="font-black text-[15px]">روابط سريعة</h4>
         <ul class="mt-4 space-y-2.5 text-[13.5px] font-bold text-gray-500">
-          <li><a href="#" class="transition hover:text-brand-pink">الرئيسية</a></li>
-          <li><a href="#order" class="transition hover:text-brand-pink">اطلبي الآن</a></li>
-          <li><a href="#order" class="transition hover:text-brand-pink">سياسة الإرجاع</a></li>
+          <li><a href="#" class="hover:text-brand-pink">الرئيسية</a></li>
+          <li><a href="#order" class="hover:text-brand-pink">اطلبي الآن</a></li>
         </ul>
       </div>
-
       <div>
         <h4 class="font-black text-[15px]">تواصلي معنا</h4>
         <div class="mt-4 flex flex-wrap gap-3">
-          <a href="https://wa.me/212691071441" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2.5 text-[13px] font-extrabold text-white transition hover:bg-green-600">
-            💬 واتساب
-          </a>
-          <a href="https://www.instagram.com/katakit_shop1" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow px-4 py-2.5 text-[13px] font-extrabold text-white transition hover:opacity-90">
-            📸 انستغرام
-          </a>
+          <a href="https://wa.me/212691071441" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2.5 text-[13px] font-extrabold text-white hover:bg-green-600">💬 واتساب</a>
+          <a href="https://www.instagram.com/katakit_shop1" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow px-4 py-2.5 text-[13px] font-extrabold text-white">📸 انستغرام</a>
         </div>
       </div>
     </div>
-
-    <div class="mt-10 border-t border-gray-100 pt-6 text-center text-[12.5px] font-bold text-gray-400">
-      © <span id="year">2025</span> KATAKIT — كتاكيت. جميع الحقوق محفوظة.
-    </div>
+    <div class="mt-10 border-t border-gray-100 pt-6 text-center text-[12.5px] font-bold text-gray-400">© <span id="year">2025</span> KATAKIT — كتاكيت. جميع الحقوق محفوظة.</div>
   </div>
 </footer>
 
-<div id="stickyBar"
-     class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-brand-pink shadow-[0_-10px_30px_-10px_rgba(255,144,188,.5)] translate-y-full transition-transform duration-300">
+<!-- STICKY BAR -->
+<div id="stickyBar" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-brand-pink shadow-[0_-10px_30px_-10px_rgba(255,144,188,.5)] translate-y-full transition-transform duration-300">
   <div class="max-w-6xl mx-auto px-3 py-2.5 flex items-center gap-2 sm:gap-3">
-    <a href="https://wa.me/212691071441" target="_blank" rel="noopener"
-       class="grid h-12 w-12 sm:h-14 sm:w-14 shrink-0 place-items-center rounded-2xl bg-green-500 text-xl sm:text-2xl text-white shadow-lg shadow-green-500/30 active:scale-95 transition">
-      💬
-    </a>
+    <a href="https://wa.me/212691071441" target="_blank" rel="noopener" class="grid h-12 w-12 sm:h-14 sm:w-14 shrink-0 place-items-center rounded-2xl bg-green-500 text-xl sm:text-2xl text-white shadow-lg shadow-green-500/30">💬</a>
     <div class="shrink-0 text-center px-1">
       <div class="text-lg sm:text-2xl font-black text-brand-pink leading-none">149</div>
       <div class="text-[10px] sm:text-xs font-bold text-gray-400 line-through">249 د.م</div>
     </div>
-    <a href="#order"
-       class="flex-1 rounded-2xl bg-brand-yellow py-3 sm:py-3.5 text-center text-[13px] sm:text-lg font-black text-brand-dark border-2 sm:border-4 border-brand-dark shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-1 active:shadow-none transition-all">
-      🛒 اطلبي الآن — الدفع عند الاستلام
-    </a>
+    <a href="#order" class="flex-1 rounded-2xl bg-brand-yellow py-3 sm:py-3.5 text-center text-[13px] sm:text-lg font-black border-2 sm:border-4 border-brand-dark shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-1 active:shadow-none transition-all">🛒 اطلبي الآن — الدفع عند الاستلام</a>
   </div>
 </div>
 
+<!-- TOAST -->
 <div id="toast" class="pointer-events-none fixed bottom-24 right-4 z-30 hidden w-[min(320px,calc(100vw-2rem))]">
-  <div class="flex items-center gap-3 rounded-3xl border border-brand-pinkLight bg-white p-3 shadow-[0_20px_50px_-20px_rgba(0,0,0,.4)]">
+  <div class="flex items-center gap-3 rounded-3xl border border-brand-pinkLight bg-white p-3 shadow-2xl">
     <div class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-pinkLight text-2xl">🎒</div>
     <div class="min-w-0">
-      <p class="truncate text-[13px] font-black">
-        <span id="toastName">فاطمة</span> من <span id="toastCity">الدار البيضاء</span>
-      </p>
+      <p class="truncate text-[13px] font-black"><span id="toastName">فاطمة</span> من <span id="toastCity">الدار البيضاء</span></p>
       <p class="text-[11.5px] font-bold text-gray-500">اشترت <span id="toastTime">قبل دقيقة</span> ✅</p>
     </div>
   </div>
 </div>
 
 <script>
-/* ================================================================
-   🛑 منع الهبوط التلقائي على الاستمارة
-   ================================================================ */
-(function forceTopOnLoad() {
-  if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-  }
-  window.scrollTo(0, 0);
-  window.addEventListener('load', function () {
-    window.scrollTo(0, 0);
-    if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
-  });
-  setTimeout(() => window.scrollTo(0, 0), 300);
-  setTimeout(() => window.scrollTo(0, 0), 800);
-})();
-
-/* ================================================================
-   ⚙️ الإعدادات
-   ================================================================ */
+/* ============ ⚙️ الإعدادات ============ */
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
 const WHATSAPP_NUMBER = "212691071441";
 const PRICE = 149;
 
-/* ================================================================
-   📸 روابط الصور
-   ================================================================ */
+/* ============ 📸 الصور ============ */
 const IMGS = {
-  "أحمر":       "https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg",
-  "وردي":       "https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg",
-  "أبيض منقط":  "https://i.ibb.co/x866ZgHS/Whats-App-Image-2026-09-16-at-22-03-30-2.jpg",
-  "أسود":       "https://i.ibb.co/qFMh7CzR/Whats-App-Image-2026-09-16-at-22-03-29-1.jpg",
-  "بنفسجي":     "https://i.ibb.co/99b4400J/Whats-App-Image-2026-09-16-at-22-03-30.jpg"
+  "أحمر":"https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg",
+  "وردي":"https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg",
+  "أبيض منقط":"https://i.ibb.co/x866ZgHS/Whats-App-Image-2026-09-16-at-22-03-30-2.jpg",
+  "أسود":"https://i.ibb.co/qFMh7CzR/Whats-App-Image-2026-09-16-at-22-03-29-1.jpg",
+  "بنفسجي":"https://i.ibb.co/99b4400J/Whats-App-Image-2026-09-16-at-22-03-30.jpg"
 };
 
-/* ================================================================
-   📌 الشريط السفلي
-   ================================================================ */
-(function stickyBarControl() {
-  const bar = document.getElementById('stickyBar');
-  let shown = false;
-  function update() {
-    const shouldShow = window.scrollY > 400;
-    if (shouldShow !== shown) {
-      shown = shouldShow;
-      if (shown) bar.classList.remove('translate-y-full');
-      else bar.classList.add('translate-y-full');
-    }
-  }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
+/* ============ 🛑 منع الهبوط للاستمارة ============ */
+(function(){
+  if(location.hash) history.replaceState(null,'',location.pathname+location.search);
+  window.scrollTo(0,0);
+  window.addEventListener('load',function(){
+    window.scrollTo(0,0);
+    if(document.activeElement&&document.activeElement!==document.body) document.activeElement.blur();
+  });
+  setTimeout(()=>window.scrollTo(0,0),300);
+  setTimeout(()=>window.scrollTo(0,0),800);
 })();
 
-const CITIES = [
-  "الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان",
-  "سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة",
-  "ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان",
-  "الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة",
-  "تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور",
-  "الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"
+/* ============ 📌 الشريط السفلي ============ */
+(function(){
+  const bar=document.getElementById('stickyBar');let shown=false;
+  function upd(){const s=window.scrollY>400;if(s!==shown){shown=s;bar.classList.toggle('translate-y-full',!s);}}
+  window.addEventListener('scroll',upd,{passive:true});upd();
+})();
+
+/* ============ 🏙️ المدن ============ */
+const CITIES=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة","ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان","الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة","تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور","الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"];
+(function(){const s=document.getElementById('fCity');CITIES.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;s.appendChild(o);});})();
+
+/* ============ 🔔 الإشعارات ============ */
+const NOTIFS=[{n:"فاطمة",c:"الدار البيضاء",t:"قبل دقيقة"},{n:"سلمى",c:"الرباط",t:"قبل 3 دقائق"},{n:"ياسمين",c:"مراكش",t:"قبل دقيقتين"},{n:"هند",c:"طنجة",t:"قبل 5 دقائق"},{n:"مريم",c:"أكادير",t:"قبل دقيقة"},{n:"نور",c:"فاس",t:"قبل 4 دقائق"},{n:"إيمان",c:"مكناس",t:"قبل دقيقتين"},{n:"خديجة",c:"وجدة",t:"قبل 6 دقائق"},{n:"زينب",c:"تطوان",t:"قبل 3 دقائق"},{n:"أمينة",c:"القنيطرة",t:"قبل دقيقة"}];
+
+/* ============ 📝 التقييمات ============ */
+const REVIEWS=[
+  {i:"ف",n:"فاطمة الزهراء",c:"الدار البيضاء",t:"بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة.",e:"🎒"},
+  {i:"س",n:"سلمى بنعلي",c:"الرباط",t:"الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي.",e:"🛍️"},
+  {i:"ي",n:"ياسمين الإدريسي",c:"مراكش",t:"تواصلو معايا فالواتساب وأكدو ليا الطلبية. وصلاتني بعد 24 ساعة. شكرا كتاكيت!",e:"🎁"},
+  {i:"ه",n:"هند الطاهري",c:"طنجة",t:"خديت اللون البيج وطلع روعة، راقي وأنيق. بنتي كتفرح بيها كل صباح.",e:"✨"},
+  {i:"م",n:"مريم الشرقاوي",c:"أكادير",t:"الثمن مناسب مقارنة مع الجودة. صراحة تستاهل أكثر من 149 درهم.",e:"📦"},
+  {i:"ن",n:"نور الهدى",c:"فاس",t:"أحسن حقيبة شريت لبناتي. الحمالات مريحة والظرف كافيها كلشي.",e:"👧"}
 ];
+(function(){
+  const w=document.getElementById('reviewsWrap');
+  w.innerHTML=REVIEWS.map(r=>`<article class="card" data-reveal>
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow grid place-items-center text-white font-black text-lg">${r.i}</div>
+      <div><h4 class="font-black text-[14px]">${r.n}</h4><p class="text-[12px] text-gray-500 font-bold">${r.c}</p></div>
+      <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
+    </div>
+    <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"${r.t}"</p>
+    <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">${r.e}</div>
+  </article>`).join('');
+})();
 
-const NOTIFS = [
-  { name: "فاطمة",  city: "الدار البيضاء", time: "قبل دقيقة"   },
-  { name: "سلمى",   city: "الرباط",        time: "قبل 3 دقائق" },
-  { name: "ياسمين", city: "مراكش",         time: "قبل دقيقتين" },
-  { name: "هند",    city: "طنجة",          time: "قبل 5 دقائق" },
-  { name: "مريم",   city: "أكادير",        time: "قبل دقيقة"   },
-  { name: "نور",    city: "فاس",           time: "قبل 4 دقائق" },
-  { name: "إيمان",  city: "مكناس",         time: "قبل دقيقتين" },
-  { name: "خديجة",  city: "وجدة",          time: "قبل 6 دقائق" },
-  { name: "زينب",   city: "تطوان",         time: "قبل 3 دقائق" },
-  { name: "أمينة",  city: "القنيطرة",      time: "قبل دقيقة"   }
+/* ============ ❓ FAQ ============ */
+const FAQS=[
+  {q:"واش الدفع عند الاستلام؟",a:"نعم 100%. كتخلصي غير ملي توصلك الطلبية وكتشوفي الحقيبة بعينيك."},
+  {q:"شحال كتاخد الطلبية باش توصل؟",a:"بين 24 و 48 ساعة فالمدن الكبرى، و48-72 ساعة فالمناطق البعيدة."},
+  {q:"واش التوصيل مجاني؟",a:"نعم، التوصيل مجاني لجميع مدن المغرب بلا أي زيادة."},
+  {q:"واش كاين ضمان؟",a:"أكيد. إلا فيها عيب أو ما عجباتكش، كترجعيها وكنرجعو ليك فلوسك كاملين."},
+  {q:"شمن ألوان متوفرة؟",a:"5 ألوان: الأحمر، الوردي، الأبيض المنقط، الأسود، والبنفسجي."},
+  {q:"كيفاش نتواصل معاكم؟",a:"عبر الواتساب فقط، من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع."}
 ];
-
-const state = { color: "وردي", qty: 1, userPickedColor: false };
-
-(function fillCities() {
-  const sel = document.getElementById("fCity");
-  CITIES.forEach(c => {
-    const o = document.createElement("option");
-    o.value = c; o.textContent = c; sel.appendChild(o);
+(function(){
+  const w=document.getElementById('faqWrap');
+  w.innerHTML=FAQS.map(f=>`<div class="faq-item card !p-0 overflow-hidden" data-reveal>
+    <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
+      <span class="font-extrabold text-[15px]">${f.q}</span>
+      <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all">+</span>
+    </button>
+    <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">${f.a}</p></div>
+  </div>`).join('');
+  document.querySelectorAll('.faq-head').forEach(h=>{
+    h.addEventListener('click',()=>{
+      const item=h.closest('.faq-item');const open=item.classList.contains('is-open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('is-open'));
+      if(!open) item.classList.add('is-open');
+    });
   });
 })();
 
-let countdown = 2 * 3600 + 14 * 60 + 33;
-function renderCountdown() {
-  const h = Math.floor(countdown / 3600);
-  const m = Math.floor((countdown % 3600) / 60);
-  const s = countdown % 60;
-  const p = n => String(n).padStart(2, "0");
-  document.getElementById("cdH").textContent = p(h);
-  document.getElementById("cdM").textContent = p(m);
-  document.getElementById("cdS").textContent = p(s);
+/* ============ 🎨 الحالة ============ */
+const state={color:"وردي",qty:1,userPicked:false};
+
+/* ============ ⏱️ العدّاد ============ */
+let cd=2*3600+14*60+33;
+function renderCd(){
+  const h=Math.floor(cd/3600),m=Math.floor(cd%3600/60),s=cd%60,p=n=>String(n).padStart(2,'0');
+  document.getElementById('cdH').textContent=p(h);
+  document.getElementById('cdM').textContent=p(m);
+  document.getElementById('cdS').textContent=p(s);
 }
-setInterval(() => {
-  countdown--;
-  if (countdown < 0) countdown = 2 * 3600 + 14 * 60 + 33;
-  renderCountdown();
-}, 1000);
-renderCountdown();
+setInterval(()=>{cd--;if(cd<0)cd=2*3600+14*60+33;renderCd();},1000);renderCd();
 
-const mainImage = document.getElementById("mainImage");
-
-function applyColor(color, fromUser = true) {
-  if (!IMGS[color]) color = "وردي";
-  state.color = color;
-
-  mainImage.style.opacity = "0";
-  setTimeout(() => {
-    mainImage.src = IMGS[color];
-    mainImage.style.opacity = "1";
-  }, 180);
-
-  document.querySelectorAll("[data-color]").forEach(el => {
-    el.classList.toggle("is-active", el.dataset.color === color);
-  });
-
-  const radio = document.querySelector(`input[name="color"][value="${color}"]`);
-  if (radio) radio.checked = true;
-
-  if (fromUser) state.userPickedColor = true;
+/* ============ 🖼️ تبديل اللون ============ */
+const mainImg=document.getElementById('mainImage');
+function applyColor(c,fromUser=true){
+  if(!IMGS[c])c="وردي";state.color=c;
+  mainImg.style.opacity="0";
+  setTimeout(()=>{mainImg.src=IMGS[c];mainImg.style.opacity="1";},180);
+  document.querySelectorAll('[data-color]').forEach(el=>el.classList.toggle('is-active',el.dataset.color===c));
+  const r=document.querySelector(`input[name="color"][value="${c}"]`);if(r)r.checked=true;
+  if(fromUser)state.userPicked=true;
 }
+document.querySelectorAll('[data-color]').forEach(b=>b.addEventListener('click',()=>applyColor(b.dataset.color,true)));
+document.querySelectorAll('input[name="color"]').forEach(r=>r.addEventListener('change',()=>applyColor(r.value,true)));
+const colorKeys=Object.keys(IMGS);let sliderIdx=colorKeys.indexOf("وردي");
+setInterval(()=>{if(state.userPicked)return;sliderIdx=(sliderIdx+1)%colorKeys.length;applyColor(colorKeys[sliderIdx],false);},4500);
+applyColor("وردي",false);
 
-document.querySelectorAll("[data-color]").forEach(btn => {
-  btn.addEventListener("click", () => applyColor(btn.dataset.color, true));
-});
-
-document.querySelectorAll('input[name="color"]').forEach(r => {
-  r.addEventListener("change", () => applyColor(r.value, true));
-});
-
-const colorKeys = Object.keys(IMGS);
-let sliderIdx = colorKeys.indexOf("وردي");
-setInterval(() => {
-  if (state.userPickedColor) return;
-  sliderIdx = (sliderIdx + 1) % colorKeys.length;
-  applyColor(colorKeys[sliderIdx], false);
-}, 4500);
-
-applyColor("وردي", false);
-
-const qtyValue = document.getElementById("qtyValue");
-const sumQty   = document.getElementById("sumQty");
-const sumTotal = document.getElementById("sumTotal");
-const sumUnit  = document.getElementById("sumUnit");
-
-function renderQty() {
-  qtyValue.textContent = state.qty;
-  sumQty.textContent   = state.qty;
-  sumUnit.textContent  = PRICE;
-  sumTotal.textContent = PRICE * state.qty;
-}
-
-document.getElementById("qtyPlus").addEventListener("click", () => {
-  if (state.qty < 5) { state.qty++; renderQty(); }
-});
-
-document.getElementById("qtyMinus").addEventListener("click", () => {
-  if (state.qty > 1) { state.qty--; renderQty(); }
-});
-
+/* ============ 🔢 الكمية ============ */
+const qtyEl=document.getElementById('qtyValue'),sumQty=document.getElementById('sumQty'),sumTotal=document.getElementById('sumTotal'),sumUnit=document.getElementById('sumUnit');
+function renderQty(){qtyEl.textContent=state.qty;sumQty.textContent=state.qty;sumUnit.textContent=PRICE;sumTotal.textContent=PRICE*state.qty;}
+document.getElementById('qtyPlus').addEventListener('click',()=>{if(state.qty<5){state.qty++;renderQty();}});
+document.getElementById('qtyMinus').addEventListener('click',()=>{if(state.qty>1){state.qty--;renderQty();}});
 renderQty();
 
-(function buildStars() {
-  const row = document.getElementById("starsRow");
-  for (let i = 0; i < 5; i++) {
-    const s = document.createElement("span");
-    s.textContent = "★";
-    s.style.opacity = "0";
-    row.appendChild(s);
-  }
-})();
-
-let ratingPlayed = false;
-function playRating() {
-  if (ratingPlayed) return;
-  ratingPlayed = true;
-
-  document.querySelectorAll("#starsRow span").forEach((s, i) => {
-    setTimeout(() => {
-      s.style.animation = `starPop .55s cubic-bezier(.2,.8,.3,1.4) both`;
-      s.style.opacity = "1";
-    }, i * 130);
-  });
-
-  const el = document.getElementById("ratingValue");
-  let v = 0;
-  const target = 4.9;
-  const step = target / 45;
-  const t = setInterval(() => {
-    v += step;
-    if (v >= target) { v = target; clearInterval(t); }
-    el.textContent = v.toFixed(1);
-  }, 24);
-
-  const cnt = document.getElementById("ratingCount");
-  let c = 0;
-  const tc = 1240;
-  const tc2 = setInterval(() => {
-    c += Math.ceil(tc / 45);
-    if (c >= tc) { c = tc; clearInterval(tc2); }
-    cnt.textContent = c;
-  }, 24);
+/* ============ ⭐ التقييم ============ */
+(function(){const r=document.getElementById('starsRow');for(let i=0;i<5;i++){const s=document.createElement('span');s.textContent="★";s.style.opacity="0";r.appendChild(s);}})();
+let ratingDone=false;
+function playRating(){
+  if(ratingDone)return;ratingDone=true;
+  document.querySelectorAll('#starsRow span').forEach((s,i)=>{setTimeout(()=>{s.style.animation='starPop .55s both';s.style.opacity='1';},i*130);});
+  const el=document.getElementById('ratingValue');let v=0;const t=4.9,st=t/45;
+  const iv=setInterval(()=>{v+=st;if(v>=t){v=t;clearInterval(iv);}el.textContent=v.toFixed(1);},24);
+  const cnt=document.getElementById('ratingCount');let c=0,tc=1240;
+  const iv2=setInterval(()=>{c+=Math.ceil(tc/45);if(c>=tc){c=tc;clearInterval(iv2);}cnt.textContent=c;},24);
 }
 
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add("is-visible");
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
+/* ============ 👁️ الظهور عند التمرير ============ */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+const sObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){playRating();sObs.disconnect();}});},{threshold:.4});
+sObs.observe(document.getElementById('starsRow'));
 
-document.querySelectorAll("[data-reveal]").forEach(el => io.observe(el));
+/* ============ 🔔 Toast ============ */
+const toast=document.getElementById('toast');let ni=0;
+function showToast(){
+  const n=NOTIFS[ni%NOTIFS.length];ni++;
+  document.getElementById('toastName').textContent=n.n;
+  document.getElementById('toastCity').textContent=n.c;
+  document.getElementById('toastTime').textContent=n.t;
+  toast.classList.remove('hidden');
+  toast.firstElementChild.style.animation='slideIn .45s both';
+  setTimeout(()=>{toast.firstElementChild.style.animation='slideOut .4s both';setTimeout(()=>toast.classList.add('hidden'),400);},5000);
+}
+setTimeout(showToast,4000);setInterval(showToast,7000);
 
-const starsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { playRating(); starsObserver.disconnect(); } });
-}, { threshold: 0.4 });
-starsObserver.observe(document.getElementById("starsRow"));
+/* ============ 📤 الإرسال ============ */
+const form=document.getElementById('orderForm'),submitBtn=document.getElementById('submitBtn'),successBox=document.getElementById('formSuccess');
+const BTN_DEF="btn-confirm w-full rounded-2xl bg-brand-yellow py-5 text-lg sm:text-xl font-black border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70";
+const BTN_LD="w-full rounded-2xl bg-brand-pink py-5 text-lg sm:text-xl font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] opacity-70";
+const BTN_OK="w-full rounded-2xl bg-green-500 py-5 text-lg sm:text-xl font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)]";
 
-const toast = document.getElementById("toast");
-let notifIdx = 0;
+function setErr(el,show){const e=el.parentElement.querySelector('.err');if(e)e.classList.toggle('hidden',!show);el.classList.toggle('!border-red-400',show);el.classList.toggle('!bg-red-50',show);}
 
-function showToast() {
-  const n = NOTIFS[notifIdx % NOTIFS.length];
-  notifIdx++;
-
-  document.getElementById("toastName").textContent = n.name;
-  document.getElementById("toastCity").textContent = n.city;
-  document.getElementById("toastTime").textContent = n.time;
-
-  toast.classList.remove("hidden");
-  toast.firstElementChild.style.animation = "slideIn .45s cubic-bezier(.2,.8,.3,1) both";
-
-  setTimeout(() => {
-    toast.firstElementChild.style.animation = "slideOut .4s ease-in both";
-    setTimeout(() => toast.classList.add("hidden"), 400);
-  }, 5000);
+async function sendToSheet(p){
+  if(!SHEET_URL||SHEET_URL.includes("ضع هنا"))return;
+  try{await Promise.race([fetch(SHEET_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(p)}),new Promise(r=>setTimeout(r,4000))]);}catch(e){console.warn(e);}
 }
 
-setTimeout(showToast, 4000);
-setInterval(showToast, 7000);
-
-document.querySelectorAll(".faq-head").forEach(head => {
-  head.addEventListener("click", () => {
-    const item = head.closest(".faq-item");
-    const isOpen = item.classList.contains("is-open");
-    document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("is-open"));
-    if (!isOpen) item.classList.add("is-open");
-  });
-});
-
-const form       = document.getElementById("orderForm");
-const submitBtn  = document.getElementById("submitBtn");
-const successBox = document.getElementById("formSuccess");
-
-const BTN_DEFAULT = "btn-confirm w-full rounded-2xl bg-brand-yellow py-5 text-lg sm:text-xl font-black text-brand-dark border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70 disabled:cursor-not-allowed";
-const BTN_LOADING = "w-full rounded-2xl bg-brand-pink py-5 text-lg sm:text-xl font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] opacity-70 cursor-not-allowed";
-const BTN_SUCCESS = "w-full rounded-2xl bg-green-500 py-5 text-lg sm:text-xl font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)]";
-
-function setError(input, show) {
-  const err = input.parentElement.querySelector(".err");
-  if (err) err.classList.toggle("hidden", !show);
-  input.classList.toggle("!border-red-400", show);
-  input.classList.toggle("!bg-red-50", show);
-}
-
-async function sendToSheet(payload) {
-  if (!SHEET_URL || SHEET_URL.includes("ضع هنا")) {
-    console.warn("⚠️ SHEET_URL غير مضبوط");
-    return;
-  }
-  try {
-    await Promise.race([
-      fetch(SHEET_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
-      }),
-      new Promise(resolve => setTimeout(resolve, 4000))
-    ]);
-  } catch (err) {
-    console.warn("تعذر إرسال البيانات للشيت:", err);
-  }
-}
-
-form.addEventListener("submit", async (e) => {
+form.addEventListener('submit',async e=>{
   e.preventDefault();
-
-  const nameEl    = document.getElementById("fName");
-  const phoneEl   = document.getElementById("fPhone");
-  const cityEl    = document.getElementById("fCity");
-  const addressEl = document.getElementById("fAddress");
-
-  const name    = nameEl.value.trim();
-  const phone   = phoneEl.value.replace(/\D/g, "");
-  const city    = cityEl.value;
-  const address = addressEl.value.trim();
-  const color   = document.querySelector('input[name="color"]:checked')?.value || state.color;
-  const qty     = state.qty;
-
-  let valid = true;
-
-  if (name.length < 3) { setError(nameEl, true); valid = false; } else setError(nameEl, false);
-
-  const phoneOk = /^(0[5-7]\d{8})$/.test(phone) || /^([5-7]\d{8})$/.test(phone);
-  if (!phoneOk) { setError(phoneEl, true); valid = false; } else setError(phoneEl, false);
-
-  if (!city) { setError(cityEl, true); valid = false; } else setError(cityEl, false);
-
-  if (address.length < 8) { setError(addressEl, true); valid = false; } else setError(addressEl, false);
-
-  if (!valid) {
-    form.querySelector(".!border-red-400")?.scrollIntoView({ behavior: "smooth", block: "center" });
-    return;
-  }
-
-  let waWin = null;
-  try { waWin = window.open("", "_blank"); } catch (_) {}
-
-  submitBtn.disabled = true;
-  submitBtn.className = BTN_LOADING;
-  submitBtn.innerHTML = '<span class="spinner"></span> جاري إرسال الطلب...';
-
-  const payload = {
-    name: name,
-    phone: phone,
-    city: city,
-    color: color,
-    qty: qty,
-    address: address,
-    product: "حقيبة ميكي",
-    price: PRICE,
-    total: PRICE * qty,
-    date: new Date().toLocaleString("ar-MA")
-  };
-
+  const nEl=document.getElementById('fName'),pEl=document.getElementById('fPhone'),cEl=document.getElementById('fCity'),aEl=document.getElementById('fAddress');
+  const name=nEl.value.trim(),phone=pEl.value.replace(/\D/g,''),city=cEl.value,address=aEl.value.trim();
+  const color=document.querySelector('input[name="color"]:checked')?.value||state.color,qty=state.qty;
+  let ok=true;
+  if(name.length<3){setErr(nEl,true);ok=false;}else setErr(nEl,false);
+  if(!(/^(0[5-7]\d{8})$/.test(phone)||/^([5-7]\d{8})$/.test(phone))){setErr(pEl,true);ok=false;}else setErr(pEl,false);
+  if(!city){setErr(cEl,true);ok=false;}else setErr(cEl,false);
+  if(address.length<8){setErr(aEl,true);ok=false;}else setErr(aEl,false);
+  if(!ok){form.querySelector('.\\!border-red-400')?.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  let wa=null;try{wa=window.open('','_blank');}catch(_){}
+  submitBtn.disabled=true;submitBtn.className=BTN_LD;submitBtn.innerHTML='<span class="spinner"></span> جاري الإرسال...';
+  const payload={name,phone,city,color,qty,address,product:"حقيبة ميكي",price:PRICE,total:PRICE*qty,date:new Date().toLocaleString('ar-MA')};
   await sendToSheet(payload);
-
-  const message =
-    `سلام كتاكيت، بغيت حقيبة ميكي اللون ${color} الكمية ${qty} المدينة ${city} السمية ${name}`;
-
-  const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-
-  if (waWin && !waWin.closed) {
-    waWin.location.href = waURL;
-  } else {
-    window.open(waURL, "_blank");
-  }
-
-  submitBtn.className = BTN_SUCCESS;
-  submitBtn.innerHTML = "✅ تم إرسال طلبك بنجاح";
-  successBox.classList.remove("hidden");
-  successBox.scrollIntoView({ behavior: "smooth", block: "center" });
-
-  setTimeout(() => {
-    form.reset();
-    state.qty = 1;
-    renderQty();
-    submitBtn.disabled = false;
-    submitBtn.className = BTN_DEFAULT;
-    submitBtn.innerHTML = "✅ تأكيد الطلب — الدفع عند الاستلام";
-    applyColor("وردي", false);
-  }, 6000);
+  const msg=`سلام كتاكيت، بغيت حقيبة ميكي اللون ${color} الكمية ${qty} المدينة ${city} السمية ${name}`;
+  const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  if(wa&&!wa.closed)wa.location.href=url;else window.open(url,'_blank');
+  submitBtn.className=BTN_OK;submitBtn.innerHTML='✅ تم إرسال طلبك بنجاح';
+  successBox.classList.remove('hidden');successBox.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>{form.reset();state.qty=1;renderQty();submitBtn.disabled=false;submitBtn.className=BTN_DEF;submitBtn.innerHTML='✅ تأكيد الطلب — الدفع عند الاستلام';applyColor('وردي',false);},6000);
 });
 
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-
 </body>
 </html>
