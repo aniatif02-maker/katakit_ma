@@ -123,6 +123,9 @@
     50%      { box-shadow: 0 8px 0 0 rgba(17,17,17,1), 0 0 0 16px rgba(255,217,61,0); }
   }
   .btn-confirm { animation: pulse-shadow 2s infinite; }
+
+  /* ✅ اللوغو */
+  .logo-box img { width: 100%; height: 100%; object-fit: contain; display: block; }
 </style>
 </head>
 
@@ -136,7 +139,10 @@
 <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-brand-pinkLight">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-2.5">
-      <div id="logoBoxHeader" class="logo-box w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl shadow-lg shadow-brand-pink/40">🐭</div>
+      <!-- ✅ اللوغو فالهيدر -->
+      <div class="logo-box w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl shadow-lg shadow-brand-pink/40 overflow-hidden">
+        <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" />
+      </div>
       <div class="leading-none">
         <div class="font-black text-xl tracking-tight">KATAKIT</div>
         <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
@@ -303,7 +309,6 @@
     </div>
 
     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
       <article class="card" data-reveal>
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow grid place-items-center text-white font-black text-lg">ف</div>
@@ -363,7 +368,6 @@
         <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"أحسن حقيبة شريت لبناتي. الحمالات مريحة والظرف كافيها كلشي. تعامل محترم وتوصيل مجاني."</p>
         <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-yellowLight to-brand-pinkLight grid place-items-center text-4xl">👧</div>
       </article>
-
     </div>
   </div>
 </section>
@@ -376,7 +380,6 @@
     </div>
 
     <div class="mt-10 space-y-3" id="faqWrap">
-
       <div class="faq-item card !p-0 overflow-hidden" data-reveal>
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
           <span class="font-extrabold text-[15px]">واش الدفع عند الاستلام؟</span>
@@ -424,7 +427,6 @@
         </button>
         <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">عبر الواتساب فقط، وكنجاوبو من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع.</p></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -434,7 +436,6 @@
   <div class="pointer-events-none absolute bottom-0 -left-20 w-72 h-72 bg-brand-yellow/20 rounded-full blur-3xl"></div>
 
   <div class="relative max-w-3xl mx-auto px-4">
-
     <div class="text-center" data-reveal>
       <span class="inline-block rounded-full bg-brand-yellow px-4 py-1.5 text-[13px] font-black text-brand-dark">📝 استمارة الطلب</span>
       <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white">أطلبي الآن — الدفع عند الاستلام</h2>
@@ -442,7 +443,6 @@
     </div>
 
     <div class="mt-10 rounded-[2rem] bg-white p-5 sm:p-8 shadow-2xl" data-reveal>
-
       <div id="formSuccess" class="hidden mb-6 rounded-2xl border-2 border-green-200 bg-green-50 p-5 text-center animate-popIn">
         <div class="text-4xl">✅</div>
         <h3 class="mt-2 font-black text-lg text-green-700">تم استلام طلبك، سنتواصل معك</h3>
@@ -450,7 +450,6 @@
       </div>
 
       <form id="orderForm" novalidate autocomplete="off" class="grid gap-5">
-
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="fName" class="mb-2 block text-[13.5px] font-extrabold">الاسم الكامل <span class="text-brand-pink">*</span></label>
@@ -548,10 +547,12 @@
 <footer class="bg-white border-t border-gray-100 pt-12 pb-8">
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid sm:grid-cols-3 gap-8 items-start">
-
       <div>
         <div class="flex items-center gap-2.5">
-          <div id="logoBoxFooter" class="logo-box w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl">🐭</div>
+          <!-- ✅ اللوغو فالفوتر -->
+          <div class="logo-box w-10 h-10 rounded-2xl bg-brand-pink grid place-items-center text-white text-xl overflow-hidden">
+            <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" />
+          </div>
           <div class="leading-none">
             <div class="font-black text-xl">KATAKIT</div>
             <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
@@ -640,18 +641,9 @@
 /* ================================================================
    ⚙️ الإعدادات
    ================================================================ */
-
-/* 1) رابط Google Apps Script */
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
-
-/* 2) رقم الواتساب */
 const WHATSAPP_NUMBER = "212691071441";
-
-/* 3) الثمن */
 const PRICE = 149;
-
-/* 4) ✅ اللوغو ديالك */
-const LOGO_URL = "https://i.ibb.co/93ntBsLh/kjk.png";
 
 /* ================================================================
    📸 روابط الصور
@@ -665,19 +657,7 @@ const IMGS = {
 };
 
 /* ================================================================
-   ✅ تطبيق اللوغو
-   ================================================================ */
-(function applyLogo() {
-  if (!LOGO_URL || !LOGO_URL.trim()) return;
-  document.querySelectorAll('.logo-box').forEach(box => {
-    box.innerHTML = `<img src="${LOGO_URL}" alt="KATAKIT" class="w-full h-full object-cover" />`;
-    box.classList.remove('grid', 'place-items-center', 'text-white', 'text-xl', 'bg-brand-pink');
-    box.classList.add('overflow-hidden', 'bg-white');
-  });
-})();
-
-/* ================================================================
-   📌 الشريط السفلي الثابت
+   📌 الشريط السفلي
    ================================================================ */
 (function stickyBarControl() {
   const bar = document.getElementById('stickyBar');
@@ -694,9 +674,6 @@ const IMGS = {
   update();
 })();
 
-/* ================================================================
-   مدن المغرب
-   ================================================================ */
 const CITIES = [
   "الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان",
   "سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة",
@@ -706,9 +683,6 @@ const CITIES = [
   "الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"
 ];
 
-/* ================================================================
-   الإشعارات الوهمية
-   ================================================================ */
 const NOTIFS = [
   { name: "فاطمة",  city: "الدار البيضاء", time: "قبل دقيقة"   },
   { name: "سلمى",   city: "الرباط",        time: "قبل 3 دقائق" },
