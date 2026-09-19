@@ -362,7 +362,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
     <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">🎨 اللون</label>
     <input id="adminNewHex" type="color" value="#3b82f6" style="width:100%;height:42px;background:#1a1a1a;border:1px solid #333;border-radius:9px;cursor:pointer;margin-bottom:8px">
     <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">🖼️ رابط الصورة (ImgBB)</label>
-    <input id="adminNewImg" type="text" class="admin-input" placeholder="https://ibb.co/... أو https://i.ibb.co/..." style="direction:ltr;font-family:monospace;font-size:11px">
+    <input id="adminNewImg" type="text" class="admin-input" placeholder="https://i.ibb.co/..." style="direction:ltr;font-family:monospace;font-size:11px">
     <div id="adminNewPreview" style="width:100%;height:90px;background:#1a1a1a;border:1px dashed #333;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#666;margin-bottom:8px;overflow:hidden">معاينة الصورة</div>
     <button type="button" id="adminAddColor" class="admin-add-btn">➕ إضافة اللون</button>
   </div>
@@ -375,7 +375,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 </div>
 
 <script>
-/* ============ الإعدادات ============ */
 var SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
 var WHATSAPP_NUMBER = "212691071441";
 var DEFAULT_PRICE = 149;
@@ -391,40 +390,26 @@ var DEFAULT_COLORS = [
 
 var STORAGE_COLORS = 'admin_colors';
 
-/* ============ ✅ تحويل رابط ImgBB تلقائياً ============ */
 async function toDirectImgBB(url){
   if(!url) return url;
   url = url.trim();
-  
-  // إلا كان رابط مباشر، رجعو
   if(url.indexOf('i.ibb.co') !== -1) return url;
-  
-  // إلا ماشي ImgBB، رجعو
   if(url.indexOf('ibb.co') === -1) return url;
-  
-  // جرب استخراج الرابط المباشر
-  try {
-    var proxy = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
-    var res = await fetch(proxy);
-    var html = await res.text();
-    
-    // نلقاو من og:image
-    var m = html.match(/<meta property="og:image" content="([^"]+)"/);
-    if(m && m[1]){
-      console.log('✅ تحول الرابط:', url, '→', m[1]);
-      return m[1];
-    }
-    
-    // بديل: نلقاو من image_src
-    var m2 = html.match(/<link rel="image_src" href="([^"]+)"/);
-    if(m2 && m2[1]){
-      console.log('✅ تحول الرابط:', url, '→', m2[1]);
-      return m2[1];
-    }
-  } catch(e) {
-    console.warn('تعذر التحويل التلقائي:', e);
+  var proxies = [
+    'https://corsproxy.io/?url=',
+    'https://api.codetabs.com/v1/proxy?quest=',
+    'https://api.allorigins.win/raw?url='
+  ];
+  for(var i = 0; i < proxies.length; i++){
+    try {
+      var res = await fetch(proxies[i] + encodeURIComponent(url));
+      var html = await res.text();
+      var m = html.match(/<meta property="og:image" content="([^"]+)"/i);
+      if(m && m[1] && m[1].indexOf('i.ibb.co') !== -1) return m[1];
+      var m2 = html.match(/<link rel="image_src" href="([^"]+)"/i);
+      if(m2 && m2[1] && m2[1].indexOf('i.ibb.co') !== -1) return m2[1];
+    } catch(e) {}
   }
-  
   return url;
 }
 
@@ -467,7 +452,6 @@ async function loadFromServer(){
     var res = await fetch(SHEET_URL, { method: 'GET' });
     var data = await res.json();
     if(!data || Object.keys(data).length === 0) return false;
-
     if(data.colors) localStorage.setItem(STORAGE_COLORS, JSON.stringify(data.colors));
     if(data.price) localStorage.setItem('admin_price', data.price);
     if(data.old_price) localStorage.setItem('admin_old_price', data.old_price);
@@ -1023,8 +1007,7 @@ loadFromServer().then(function(){
 
   var newImgInput = document.getElementById('adminNewImg');
   var newPreview = document.getElementById('adminNewPreview');
-  
-  // ✅ معاينة مع تحويل تلقائي
+
   newImgInput.addEventListener('input', async function(){
     var v = newImgInput.value.trim();
     if(v.indexOf('http') !== 0){
@@ -1033,10 +1016,9 @@ loadFromServer().then(function(){
     }
     newPreview.textContent = '⏳ جاري التحميل...';
     var direct = await toDirectImgBB(v);
-    newPreview.innerHTML = '<img src="' + direct + '" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.parentElement.innerHTML=\'❌ الصورة ما تحملتش<br><small style=color:#888>تأكد من الرابط</small>\'">';
+    newPreview.innerHTML = '<img src="' + direct + '" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.parentElement.innerHTML=\'❌ الصورة ما تحملتش<br><small style=color:#888>استعمل رابط i.ibb.co المباشر</small>\'">';
   });
 
-  // ✅ إضافة اللون مع تحويل تلقائي
   document.getElementById('adminAddColor').addEventListener('click', async function(){
     var name = document.getElementById('adminNewName').value.trim();
     var hex = document.getElementById('adminNewHex').value;
@@ -1049,7 +1031,6 @@ loadFromServer().then(function(){
     btn.textContent = '⏳ جاري معالجة الصورة...';
     btn.disabled = true;
 
-    // ✅ حول الرابط تلقائياً
     img = await toDirectImgBB(img);
 
     btn.textContent = '➕ إضافة اللون';
@@ -1068,6 +1049,9 @@ loadFromServer().then(function(){
     document.getElementById('adminNewImg').value = '';
     newPreview.textContent = 'معاينة الصورة';
 
+    state.color = name;
+    state.userPicked = true;
+
     applyAll();
     renderAdminPanel();
 
@@ -1077,26 +1061,34 @@ loadFromServer().then(function(){
     panel.querySelector('[data-section="stock"]').classList.add('active');
 
     var msg = document.getElementById('adminMsg');
-    msg.textContent = '✅ تزاد اللون "' + name + '"';
+    msg.textContent = '✅ تزاد اللون "' + name + '" وتبان فالصفحة';
     msg.style.color = '#4ade80';
     msg.style.opacity = '1';
     setTimeout(function(){msg.style.opacity = '0';}, 2500);
   });
 
-  document.getElementById('adminSave').addEventListener('click', function(){
+  document.getElementById('adminSave').addEventListener('click', async function(){
     var newPrice = Number(document.getElementById('adminPriceInput').value) || DEFAULT_PRICE;
     var newOldPrice = Number(document.getElementById('adminOldPriceInput').value) || DEFAULT_OLD_PRICE;
+
     localStorage.setItem('admin_price', newPrice);
     localStorage.setItem('admin_old_price', newOldPrice);
-    saveToServer();
     PRICE = newPrice;
     OLD_PRICE = newOldPrice;
-    updateAllPrices();
+
     var msg = document.getElementById('adminMsg');
-    msg.textContent = '✅ تم الحفظ';
-    msg.style.color = '#4ade80';
+    msg.textContent = '⏳ جاري الحفظ...';
+    msg.style.color = '#FFD93D';
     msg.style.opacity = '1';
-    setTimeout(function(){msg.style.opacity = '0';}, 2000);
+
+    await saveToServer();
+
+    applyAll();
+    renderAdminPanel();
+
+    msg.textContent = '✅ تم الحفظ بنجاح';
+    msg.style.color = '#4ade80';
+    setTimeout(function(){msg.style.opacity = '0';}, 2500);
   });
 
   document.getElementById('adminClose').addEventListener('click', function(){
