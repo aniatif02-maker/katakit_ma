@@ -375,7 +375,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 
   <div style="display:flex;flex-direction:column;gap:6px;margin-top:14px">
-    <button type="button" id="adminSync" class="admin-sync-btn">🔄 تحميل من السيرفر (تجاهل المحلي)</button>
+    <button type="button" id="adminSync" class="admin-sync-btn">🔄 تحميل من السيرفر</button>
   </div>
 
   <div style="display:flex;gap:8px;margin-top:10px">
@@ -402,7 +402,6 @@ var DEFAULT_COLORS = [
 var STORAGE_COLORS = 'admin_colors';
 var IS_ADMIN = new URLSearchParams(location.search).has('admin');
 
-/* ============ تحويل رابط ImgBB ============ */
 async function toDirectImgBB(url){
   if(!url) return url;
   url = url.trim();
@@ -438,7 +437,7 @@ function saveColorsLocal(colors){
   try { localStorage.setItem(STORAGE_COLORS, JSON.stringify(colors)); } catch(e){}
 }
 
-/* ============ ✅ حفظ فالسيرفر (مع تأكيد) ============ */
+/* ============ ✅ حفظ فالسيرفر (مع cache-busting) ============ */
 async function saveToServer(){
   if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return {ok:false, msg:'SHEET_URL غير مضبوط'};
   try {
@@ -449,8 +448,10 @@ async function saveToServer(){
       old_price: Number(localStorage.getItem('admin_old_price')) || DEFAULT_OLD_PRICE,
       timestamp: Date.now()
     };
-    var res = await fetch(SHEET_URL, {
+    // ✅ cache-busting: ?t=Timestamp
+    var res = await fetch(SHEET_URL + '?t=' + Date.now(), {
       method: 'POST',
+      cache: 'no-store',
       headers: {'Content-Type': 'text/plain;charset=utf-8'},
       body: JSON.stringify(payload)
     });
@@ -463,11 +464,15 @@ async function saveToServer(){
   }
 }
 
-/* ============ ✅ تحميل من السيرفر (إجباري لكل الزوار) ============ */
+/* ============ ✅ تحميل من السيرفر (مع cache-busting) ============ */
 async function fetchFromServer(){
   if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return null;
   try {
-    var res = await fetch(SHEET_URL, { method: 'GET' });
+    // ✅ cache-busting: ?t=Timestamp
+    var res = await fetch(SHEET_URL + '?t=' + Date.now(), {
+      method: 'GET',
+      cache: 'no-store'
+    });
     var data = await res.json();
     if(!data || !data.colors || !Array.isArray(data.colors) || data.colors.length === 0) {
       return null;
@@ -479,7 +484,6 @@ async function fetchFromServer(){
   }
 }
 
-/* تطبيق البيانات اللي جات من السيرفر */
 function applyServerData(data){
   if(!data) return false;
   localStorage.setItem(STORAGE_COLORS, JSON.stringify(data.colors));
@@ -488,7 +492,6 @@ function applyServerData(data){
   return true;
 }
 
-/* ============ migrate ============ */
 function migrateOld(){
   if(localStorage.getItem(STORAGE_COLORS)) return;
   var oldStock = {}, oldImgs = {};
@@ -508,8 +511,6 @@ function getOldPrice(){ var p = localStorage.getItem('admin_old_price'); return 
 
 var PRICE = getPrice();
 var OLD_PRICE = getOldPrice();
-
-function refreshGlobals(){}
 
 function renderColorChips(){
   var container = document.getElementById('colorChips');
@@ -667,7 +668,6 @@ function applyStockVisibility(){
   });
 }
 
-/* ============ منع الهبوط + الشريط السفلي ============ */
 (function(){
   if(location.hash) history.replaceState(null,'',location.pathname+location.search);
   window.scrollTo(0,0);
@@ -690,7 +690,6 @@ function applyStockVisibility(){
   upd();
 })();
 
-/* ============ المدن + الإشعارات + التقييمات + FAQ ============ */
 var CITIES = ["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة","ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان","الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة","تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور","الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"];
 (function(){
   var s = document.getElementById('fCity');
@@ -920,8 +919,9 @@ async function sendToSheet(p){
   if(!SHEET_URL || SHEET_URL.indexOf("ضع هنا") !== -1) return;
   try {
     await Promise.race([
-      fetch(SHEET_URL, {
+      fetch(SHEET_URL + '?t=' + Date.now(), {
         method:"POST",
+        cache: 'no-store',
         headers:{"Content-Type":"text/plain;charset=utf-8"},
         body: JSON.stringify(p)
       }),
@@ -992,16 +992,15 @@ form.addEventListener('submit', async function(e){
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ============================================================
-   🚀 البدء — كل زائر كيقرا من السيرفر
+   🚀 البدء — كل زائر كيقرا من السيرفر (مع cache-busting)
    ============================================================ */
 migrateOld();
 
-// 1) عرض فوري من الكاش (باش ما يكونش فراغ)
 PRICE = getPrice();
 OLD_PRICE = getOldPrice();
 applyAll();
 
-// 2) ✅ جلب من السيرفر (لكل الزوار، بلا استثناء)
+// ✅ جلب من السيرفر مع cache-busting
 fetchFromServer().then(function(data){
   if(data){
     var changed = applyServerData(data);
@@ -1009,10 +1008,10 @@ fetchFromServer().then(function(data){
       PRICE = getPrice();
       OLD_PRICE = getOldPrice();
       applyAll();
-      console.log('✅ تم التحديث من السيرفر — كل التغييرات ظاهرة');
+      console.log('✅ تم التحديث من السيرفر (fresh)');
     }
   } else {
-    console.log('ℹ️ ما كاينش بيانات فالسيرفر — كنستعملو الكاش');
+    console.log('ℹ️ ما كاينش بيانات فالسيرفر');
   }
 });
 
@@ -1059,7 +1058,6 @@ fetchFromServer().then(function(data){
     newPreview.innerHTML = '<img src="' + direct + '" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.parentElement.innerHTML=\'❌ الصورة ما تحملتش<br><small style=color:#888>استعمل رابط i.ibb.co</small>\'">';
   });
 
-  /* ✅ إضافة لون جديد */
   document.getElementById('adminAddColor').addEventListener('click', async function(){
     var name = document.getElementById('adminNewName').value.trim();
     var hex = document.getElementById('adminNewHex').value;
@@ -1096,7 +1094,6 @@ fetchFromServer().then(function(data){
     applyAll();
     renderAdminPanel();
 
-    // ✅ حفظ فالسيرفر تلقائياً
     var res = await saveToServer();
     var msg = document.getElementById('adminMsg');
     if(res.ok){
@@ -1105,7 +1102,7 @@ fetchFromServer().then(function(data){
       syncStatus.className = 'admin-status ok';
       syncStatus.textContent = '✅ متزامن مع السيرفر';
     } else {
-      msg.textContent = '⚠️ تزاد محلياً ولكن فشل الحفظ فالسيرفر';
+      msg.textContent = '⚠️ تزاد محلياً ولكن فشل الحفظ';
       msg.style.color = '#fbbf24';
       syncStatus.className = 'admin-status warn';
       syncStatus.textContent = '⚠️ ' + res.msg;
@@ -1114,7 +1111,6 @@ fetchFromServer().then(function(data){
     setTimeout(function(){msg.style.opacity = '0';}, 3000);
   });
 
-  /* ✅ حفظ الثمن */
   document.getElementById('adminSave').addEventListener('click', async function(){
     var newPrice = Number(document.getElementById('adminPriceInput').value) || DEFAULT_PRICE;
     var newOldPrice = Number(document.getElementById('adminOldPriceInput').value) || DEFAULT_OLD_PRICE;
@@ -1133,12 +1129,12 @@ fetchFromServer().then(function(data){
     var res = await saveToServer();
 
     if(res.ok){
-      msg.textContent = '✅ تم الحفظ فالسيرفر — كل الزوار غادي يشوفو';
+      msg.textContent = '✅ تم الحفظ فالسيرفر';
       msg.style.color = '#4ade80';
       syncStatus.className = 'admin-status ok';
       syncStatus.textContent = '✅ متزامن مع السيرفر';
     } else {
-      msg.textContent = '❌ فشل الحفظ: ' + res.msg;
+      msg.textContent = '❌ فشل: ' + res.msg;
       msg.style.color = '#ef4444';
       syncStatus.className = 'admin-status err';
       syncStatus.textContent = '❌ ' + res.msg;
@@ -1146,10 +1142,9 @@ fetchFromServer().then(function(data){
     setTimeout(function(){msg.style.opacity = '0';}, 4000);
   });
 
-  /* ✅ زر التحميل من السيرفر */
   document.getElementById('adminSync').addEventListener('click', async function(){
     var msg = document.getElementById('adminMsg');
-    msg.textContent = '⏳ جاري التحميل من السيرفر...';
+    msg.textContent = '⏳ جاري التحميل...';
     msg.style.color = '#FFD93D';
     msg.style.opacity = '1';
 
@@ -1160,15 +1155,15 @@ fetchFromServer().then(function(data){
       OLD_PRICE = getOldPrice();
       applyAll();
       renderAdminPanel();
-      msg.textContent = '✅ تحملات من السيرفر بنجاح';
+      msg.textContent = '✅ تحملات من السيرفر';
       msg.style.color = '#4ade80';
       syncStatus.className = 'admin-status ok';
-      syncStatus.textContent = '✅ متزامن مع السيرفر';
+      syncStatus.textContent = '✅ متزامن';
     } else {
-      msg.textContent = '❌ ما كاينش بيانات فالسيرفر';
+      msg.textContent = '❌ ما كاينش بيانات';
       msg.style.color = '#ef4444';
       syncStatus.className = 'admin-status err';
-      syncStatus.textContent = '❌ السيرفر ما جاوبش';
+      syncStatus.textContent = '❌ فشل';
     }
     setTimeout(function(){msg.style.opacity = '0';}, 3000);
   });
