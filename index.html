@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#FF90BC">
 <title>كتاكيت KATAKIT | حقيبة ميكي ماوس — 149 درهم</title>
-<meta name="description" content="حقيبة ميكي ماوس الكيوت — 5 ألوان، توصيل مجاني، الدفع عند الاستلام.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -28,8 +27,8 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 .color-chip{border:2px solid #eee;background:#fff;cursor:pointer;transition:.25s;position:relative}
 .color-chip:hover{border-color:#FFD93D;transform:translateY(-2px)}
 .color-chip.is-active{border-color:#FF90BC;background:#FFE3EF;transform:translateY(-3px);box-shadow:0 10px 22px -10px rgba(255,144,188,1)}
-.color-chip.is-soldout{opacity:.45;pointer-events:none;filter:grayscale(.7)}
-.color-chip.is-soldout::after{content:attr(data-soldout-text);position:absolute;inset:0;background:rgba(220,38,38,.92);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;border-radius:1rem;letter-spacing:.5px;box-shadow:inset 0 0 0 2px #fff}
+.color-chip.is-soldout{opacity:.5;pointer-events:none;filter:grayscale(.6)}
+.color-chip.is-soldout::after{content:'نفذ - ' attr(data-color);position:absolute;inset:0;background:rgba(220,38,38,.92);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;border-radius:1rem;letter-spacing:.5px}
 .spinner{width:18px;height:18px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
 .faq-body{max-height:0;overflow:hidden;transition:max-height .4s}
@@ -37,18 +36,16 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 .faq-item.is-open .faq-icon{transform:rotate(45deg);background:#FF90BC;color:#fff}
 @keyframes pulseShadow{0%,100%{box-shadow:0 8px 0 0 #111,0 0 0 0 rgba(255,217,61,.7)}50%{box-shadow:0 8px 0 0 #111,0 0 0 16px rgba(255,217,61,0)}}
 .btn-confirm{animation:pulseShadow 2s infinite}
-/* لوحة التحكم */
-#adminPanel input[type="text"],#adminPanel input[type="number"]{font-family:inherit}
-#adminPanel::-webkit-scrollbar{width:6px}
-#adminPanel::-webkit-scrollbar-thumb{background:#FFD93D;border-radius:3px}
-#adminPanel::-webkit-scrollbar-track{background:#222}
-.admin-tab{background:#222;color:#fff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:800;flex:1;transition:.2s}
+/* Admin */
+#adminPanel{display:none}
+#adminPanel.show{display:block}
+.admin-tab{background:#222;color:#fff;border:0;padding:8px 10px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:800;flex:1;transition:.2s}
 .admin-tab.active{background:#FFD93D;color:#111}
 .admin-section{display:none}
 .admin-section.active{display:block}
-.admin-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #262626;font-size:13px}
+.admin-row{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #262626;font-size:13px}
 .admin-row:last-child{border-bottom:0}
-.admin-img-input{flex:1;background:#1a1a1a;border:1px solid #333;color:#fff;padding:6px 8px;border-radius:8px;font-size:11px;outline:0;font-family:monospace;direction:ltr}
+.admin-img-input{flex:1;background:#1a1a1a;border:1px solid #333;color:#fff;padding:7px 9px;border-radius:8px;font-size:11px;outline:0;font-family:monospace;direction:ltr;min-width:0}
 .admin-img-input:focus{border-color:#FFD93D}
 .admin-color-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:2px solid #444}
 </style>
@@ -91,7 +88,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
       <div class="mt-3 flex items-center justify-center gap-2 text-[13px] font-black text-brand-pinkDark animate-blink">
         <span>⚡</span><span>المخزون محدود — سارع قبل ما يسالي</span><span>⚡</span>
       </div>
-      <div class="mt-3 flex flex-wrap items-center justify-center gap-2" id="colorChips">
+      <div class="mt-3 flex flex-wrap items-center justify-center gap-2">
         <button type="button" data-color="أحمر" class="color-chip flex items-center gap-2 rounded-2xl px-3 py-2 text-[12.5px] font-extrabold"><span class="w-4 h-4 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</button>
         <button type="button" data-color="وردي" class="color-chip is-active flex items-center gap-2 rounded-2xl px-3 py-2 text-[12.5px] font-extrabold"><span class="w-4 h-4 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</button>
         <button type="button" data-color="أبيض منقط" class="color-chip flex items-center gap-2 rounded-2xl px-3 py-2 text-[12.5px] font-extrabold"><span class="w-4 h-4 rounded-full bg-white ring-2 ring-gray-200 shadow"></span> أبيض منقط</button>
@@ -190,7 +187,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 
           <div>
             <span class="mb-1.5 block text-[12.5px] font-extrabold">اللون <span class="text-brand-pink">*</span></span>
-            <div class="flex flex-wrap gap-1.5" id="formColors">
+            <div class="flex flex-wrap gap-1.5">
               <label class="cursor-pointer" data-form-color="أحمر"><input type="radio" name="color" value="أحمر" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</span></label>
               <label class="cursor-pointer" data-form-color="وردي"><input type="radio" name="color" value="وردي" class="peer sr-only" checked><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</span></label>
               <label class="cursor-pointer" data-form-color="أبيض منقط"><input type="radio" name="color" value="أبيض منقط" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-white ring-2 ring-gray-200 shadow"></span> أبيض منقط</span></label>
@@ -331,60 +328,183 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- لوحة التحكم — مخفية بشكل افتراضي، كتظهر غير مع ?admin -->
+<!-- ============================================================ -->
+<div id="adminPanel" style="position:fixed;bottom:100px;left:16px;z-index:9999;background:#111;color:#fff;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:Tajawal,sans-serif;width:340px;max-width:92vw;direction:rtl;border:2px solid #FFD93D;max-height:80vh;overflow-y:auto">
+
+  <div style="font-weight:900;font-size:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+    <span>🎛️ لوحة التحكم</span>
+    <span style="font-size:10px;background:#FFD93D;color:#111;padding:3px 8px;border-radius:8px;font-weight:900">ADMIN</span>
+  </div>
+
+  <div style="display:flex;gap:6px;margin-bottom:12px">
+    <button type="button" class="admin-tab active" data-tab="stock">📦 المخزون</button>
+    <button type="button" class="admin-tab" data-tab="images">🖼️ الصور</button>
+    <button type="button" class="admin-tab" data-tab="price">💰 الثمن</button>
+  </div>
+
+  <!-- قسم المخزون -->
+  <div class="admin-section active" data-section="stock">
+    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">حدد الألوان المتوفرة للزبناء</div>
+    <div id="adminStockRows"></div>
+  </div>
+
+  <!-- قسم الصور -->
+  <div class="admin-section" data-section="images">
+    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">رابط الصورة لكل لون</div>
+    <div id="adminImageRows"></div>
+  </div>
+
+  <!-- قسم الثمن -->
+  <div class="admin-section" data-section="price">
+    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">غيّر الثمن الحالي والقديم</div>
+    <div style="padding:8px 0">
+      <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">💰 الثمن الحالي (درهم)</label>
+      <input id="adminPriceInput" type="number" style="width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:15px;font-weight:800;outline:0;font-family:inherit">
+    </div>
+    <div style="padding:8px 0">
+      <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">✂️ الثمن القديم (مشطوب)</label>
+      <input id="adminOldPriceInput" type="number" style="width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:15px;font-weight:800;outline:0;font-family:inherit">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-top:14px">
+    <button type="button" id="adminSave" style="flex:1;background:#FFD93D;color:#111;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">💾 حفظ</button>
+    <button type="button" id="adminClose" style="flex:1;background:#333;color:#fff;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">✖ إغلاق</button>
+  </div>
+  <div id="adminMsg" style="margin-top:8px;font-size:12px;text-align:center;opacity:0;transition:.3s;font-weight:700"></div>
+</div>
+
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
-const WHATSAPP_NUMBER = "212691071441";
-const DEFAULT_PRICE = 149;
-const DEFAULT_OLD_PRICE = 249;
-const COLORS = ['أحمر','وردي','أبيض منقط','أسود','بنفسجي'];
-const COLOR_HEX = {'أحمر':'#dc2626','وردي':'#f472b6','أبيض منقط':'#fff','أسود':'#000','بنفسجي':'#a855f7'};
-const DEFAULT_IMGS = {
+/* ============ الإعدادات ============ */
+var SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
+var WHATSAPP_NUMBER = "212691071441";
+var DEFAULT_PRICE = 149;
+var DEFAULT_OLD_PRICE = 249;
+var COLORS = ['أحمر','وردي','أبيض منقط','أسود','بنفسجي'];
+var COLOR_HEX = {'أحمر':'#dc2626','وردي':'#f472b6','أبيض منقط':'#fff','أسود':'#000','بنفسجي':'#a855f7'};
+var IMGS = {
   "أحمر":"https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg",
   "وردي":"https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg",
   "أبيض منقط":"https://i.ibb.co/x866ZgHS/Whats-App-Image-2026-09-16-at-22-03-30-2.jpg",
   "أسود":"https://i.ibb.co/qFMh7CzR/Whats-App-Image-2026-09-16-at-22-03-29-1.jpg",
   "بنفسجي":"https://i.ibb.co/99b4400J/Whats-App-Image-2026-09-16-at-22-03-30.jpg"
 };
+var PRICE = DEFAULT_PRICE;
+var OLD_PRICE = DEFAULT_OLD_PRICE;
 
-/* ============ Storage helpers ============ */
-function loadStock(){try{return JSON.parse(localStorage.getItem('admin_stock'))||{};}catch(e){return {};}}
-function loadImgs(){try{return JSON.parse(localStorage.getItem('admin_images'))||{};}catch(e){return {};}}
-function loadPrice(){const p=localStorage.getItem('admin_price');return p?Number(p):DEFAULT_PRICE;}
-function loadOldPrice(){const p=localStorage.getItem('admin_old_price');return p?Number(p):DEFAULT_OLD_PRICE;}
+/* ============ تحميل إعدادات الأدمن ============ */
+function loadAdminSettings(){
+  try {
+    var stock = JSON.parse(localStorage.getItem('admin_stock') || '{}');
+    var imgs = JSON.parse(localStorage.getItem('admin_images') || '{}');
+    var price = localStorage.getItem('admin_price');
+    var oldPrice = localStorage.getItem('admin_old_price');
 
-/* متغيرات عامة */
-let PRICE = loadPrice();
-let OLD_PRICE = loadOldPrice();
-let IMGS = Object.assign({}, DEFAULT_IMGS, loadImgs());
+    // تطبيق الصور
+    Object.keys(imgs).forEach(function(color){
+      if(imgs[color] && IMGS[color] !== undefined) IMGS[color] = imgs[color];
+    });
 
-/* منع الهبوط للاستمارة */
+    // تطبيق الثمن
+    if(price) PRICE = Number(price);
+    if(oldPrice) OLD_PRICE = Number(oldPrice);
+
+    return stock;
+  } catch(e) {
+    console.warn('Admin settings error:', e);
+    return {};
+  }
+}
+
+/* ============ تطبيق المخزون على الصفحة ============ */
+function applyStockVisibility(stock){
+  COLORS.forEach(function(color){
+    var chip = document.querySelector('[data-color="'+color+'"]');
+    var formLabel = document.querySelector('[data-form-color="'+color+'"]');
+    var avail = stock[color] !== false;
+
+    if(chip){
+      if(!avail){
+        chip.classList.add('is-soldout');
+        chip.setAttribute('data-soldout-text', 'نفذ - ' + color);
+      } else {
+        chip.classList.remove('is-soldout');
+      }
+    }
+
+    if(formLabel){
+      var input = formLabel.querySelector('input[type="radio"]');
+      if(!avail){
+        formLabel.classList.add('opacity-40','pointer-events-none');
+        if(input) input.disabled = true;
+      } else {
+        formLabel.classList.remove('opacity-40','pointer-events-none');
+        if(input) input.disabled = false;
+      }
+    }
+  });
+
+  // إلا كان اللون المختار نفذ، بدلو لأول متوفر
+  var currentStock = stock[state.color];
+  if(currentStock === false){
+    var firstAvail = COLORS.find(function(c){return stock[c] !== false;});
+    if(firstAvail && IMGS[firstAvail]) applyColor(firstAvail, false);
+  }
+}
+
+/* ============ منع الهبوط للاستمارة ============ */
 (function(){
   if(location.hash) history.replaceState(null,'',location.pathname+location.search);
   window.scrollTo(0,0);
   window.addEventListener('load',function(){
     window.scrollTo(0,0);
-    if(document.activeElement&&document.activeElement!==document.body) document.activeElement.blur();
+    if(document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
   });
-  setTimeout(()=>window.scrollTo(0,0),300);
-  setTimeout(()=>window.scrollTo(0,0),800);
+  setTimeout(function(){window.scrollTo(0,0);},300);
+  setTimeout(function(){window.scrollTo(0,0);},800);
 })();
 
-/* الشريط السفلي */
+/* ============ الشريط السفلي ============ */
 (function(){
-  const bar=document.getElementById('stickyBar');let shown=false;
-  function upd(){const s=window.scrollY>400;if(s!==shown){shown=s;bar.classList.toggle('translate-y-full',!s);}}
-  window.addEventListener('scroll',upd,{passive:true});upd();
+  var bar = document.getElementById('stickyBar');
+  var shown = false;
+  function upd(){
+    var s = window.scrollY > 400;
+    if(s !== shown){shown = s; bar.classList.toggle('translate-y-full', !s);}
+  }
+  window.addEventListener('scroll', upd, {passive:true});
+  upd();
 })();
 
-/* المدن */
-const CITIES=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة","ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان","الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة","تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور","الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"];
-(function(){const s=document.getElementById('fCity');CITIES.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;s.appendChild(o);});})();
+/* ============ المدن ============ */
+var CITIES = ["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة","ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان","الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة","تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور","الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"];
+(function(){
+  var s = document.getElementById('fCity');
+  CITIES.forEach(function(c){
+    var o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    s.appendChild(o);
+  });
+})();
 
-/* الإشعارات */
-const NOTIFS=[{n:"فاطمة",c:"الدار البيضاء",t:"قبل دقيقة"},{n:"سلمى",c:"الرباط",t:"قبل 3 دقائق"},{n:"ياسمين",c:"مراكش",t:"قبل دقيقتين"},{n:"هند",c:"طنجة",t:"قبل 5 دقائق"},{n:"مريم",c:"أكادير",t:"قبل دقيقة"},{n:"نور",c:"فاس",t:"قبل 4 دقائق"},{n:"إيمان",c:"مكناس",t:"قبل دقيقتين"},{n:"خديجة",c:"وجدة",t:"قبل 6 دقائق"},{n:"زينب",c:"تطوان",t:"قبل 3 دقائق"},{n:"أمينة",c:"القنيطرة",t:"قبل دقيقة"}];
+/* ============ الإشعارات ============ */
+var NOTIFS = [
+  {n:"فاطمة",c:"الدار البيضاء",t:"قبل دقيقة"},
+  {n:"سلمى",c:"الرباط",t:"قبل 3 دقائق"},
+  {n:"ياسمين",c:"مراكش",t:"قبل دقيقتين"},
+  {n:"هند",c:"طنجة",t:"قبل 5 دقائق"},
+  {n:"مريم",c:"أكادير",t:"قبل دقيقة"},
+  {n:"نور",c:"فاس",t:"قبل 4 دقائق"},
+  {n:"إيمان",c:"مكناس",t:"قبل دقيقتين"},
+  {n:"خديجة",c:"وجدة",t:"قبل 6 دقائق"},
+  {n:"زينب",c:"تطوان",t:"قبل 3 دقائق"},
+  {n:"أمينة",c:"القنيطرة",t:"قبل دقيقة"}
+];
 
-/* التقييمات */
-const REVIEWS=[
+/* ============ التقييمات ============ */
+var REVIEWS = [
   {i:"ف",n:"فاطمة الزهراء",c:"الدار البيضاء",t:"بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة.",e:"🎒"},
   {i:"س",n:"سلمى بنعلي",c:"الرباط",t:"الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي.",e:"🛍️"},
   {i:"ي",n:"ياسمين الإدريسي",c:"مراكش",t:"تواصلو معايا فالواتساب وأكدو ليا الطلبية. وصلاتني بعد 24 ساعة. شكرا كتاكيت!",e:"🎁"},
@@ -393,19 +513,23 @@ const REVIEWS=[
   {i:"ن",n:"نور الهدى",c:"فاس",t:"أحسن حقيبة شريت لبناتي. الحمالات مريحة والظرف كافيها كلشي.",e:"👧"}
 ];
 (function(){
-  document.getElementById('reviewsWrap').innerHTML=REVIEWS.map(r=>`<article class="card" data-reveal>
-    <div class="flex items-center gap-3">
-      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow grid place-items-center text-white font-black text-lg">${r.i}</div>
-      <div><h4 class="font-black text-[14px]">${r.n}</h4><p class="text-[12px] text-gray-500 font-bold">${r.c}</p></div>
-      <span class="ms-auto text-brand-yellow text-sm">★★★★★</span>
-    </div>
-    <p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"${r.t}"</p>
-    <div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">${r.e}</div>
-  </article>`).join('');
+  var html = '';
+  REVIEWS.forEach(function(r){
+    html += '<article class="card" data-reveal>';
+    html += '<div class="flex items-center gap-3">';
+    html += '<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-yellow grid place-items-center text-white font-black text-lg">'+r.i+'</div>';
+    html += '<div><h4 class="font-black text-[14px]">'+r.n+'</h4><p class="text-[12px] text-gray-500 font-bold">'+r.c+'</p></div>';
+    html += '<span class="ms-auto text-brand-yellow text-sm">★★★★★</span>';
+    html += '</div>';
+    html += '<p class="mt-4 text-[13.5px] leading-relaxed text-gray-700 font-medium">"'+r.t+'"</p>';
+    html += '<div class="mt-4 h-28 rounded-2xl bg-gradient-to-br from-brand-pinkLight to-brand-yellowLight grid place-items-center text-4xl">'+r.e+'</div>';
+    html += '</article>';
+  });
+  document.getElementById('reviewsWrap').innerHTML = html;
 })();
 
-/* FAQ */
-const FAQS=[
+/* ============ FAQ ============ */
+var FAQS = [
   {q:"واش الدفع عند الاستلام؟",a:"نعم 100%. كتخلصي غير ملي توصلك الطلبية وكتشوفي الحقيبة بعينيك."},
   {q:"شحال كتاخد الطلبية باش توصل؟",a:"بين 24 و 48 ساعة فالمدن الكبرى، و48-72 ساعة فالمناطق البعيدة."},
   {q:"واش التوصيل مجاني؟",a:"نعم، التوصيل مجاني لجميع مدن المغرب بلا أي زيادة."},
@@ -414,380 +538,392 @@ const FAQS=[
   {q:"كيفاش نتواصل معاكم؟",a:"عبر الواتساب فقط، من 9 صباحاً حتى 9 ليلاً، 7 أيام فالأسبوع."}
 ];
 (function(){
-  document.getElementById('faqWrap').innerHTML=FAQS.map(f=>`<div class="faq-item card !p-0 overflow-hidden" data-reveal>
-    <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">
-      <span class="font-extrabold text-[15px]">${f.q}</span>
-      <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all">+</span>
-    </button>
-    <div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">${f.a}</p></div>
-  </div>`).join('');
-  document.querySelectorAll('.faq-head').forEach(h=>{
-    h.addEventListener('click',()=>{
-      const item=h.closest('.faq-item');const open=item.classList.contains('is-open');
-      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('is-open'));
+  var html = '';
+  FAQS.forEach(function(f){
+    html += '<div class="faq-item card !p-0 overflow-hidden" data-reveal>';
+    html += '<button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 text-right">';
+    html += '<span class="font-extrabold text-[15px]">'+f.q+'</span>';
+    html += '<span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-brand-pinkLight text-brand-pinkDark grid place-items-center font-black transition-all">+</span>';
+    html += '</button>';
+    html += '<div class="faq-body px-5"><p class="pb-5 text-[14px] leading-relaxed text-gray-600 font-medium">'+f.a+'</p></div>';
+    html += '</div>';
+  });
+  document.getElementById('faqWrap').innerHTML = html;
+  document.querySelectorAll('.faq-head').forEach(function(h){
+    h.addEventListener('click', function(){
+      var item = h.closest('.faq-item');
+      var open = item.classList.contains('is-open');
+      document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('is-open');});
       if(!open) item.classList.add('is-open');
     });
   });
 })();
 
-const state={color:"وردي",qty:1,userPicked:false};
+/* ============ الحالة ============ */
+var state = {color:"وردي", qty:1, userPicked:false};
 
-/* العدّاد */
-let cd=2*3600+14*60+33;
+/* ============ العدّاد ============ */
+var cd = 2*3600 + 14*60 + 33;
 function renderCd(){
-  const h=Math.floor(cd/3600),m=Math.floor(cd%3600/60),s=cd%60,p=n=>String(n).padStart(2,'0');
-  ['cdH','cdH-m'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=p(h);});
-  ['cdM','cdM-m'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=p(m);});
-  ['cdS','cdS-m'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=p(s);});
+  var h = Math.floor(cd/3600), m = Math.floor((cd%3600)/60), s = cd%60;
+  function pad(n){return String(n).padStart(2,'0');}
+  ['cdH','cdH-m'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=pad(h);});
+  ['cdM','cdM-m'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=pad(m);});
+  ['cdS','cdS-m'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=pad(s);});
 }
-setInterval(()=>{cd--;if(cd<0)cd=2*3600+14*60+33;renderCd();},1000);renderCd();
+setInterval(function(){cd--;if(cd<0)cd=2*3600+14*60+33;renderCd();},1000);
+renderCd();
 
-/* تحديث كل الأثمنة فالصفحة */
+/* ============ تحديث الأثمنة فالصفحة ============ */
 function updateAllPrices(){
-  document.querySelectorAll('[data-price-display]').forEach(el=>el.textContent=PRICE);
-  document.querySelectorAll('[data-old-price-display]').forEach(el=>el.textContent=OLD_PRICE+' درهم');
-  document.querySelectorAll('[data-old-price-short]').forEach(el=>el.textContent=OLD_PRICE+' د.م');
+  document.querySelectorAll('[data-price-display]').forEach(function(el){el.textContent = PRICE;});
+  document.querySelectorAll('[data-old-price-display]').forEach(function(el){el.textContent = OLD_PRICE + ' درهم';});
+  document.querySelectorAll('[data-old-price-short]').forEach(function(el){el.textContent = OLD_PRICE + ' د.م';});
   renderQty();
 }
-updateAllPrices();
 
-const mainImg=document.getElementById('mainImage');
-function applyColor(c,fromUser=true){
-  if(!IMGS[c])c="وردي";state.color=c;
-  mainImg.style.opacity="0";
-  setTimeout(()=>{mainImg.src=IMGS[c];mainImg.style.opacity="1";},180);
-  document.querySelectorAll('[data-color]').forEach(el=>el.classList.toggle('is-active',el.dataset.color===c));
-  const r=document.querySelector(`input[name="color"][value="${c}"]`);if(r)r.checked=true;
-  if(fromUser)state.userPicked=true;
-}
-document.querySelectorAll('[data-color]').forEach(b=>b.addEventListener('click',()=>applyColor(b.dataset.color,true)));
-document.querySelectorAll('input[name="color"]').forEach(r=>r.addEventListener('change',()=>applyColor(r.value,true)));
-const colorKeys=Object.keys(IMGS);let sliderIdx=colorKeys.indexOf("وردي");
-setInterval(()=>{if(state.userPicked)return;sliderIdx=(sliderIdx+1)%colorKeys.length;applyColor(colorKeys[sliderIdx],false);},4500);
-applyColor("وردي",false);
-
-const qtyEl=document.getElementById('qtyValue'),sumQty=document.getElementById('sumQty'),sumTotal=document.getElementById('sumTotal');
-function renderQty(){qtyEl.textContent=state.qty;sumQty.textContent=state.qty;sumTotal.textContent=PRICE*state.qty;}
-document.getElementById('qtyPlus').addEventListener('click',()=>{if(state.qty<5){state.qty++;renderQty();}});
-document.getElementById('qtyMinus').addEventListener('click',()=>{if(state.qty>1){state.qty--;renderQty();}});
-renderQty();
-
-(function(){const r=document.getElementById('starsRow');for(let i=0;i<5;i++){const s=document.createElement('span');s.textContent="★";s.style.opacity="0";r.appendChild(s);}})();
-let ratingDone=false;
-function playRating(){
-  if(ratingDone)return;ratingDone=true;
-  document.querySelectorAll('#starsRow span').forEach((s,i)=>{setTimeout(()=>{s.style.animation='starPop .55s both';s.style.opacity='1';},i*130);});
-  const el=document.getElementById('ratingValue');let v=0;const t=4.9,st=t/45;
-  const iv=setInterval(()=>{v+=st;if(v>=t){v=t;clearInterval(iv);}el.textContent=v.toFixed(1);},24);
-  const cnt=document.getElementById('ratingCount');let c=0,tc=1240;
-  const iv2=setInterval(()=>{c+=Math.ceil(tc/45);if(c>=tc){c=tc;clearInterval(iv2);}cnt.textContent=c;},24);
+/* ============ تبديل اللون ============ */
+var mainImg = document.getElementById('mainImage');
+function applyColor(c, fromUser){
+  if(fromUser === undefined) fromUser = true;
+  if(!IMGS[c]) c = "وردي";
+  state.color = c;
+  if(IMGS[c]) mainImg.src = IMGS[c];
+  document.querySelectorAll('[data-color]').forEach(function(el){
+    el.classList.toggle('is-active', el.dataset.color === c);
+  });
+  var r = document.querySelector('input[name="color"][value="'+c+'"]');
+  if(r) r.checked = true;
+  if(fromUser) state.userPicked = true;
 }
 
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{threshold:.12});
-document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
-const sObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){playRating();sObs.disconnect();}});},{threshold:.4});
-sObs.observe(document.getElementById('starsRow'));
-
-const toast=document.getElementById('toast');let ni=0;
-function showToast(){
-  const n=NOTIFS[ni%NOTIFS.length];ni++;
-  document.getElementById('toastName').textContent=n.n;
-  document.getElementById('toastCity').textContent=n.c;
-  document.getElementById('toastTime').textContent=n.t;
-  toast.classList.remove('hidden');
-  toast.firstElementChild.style.animation='slideIn .45s both';
-  setTimeout(()=>{toast.firstElementChild.style.animation='slideOut .4s both';setTimeout(()=>toast.classList.add('hidden'),400);},5000);
-}
-setTimeout(showToast,4000);setInterval(showToast,7000);
-
-/* الإرسال */
-const form=document.getElementById('orderForm'),submitBtn=document.getElementById('submitBtn'),successBox=document.getElementById('formSuccess');
-const BTN_DEF="btn-confirm w-full rounded-2xl bg-brand-yellow py-4 text-base sm:text-lg font-black border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70";
-const BTN_LD="w-full rounded-2xl bg-brand-pink py-4 text-base sm:text-lg font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] opacity-70";
-const BTN_OK="w-full rounded-2xl bg-green-500 py-4 text-base sm:text-lg font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)]";
-
-function setErr(el,show){const e=el.parentElement.querySelector('.err');if(e)e.classList.toggle('hidden',!show);el.classList.toggle('!border-red-400',show);el.classList.toggle('!bg-red-50',show);}
-
-async function sendToSheet(p){
-  if(!SHEET_URL||SHEET_URL.includes("ضع هنا"))return;
-  try{await Promise.race([fetch(SHEET_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(p)}),new Promise(r=>setTimeout(r,4000))]);}catch(e){console.warn(e);}
-}
-
-form.addEventListener('submit',async e=>{
-  e.preventDefault();
-  const nEl=document.getElementById('fName'),pEl=document.getElementById('fPhone'),cEl=document.getElementById('fCity'),aEl=document.getElementById('fAddress');
-  const name=nEl.value.trim(),phone=pEl.value.replace(/\D/g,''),city=cEl.value,address=aEl.value.trim();
-  const color=document.querySelector('input[name="color"]:checked')?.value||state.color,qty=state.qty;
-  let ok=true;
-  if(name.length<3){setErr(nEl,true);ok=false;}else setErr(nEl,false);
-  if(!(/^(0[5-7]\d{8})$/.test(phone)||/^([5-7]\d{8})$/.test(phone))){setErr(pEl,true);ok=false;}else setErr(pEl,false);
-  if(!city){setErr(cEl,true);ok=false;}else setErr(cEl,false);
-  if(address.length<8){setErr(aEl,true);ok=false;}else setErr(aEl,false);
-  if(!ok)return;
-  let wa=null;try{wa=window.open('','_blank');}catch(_){}
-  submitBtn.disabled=true;submitBtn.className=BTN_LD;submitBtn.innerHTML='<span class="spinner"></span> جاري الإرسال...';
-  const payload={name,phone,city,color,qty,address,product:"حقيبة ميكي",price:PRICE,total:PRICE*qty,date:new Date().toLocaleString('ar-MA')};
-  await sendToSheet(payload);
-  const msg=`سلام كتاكيت، بغيت حقيبة ميكي اللون ${color} الكمية ${qty} المدينة ${city} السمية ${name}`;
-  const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-  if(wa&&!wa.closed)wa.location.href=url;else window.open(url,'_blank');
-  submitBtn.className=BTN_OK;submitBtn.innerHTML='✅ تم إرسال طلبك بنجاح';
-  successBox.classList.remove('hidden');successBox.scrollIntoView({behavior:'smooth',block:'center'});
-  setTimeout(()=>{form.reset();state.qty=1;renderQty();submitBtn.disabled=false;submitBtn.className=BTN_DEF;submitBtn.innerHTML='✅ تأكيد الطلب — الدفع عند الاستلام';applyColor('وردي',false);},6000);
+document.querySelectorAll('[data-color]').forEach(function(b){
+  b.addEventListener('click', function(){applyColor(b.dataset.color, true);});
+});
+document.querySelectorAll('input[name="color"]').forEach(function(r){
+  r.addEventListener('change', function(){applyColor(r.value, true);});
 });
 
-document.getElementById('year').textContent=new Date().getFullYear();
+var colorKeys = Object.keys(IMGS);
+var sliderIdx = colorKeys.indexOf("وردي");
+setInterval(function(){
+  if(state.userPicked) return;
+  sliderIdx = (sliderIdx + 1) % colorKeys.length;
+  applyColor(colorKeys[sliderIdx], false);
+}, 4500);
+
+/* ============ الكمية ============ */
+var qtyEl = document.getElementById('qtyValue');
+var sumQty = document.getElementById('sumQty');
+var sumTotal = document.getElementById('sumTotal');
+function renderQty(){
+  qtyEl.textContent = state.qty;
+  sumQty.textContent = state.qty;
+  sumTotal.textContent = PRICE * state.qty;
+}
+document.getElementById('qtyPlus').addEventListener('click', function(){
+  if(state.qty < 5){state.qty++; renderQty();}
+});
+document.getElementById('qtyMinus').addEventListener('click', function(){
+  if(state.qty > 1){state.qty--; renderQty();}
+});
+
+/* ============ التقييم ============ */
+(function(){
+  var r = document.getElementById('starsRow');
+  for(var i=0; i<5; i++){
+    var s = document.createElement('span');
+    s.textContent = "★";
+    s.style.opacity = "0";
+    r.appendChild(s);
+  }
+})();
+
+var ratingDone = false;
+function playRating(){
+  if(ratingDone) return;
+  ratingDone = true;
+  document.querySelectorAll('#starsRow span').forEach(function(s, i){
+    setTimeout(function(){
+      s.style.animation = 'starPop .55s both';
+      s.style.opacity = '1';
+    }, i*130);
+  });
+  var el = document.getElementById('ratingValue');
+  var v = 0, t = 4.9, st = t/45;
+  var iv = setInterval(function(){
+    v += st;
+    if(v >= t){v = t; clearInterval(iv);}
+    el.textContent = v.toFixed(1);
+  }, 24);
+  var cnt = document.getElementById('ratingCount');
+  var c = 0, tc = 1240;
+  var iv2 = setInterval(function(){
+    c += Math.ceil(tc/45);
+    if(c >= tc){c = tc; clearInterval(iv2);}
+    cnt.textContent = c;
+  }, 24);
+}
+
+/* ============ الظهور عند التمرير ============ */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('is-visible');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
+
+var sObs = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){playRating(); sObs.disconnect();}
+  });
+}, {threshold:0.4});
+sObs.observe(document.getElementById('starsRow'));
+
+/* ============ Toast ============ */
+var toast = document.getElementById('toast');
+var ni = 0;
+function showToast(){
+  var n = NOTIFS[ni % NOTIFS.length]; ni++;
+  document.getElementById('toastName').textContent = n.n;
+  document.getElementById('toastCity').textContent = n.c;
+  document.getElementById('toastTime').textContent = n.t;
+  toast.classList.remove('hidden');
+  toast.firstElementChild.style.animation = 'slideIn .45s both';
+  setTimeout(function(){
+    toast.firstElementChild.style.animation = 'slideOut .4s both';
+    setTimeout(function(){toast.classList.add('hidden');}, 400);
+  }, 5000);
+}
+setTimeout(showToast, 4000);
+setInterval(showToast, 7000);
+
+/* ============ الإرسال ============ */
+var form = document.getElementById('orderForm');
+var submitBtn = document.getElementById('submitBtn');
+var successBox = document.getElementById('formSuccess');
+var BTN_DEF = "btn-confirm w-full rounded-2xl bg-brand-yellow py-4 text-base sm:text-lg font-black border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70";
+var BTN_LD = "w-full rounded-2xl bg-brand-pink py-4 text-base sm:text-lg font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] opacity-70";
+var BTN_OK = "w-full rounded-2xl bg-green-500 py-4 text-base sm:text-lg font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)]";
+
+function setErr(el, show){
+  var e = el.parentElement.querySelector('.err');
+  if(e) e.classList.toggle('hidden', !show);
+  el.classList.toggle('!border-red-400', show);
+  el.classList.toggle('!bg-red-50', show);
+}
+
+async function sendToSheet(p){
+  if(!SHEET_URL || SHEET_URL.indexOf("ضع هنا") !== -1) return;
+  try {
+    await Promise.race([
+      fetch(SHEET_URL, {
+        method:"POST",
+        headers:{"Content-Type":"text/plain;charset=utf-8"},
+        body: JSON.stringify(p)
+      }),
+      new Promise(function(r){setTimeout(r, 4000);})
+    ]);
+  } catch(e) {
+    console.warn(e);
+  }
+}
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  var nEl = document.getElementById('fName');
+  var pEl = document.getElementById('fPhone');
+  var cEl = document.getElementById('fCity');
+  var aEl = document.getElementById('fAddress');
+
+  var name = nEl.value.trim();
+  var phone = pEl.value.replace(/\D/g, '');
+  var city = cEl.value;
+  var address = aEl.value.trim();
+  var colorRadio = document.querySelector('input[name="color"]:checked');
+  var color = colorRadio ? colorRadio.value : state.color;
+  var qty = state.qty;
+
+  var ok = true;
+  if(name.length < 3){setErr(nEl, true); ok = false;} else setErr(nEl, false);
+  if(!(/^(0[5-7]\d{8})$/.test(phone) || /^([5-7]\d{8})$/.test(phone))){setErr(pEl, true); ok = false;} else setErr(pEl, false);
+  if(!city){setErr(cEl, true); ok = false;} else setErr(cEl, false);
+  if(address.length < 8){setErr(aEl, true); ok = false;} else setErr(aEl, false);
+  if(!ok) return;
+
+  var wa = null;
+  try { wa = window.open('', '_blank'); } catch(_) {}
+
+  submitBtn.disabled = true;
+  submitBtn.className = BTN_LD;
+  submitBtn.innerHTML = '<span class="spinner"></span> جاري الإرسال...';
+
+  var payload = {
+    name:name, phone:phone, city:city, color:color,
+    qty:qty, address:address, product:"حقيبة ميكي",
+    price:PRICE, total:PRICE*qty, date:new Date().toLocaleString('ar-MA')
+  };
+
+  await sendToSheet(payload);
+
+  var msg = 'سلام كتاكيت، بغيت حقيبة ميكي اللون ' + color + ' الكمية ' + qty + ' المدينة ' + city + ' السمية ' + name;
+  var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+
+  if(wa && !wa.closed) wa.location.href = url;
+  else window.open(url, '_blank');
+
+  submitBtn.className = BTN_OK;
+  submitBtn.innerHTML = '✅ تم إرسال طلبك بنجاح';
+  successBox.classList.remove('hidden');
+  successBox.scrollIntoView({behavior:'smooth', block:'center'});
+
+  setTimeout(function(){
+    form.reset();
+    state.qty = 1;
+    renderQty();
+    submitBtn.disabled = false;
+    submitBtn.className = BTN_DEF;
+    submitBtn.innerHTML = '✅ تأكيد الطلب — الدفع عند الاستلام';
+    applyColor('وردي', false);
+  }, 6000);
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ============================================================
-   🔐 لوحة التحكم السرية
+   📥 تحميل إعدادات الأدمن + تطبيقها
+   ============================================================ */
+var savedStock = loadAdminSettings();
+updateAllPrices();
+applyColor("وردي", false);
+applyStockVisibility(savedStock);
+
+/* ============================================================
+   🔐 لوحة التحكم — كتفتح غير بـ ?admin
    ============================================================ */
 (function(){
-  const STORAGE_KEY = 'admin_stock';
-  const IMGS_KEY = 'admin_images';
-  const PRICE_KEY = 'admin_price';
-  const OLD_PRICE_KEY = 'admin_old_price';
-
-  /* ✅ تطبيق المخزون + الصور + الثمن على الصفحة */
-  function applyAll(){
-    const stock = loadStock();
-    const imgs = Object.assign({}, DEFAULT_IMGS, loadImgs());
-    IMGS = imgs;
-
-    /* الصور */
-    COLORSS_APPLY();
-
-    /* الثمن */
-    PRICE = loadPrice();
-    OLD_PRICE = loadOldPrice();
-    updateAllPrices();
-
-    /* المخزون */
-    COLORS.forEach(color => {
-      const chip = document.querySelector(`[data-color="${color}"]`);
-      const formLabel = document.querySelector(`[data-form-color="${color}"]`);
-      const avail = stock[color] !== false;
-
-      if(chip){
-        if(!avail){
-          chip.classList.add('is-soldout');
-          chip.setAttribute('data-soldout-text', `نفذ - ${color}`);
-          chip.disabled = true;
-        } else {
-          chip.classList.remove('is-soldout');
-          chip.removeAttribute('data-soldout-text');
-          chip.disabled = false;
-        }
-      }
-
-      if(formLabel){
-        const input = formLabel.querySelector('input[type="radio"]');
-        if(!avail){
-          formLabel.classList.add('opacity-40','pointer-events-none');
-          if(input) input.disabled = true;
-          if(input && input.checked){
-            const first = COLORS.find(c => stock[c] !== false);
-            if(first){
-              const alt = document.querySelector(`input[name="color"][value="${first}"]`);
-              if(alt){alt.checked = true; alt.disabled = false;}
-            }
-          }
-        } else {
-          formLabel.classList.remove('opacity-40','pointer-events-none');
-          if(input) input.disabled = false;
-        }
-      }
-    });
-
-    /* إلا كان اللون المختار نفذ */
-    if(stock[state.color] === false){
-      const firstAvail = COLORS.find(c => stock[c] !== false);
-      if(firstAvail) applyColor(firstAvail, false);
-    }
-  }
-
-  /* تحديث الصور من IMGS الجديدة */
-  function COLORSS_APPLY(){
-    const keys = Object.keys(IMGS);
-    colorKeys.length = 0;
-    keys.forEach(k=>colorKeys.push(k));
-    /* إعادة تطبيق الصورة الحالية */
-    if(IMGS[state.color]) mainImg.src = IMGS[state.color];
-  }
-
-  /* تطبيق أولي */
-  applyAll();
-
-  /* إلا ما كانش ?admin → خرج */
+  // إلا ما كانش ?admin → خرج
   if(!new URLSearchParams(location.search).has('admin')) return;
 
-  /* كلمة السر */
-  const pass = prompt('🔐 أدخل كلمة السر:');
+  // طلب كلمة السر
+  var pass = prompt('🔐 أدخل كلمة السر:');
   if(pass !== '1234'){
     location.href = '/';
     return;
   }
 
-  /* بناء اللوحة */
-  const panel = document.createElement('div');
-  panel.id = 'adminPanel';
-  panel.style.cssText = 'position:fixed;bottom:100px;left:16px;z-index:9999;background:#111;color:#fff;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:Tajawal,sans-serif;width:340px;max-width:92vw;direction:rtl;border:2px solid #FFD93D;max-height:80vh;overflow-y:auto';
+  // بانل
+  var panel = document.getElementById('adminPanel');
+  panel.classList.add('show');
 
-  const stock = loadStock();
-  const imgs = Object.assign({}, DEFAULT_IMGS, loadImgs());
-  const price = loadPrice();
-  const oldPrice = loadOldPrice();
-
-  panel.innerHTML = `
-    <div style="font-weight:900;font-size:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px">
-      <span>🎛️ لوحة التحكم</span>
-      <span style="font-size:10px;background:#FFD93D;color:#111;padding:3px 8px;border-radius:8px;font-weight:900">ADMIN</span>
-    </div>
-
-    <div style="display:flex;gap:6px;margin-bottom:12px">
-      <button class="admin-tab active" data-tab="stock">📦 المخزون</button>
-      <button class="admin-tab" data-tab="images">🖼️ الصور</button>
-      <button class="admin-tab" data-tab="price">💰 الثمن</button>
-    </div>
-
-    <!-- قسم المخزون -->
-    <div class="admin-section active" data-section="stock">
-      <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">حدد الألوان المتوفرة للزبناء</div>
-      <div id="adminStockRows"></div>
-    </div>
-
-    <!-- قسم الصور -->
-    <div class="admin-section" data-section="images">
-      <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">رابط الصورة لكل لون (ImgBB مثال)</div>
-      <div id="adminImageRows"></div>
-    </div>
-
-    <!-- قسم الثمن -->
-    <div class="admin-section" data-section="price">
-      <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">غيّر الثمن الحالي والقديم</div>
-      <div style="padding:8px 0">
-        <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">💰 الثمن الحالي (درهم)</label>
-        <input id="adminPriceInput" type="number" value="${price}" style="width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:15px;font-weight:800;outline:0;font-family:inherit">
-      </div>
-      <div style="padding:8px 0">
-        <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">✂️ الثمن القديم (مشطوب)</label>
-        <input id="adminOldPriceInput" type="number" value="${oldPrice}" style="width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:15px;font-weight:800;outline:0;font-family:inherit">
-      </div>
-      <div style="background:#1a1a1a;border-radius:10px;padding:10px;margin-top:8px;font-size:12px;text-align:center">
-        معاينة: <span style="color:#FF90BC;font-weight:900;font-size:16px"><span id="previewPrice">${price}</span> درهم</span>
-        <span style="text-decoration:line-through;color:#666;margin-right:6px"><span id="previewOld">${oldPrice}</span> درهم</span>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:8px;margin-top:14px">
-      <button id="adminSave" style="flex:1;background:#FFD93D;color:#111;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">💾 حفظ</button>
-      <button id="adminClose" style="flex:1;background:#333;color:#fff;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">✖ إغلاق</button>
-    </div>
-    <div id="adminMsg" style="margin-top:8px;font-size:12px;text-align:center;opacity:0;transition:.3s;font-weight:700"></div>
-  `;
-
-  document.body.appendChild(panel);
-
-  /* تعمير صفوف المخزون */
-  const stockRows = panel.querySelector('#adminStockRows');
-  COLORS.forEach(color => {
-    const avail = stock[color] !== false;
-    const row = document.createElement('label');
+  // تعمير المخزون
+  var stockRows = document.getElementById('adminStockRows');
+  var currentStock = JSON.parse(localStorage.getItem('admin_stock') || '{}');
+  COLORS.forEach(function(color){
+    var avail = currentStock[color] !== false;
+    var row = document.createElement('label');
     row.className = 'admin-row';
     row.style.cursor = 'pointer';
-    row.innerHTML = `
-      <input type="checkbox" data-admin-color="${color}" ${avail?'checked':''} style="width:18px;height:18px;accent-color:#FFD93D;cursor:pointer;flex-shrink:0">
-      <span class="admin-color-dot" style="background:${COLOR_HEX[color]};${color==='أبيض منقط'?'border-color:#666':''}"></span>
-      <span style="flex:1;font-weight:700">${color}</span>
-      <span style="font-size:10px;font-weight:800;padding:2px 6px;border-radius:6px;${avail?'background:rgba(74,222,128,.15);color:#4ade80':'background:rgba(239,68,68,.15);color:#ef4444'}" data-status>${avail?'متوفر':'نفذ'}</span>
-    `;
+    row.innerHTML = '<input type="checkbox" data-admin-color="'+color+'" '+(avail?'checked':'')+' style="width:18px;height:18px;accent-color:#FFD93D;cursor:pointer;flex-shrink:0">' +
+      '<span class="admin-color-dot" style="background:'+COLOR_HEX[color]+'"></span>' +
+      '<span style="flex:1;font-weight:700">'+color+'</span>' +
+      '<span style="font-size:10px;font-weight:800;padding:2px 6px;border-radius:6px;'+(avail?'background:rgba(74,222,128,.15);color:#4ade80':'background:rgba(239,68,68,.15);color:#ef4444')+'" data-status>'+(avail?'متوفر':'نفذ')+'</span>';
     stockRows.appendChild(row);
-    /* تحديث الـ badge ملي تبدل */
-    row.querySelector('input').addEventListener('change',e=>{
-      const s = row.querySelector('[data-status]');
-      if(e.target.checked){s.textContent='متوفر';s.style.background='rgba(74,222,128,.15)';s.style.color='#4ade80';}
-      else{s.textContent='نفذ';s.style.background='rgba(239,68,68,.15)';s.style.color='#ef4444';}
+
+    row.querySelector('input').addEventListener('change', function(e){
+      var s = row.querySelector('[data-status]');
+      if(e.target.checked){
+        s.textContent = 'متوفر';
+        s.style.background = 'rgba(74,222,128,.15)';
+        s.style.color = '#4ade80';
+      } else {
+        s.textContent = 'نفذ';
+        s.style.background = 'rgba(239,68,68,.15)';
+        s.style.color = '#ef4444';
+      }
     });
   });
 
-  /* تعمير صفوف الصور */
-  const imageRows = panel.querySelector('#adminImageRows');
-  COLORS.forEach(color => {
-    const row = document.createElement('div');
+  // تعمير الصور
+  var imageRows = document.getElementById('adminImageRows');
+  COLORS.forEach(function(color){
+    var row = document.createElement('div');
     row.style.cssText = 'padding:8px 0;border-bottom:1px solid #262626';
-    row.innerHTML = `
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-        <span class="admin-color-dot" style="background:${COLOR_HEX[color]};${color==='أبيض منقط'?'border-color:#666':''}"></span>
-        <span style="font-size:12.5px;font-weight:800">${color}</span>
-      </div>
-      <div style="display:flex;gap:6px;align-items:center">
-        <img src="${imgs[color]}" style="width:36px;height:36px;object-fit:cover;border-radius:8px;border:1px solid #333;flex-shrink:0" data-preview>
-        <input type="text" class="admin-img-input" data-img-color="${color}" value="${imgs[color]}" placeholder="https://...">
-      </div>
-    `;
+    row.innerHTML = '<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">' +
+      '<span class="admin-color-dot" style="background:'+COLOR_HEX[color]+'"></span>' +
+      '<span style="font-size:12.5px;font-weight:800">'+color+'</span>' +
+      '</div>' +
+      '<div style="display:flex;gap:6px;align-items:center">' +
+      '<img src="'+IMGS[color]+'" style="width:36px;height:36px;object-fit:cover;border-radius:8px;border:1px solid #333;flex-shrink:0" data-preview>' +
+      '<input type="text" class="admin-img-input" data-img-color="'+color+'" value="'+IMGS[color]+'">' +
+      '</div>';
     imageRows.appendChild(row);
-    /* معاينة مباشرة ملي تبدل الرابط */
-    const input = row.querySelector('input');
-    const preview = row.querySelector('[data-preview]');
-    input.addEventListener('input',()=>{
-      if(input.value.trim().startsWith('http')) preview.src = input.value.trim();
+
+    var input = row.querySelector('input');
+    var preview = row.querySelector('[data-preview]');
+    input.addEventListener('input', function(){
+      var v = input.value.trim();
+      if(v.indexOf('http') === 0) preview.src = v;
     });
   });
 
-  /* تبديل التبويبات */
-  panel.querySelectorAll('.admin-tab').forEach(tab=>{
-    tab.addEventListener('click',()=>{
-      panel.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
-      panel.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  // تعمير الثمن
+  document.getElementById('adminPriceInput').value = PRICE;
+  document.getElementById('adminOldPriceInput').value = OLD_PRICE;
+
+  // تبديل التبويبات
+  panel.querySelectorAll('.admin-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      panel.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active');});
+      panel.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});
       tab.classList.add('active');
-      panel.querySelector(`[data-section="${tab.dataset.tab}"]`).classList.add('active');
+      panel.querySelector('[data-section="'+tab.dataset.tab+'"]').classList.add('active');
     });
   });
 
-  /* معاينة الثمن */
-  const priceInput = panel.querySelector('#adminPriceInput');
-  const oldPriceInput = panel.querySelector('#adminOldPriceInput');
-  const previewPrice = panel.querySelector('#previewPrice');
-  const previewOld = panel.querySelector('#previewOld');
-  priceInput.addEventListener('input',()=>previewPrice.textContent = priceInput.value || '0');
-  oldPriceInput.addEventListener('input',()=>previewOld.textContent = oldPriceInput.value || '0');
-
-  /* حفظ */
-  panel.querySelector('#adminSave').addEventListener('click', () => {
-    /* المخزون */
-    const newStock = {};
-    panel.querySelectorAll('input[data-admin-color]').forEach(cb => {
+  // حفظ
+  document.getElementById('adminSave').addEventListener('click', function(){
+    var newStock = {};
+    panel.querySelectorAll('input[data-admin-color]').forEach(function(cb){
       newStock[cb.dataset.adminColor] = cb.checked;
     });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newStock));
+    localStorage.setItem('admin_stock', JSON.stringify(newStock));
 
-    /* الصور */
-    const newImgs = {};
-    panel.querySelectorAll('input[data-img-color]').forEach(inp => {
+    var newImgs = {};
+    panel.querySelectorAll('input[data-img-color]').forEach(function(inp){
       newImgs[inp.dataset.imgColor] = inp.value.trim();
     });
-    localStorage.setItem(IMGS_KEY, JSON.stringify(newImgs));
+    localStorage.setItem('admin_images', JSON.stringify(newImgs));
 
-    /* الثمن */
-    const newPrice = Number(priceInput.value) || DEFAULT_PRICE;
-    const newOldPrice = Number(oldPriceInput.value) || DEFAULT_OLD_PRICE;
-    localStorage.setItem(PRICE_KEY, newPrice);
-    localStorage.setItem(OLD_PRICE_KEY, newOldPrice);
+    var newPrice = Number(document.getElementById('adminPriceInput').value) || DEFAULT_PRICE;
+    var newOldPrice = Number(document.getElementById('adminOldPriceInput').value) || DEFAULT_OLD_PRICE;
+    localStorage.setItem('admin_price', newPrice);
+    localStorage.setItem('admin_old_price', newOldPrice);
 
-    /* تطبيق فوري */
-    applyAll();
+    // تطبيق فوري
+    Object.keys(newImgs).forEach(function(color){
+      if(newImgs[color]) IMGS[color] = newImgs[color];
+    });
+    PRICE = newPrice;
+    OLD_PRICE = newOldPrice;
+    updateAllPrices();
+    applyColor(state.color, false);
+    applyStockVisibility(newStock);
 
-    /* رسالة نجاح */
-    const msg = panel.querySelector('#adminMsg');
-    msg.textContent = '✅ تم الحفظ بنجاح';
+    var msg = document.getElementById('adminMsg');
+    msg.textContent = '✅ تم الحفظ';
     msg.style.color = '#4ade80';
     msg.style.opacity = '1';
-    setTimeout(()=>{msg.style.opacity='0';},2000);
+    setTimeout(function(){msg.style.opacity = '0';}, 2000);
   });
 
-  /* إغلاق */
-  panel.querySelector('#adminClose').addEventListener('click', () => {
-    panel.remove();
-    history.replaceState(null,'',location.pathname);
+  // إغلاق
+  document.getElementById('adminClose').addEventListener('click', function(){
+    panel.classList.remove('show');
+    history.replaceState(null, '', location.pathname);
   });
 })();
 </script>
