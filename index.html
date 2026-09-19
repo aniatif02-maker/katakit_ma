@@ -446,8 +446,19 @@ async function saveToServer(){
   }
 }
 
+/* ================================================================
+   ✅ الإصلاح: ما تحملش من السيرفر إلا إلا كان localStorage خاوي
+   ================================================================ */
 async function loadFromServer(){
   if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return false;
+
+  // ✅ إلا كان عندنا بيانات محلية من قبل، ماتحملهاش من السيرفر
+  // هادشي كيمنع الكتابة فوق التغييرات الجديدة
+  if(localStorage.getItem(STORAGE_COLORS)){
+    console.log('ℹ️ عندنا بيانات محلية — ما غانحملهاش من السيرفر');
+    return false;
+  }
+
   try {
     var res = await fetch(SHEET_URL, { method: 'GET' });
     var data = await res.json();
@@ -455,7 +466,7 @@ async function loadFromServer(){
     if(data.colors) localStorage.setItem(STORAGE_COLORS, JSON.stringify(data.colors));
     if(data.price) localStorage.setItem('admin_price', data.price);
     if(data.old_price) localStorage.setItem('admin_old_price', data.old_price);
-    console.log('✅ تحملات الإعدادات من السيرفر');
+    console.log('✅ تحملات الإعدادات من السيرفر (أول زيارة)');
     return true;
   } catch(e) {
     console.warn('❌ فشل التحميل من السيرفر:', e);
