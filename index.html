@@ -39,12 +39,10 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 </head>
 <body class="bg-white text-brand-dark antialiased overflow-x-hidden">
 
-<!-- TOP BAR -->
 <div class="bg-brand-dark text-white text-center text-[12.5px] sm:text-sm py-2.5 px-4 font-bold">
   <span class="inline-block animate-wiggle">🚚</span> توصيل مجاني اليوم + الدفع عند الاستلام
 </div>
 
-<!-- HEADER -->
 <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-brand-pinkLight">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-2.5">
@@ -62,17 +60,12 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </header>
 
-<!-- ============================================================ -->
-<!-- HERO + ORDER FORM جنب بعضها (نفس البلوك) -->
-<!-- ============================================================ -->
 <section class="relative overflow-hidden bg-gradient-to-b from-brand-pinkLight/40 via-white to-brand-yellowLight/50">
   <div class="pointer-events-none absolute -top-32 -right-24 w-80 h-80 bg-brand-yellow/25 rounded-full blur-3xl"></div>
   <div class="pointer-events-none absolute top-52 -left-28 w-80 h-80 bg-brand-pink/25 rounded-full blur-3xl"></div>
-
   <div class="relative max-w-6xl mx-auto px-4 py-8 sm:py-12 grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
 
-    <!-- ===== يمين: صورة المنتج + الألوان + السعر ===== -->
-    <div data-reveal>
+    <div data-reveal class="relative">
       <div class="absolute -top-4 right-6 z-20 bg-brand-yellow font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10 hidden sm:block">خصم 40% 🔥</div>
       <div class="relative rounded-[2rem] bg-gradient-to-br from-brand-pinkLight via-white to-brand-yellowLight p-3 border border-white shadow-[0_35px_70px_-35px_rgba(255,144,188,.95)]">
         <div class="relative overflow-hidden rounded-[1.7rem] bg-white">
@@ -96,7 +89,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
         <span class="text-gray-500 font-bold">(<span id="ratingCount">0</span>+ زبونة)</span>
       </div>
 
-      <!-- العنوان + الثمن تحت الصورة (للموبايل) -->
       <div class="mt-5 lg:hidden text-center">
         <h1 class="text-[26px] leading-tight font-black">
           حقيبة ميكي اللي كل البنات <span class="relative inline-block"><span class="relative z-10">هبلو عليها</span><span class="absolute inset-x-0 bottom-1 z-0 h-3 rounded-full bg-brand-yellow/70"></span></span> 🎒
@@ -117,9 +109,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
       </div>
     </div>
 
-    <!-- ===== يسار: العنوان + الاستمارة ===== -->
     <div>
-      <!-- العنوان للشاشات الكبيرة -->
       <div class="hidden lg:block text-right">
         <span class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-1.5 text-[12px] font-extrabold text-brand-pinkDark">✨ الأكثر مبيعاً فالمغرب</span>
         <h1 class="mt-3 text-[36px] leading-tight font-black">
@@ -149,9 +139,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
         </div>
       </div>
 
-      <!-- ============ الاستمارة ============ -->
       <div id="order" class="mt-6 rounded-[2rem] bg-white p-5 sm:p-6 shadow-2xl border border-brand-pinkLight scroll-mt-20">
-
         <div class="text-center mb-5">
           <span class="inline-block rounded-full bg-brand-yellow px-3 py-1 text-[12px] font-black">📝 استمارة الطلب</span>
           <h2 class="mt-2 text-xl sm:text-2xl font-black">أطلبي الآن — الدفع عند الاستلام</h2>
@@ -186,12 +174,12 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 
           <div>
             <span class="mb-1.5 block text-[12.5px] font-extrabold">اللون <span class="text-brand-pink">*</span></span>
-            <div class="flex flex-wrap gap-1.5">
-              <label class="cursor-pointer"><input type="radio" name="color" value="أحمر" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</span></label>
-              <label class="cursor-pointer"><input type="radio" name="color" value="وردي" class="peer sr-only" checked><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</span></label>
-              <label class="cursor-pointer"><input type="radio" name="color" value="أبيض منقط" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-white ring-2 ring-gray-200 shadow"></span> أبيض منقط</span></label>
-              <label class="cursor-pointer"><input type="radio" name="color" value="أسود" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-black ring-2 ring-white shadow"></span> أسود</span></label>
-              <label class="cursor-pointer"><input type="radio" name="color" value="بنفسجي" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي</span></label>
+            <div class="flex flex-wrap gap-1.5" id="formColors">
+              <label class="cursor-pointer" data-form-color="أحمر"><input type="radio" name="color" value="أحمر" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-red-600 ring-2 ring-white shadow"></span> أحمر</span></label>
+              <label class="cursor-pointer" data-form-color="وردي"><input type="radio" name="color" value="وردي" class="peer sr-only" checked><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-pink-400 ring-2 ring-white shadow"></span> وردي</span></label>
+              <label class="cursor-pointer" data-form-color="أبيض منقط"><input type="radio" name="color" value="أبيض منقط" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-white ring-2 ring-gray-200 shadow"></span> أبيض منقط</span></label>
+              <label class="cursor-pointer" data-form-color="أسود"><input type="radio" name="color" value="أسود" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-black ring-2 ring-white shadow"></span> أسود</span></label>
+              <label class="cursor-pointer" data-form-color="بنفسجي"><input type="radio" name="color" value="بنفسجي" class="peer sr-only"><span class="flex items-center gap-1.5 rounded-xl border-2 border-gray-200 px-2.5 py-1.5 text-[12px] font-extrabold transition peer-checked:border-brand-pink peer-checked:bg-brand-pinkLight"><span class="h-3.5 w-3.5 rounded-full bg-purple-500 ring-2 ring-white shadow"></span> بنفسجي</span></label>
             </div>
           </div>
 
@@ -236,7 +224,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </section>
 
-<!-- ============ لماذا سيحبها طفلك ============ -->
 <section class="bg-gradient-to-b from-white to-brand-pinkLight/40 py-14 sm:py-20">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
@@ -252,7 +239,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </section>
 
-<!-- ============ آراء الزبناء ============ -->
 <section class="py-14 sm:py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
@@ -264,7 +250,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
 <section class="py-14 sm:py-20 bg-gradient-to-b from-brand-yellowLight/50 to-white">
   <div class="max-w-3xl mx-auto px-4">
     <div class="text-center" data-reveal>
@@ -275,7 +260,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
 <footer class="bg-white border-t border-gray-100 pt-12 pb-8">
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid sm:grid-cols-3 gap-8">
@@ -310,7 +294,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </footer>
 
-<!-- STICKY BAR -->
 <div id="stickyBar" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-brand-pink shadow-[0_-10px_30px_-10px_rgba(255,144,188,.5)] translate-y-full transition-transform duration-300">
   <div class="max-w-6xl mx-auto px-3 py-2.5 flex items-center gap-2 sm:gap-3">
     <a href="https://wa.me/212691071441" target="_blank" rel="noopener" class="grid h-12 w-12 sm:h-14 sm:w-14 shrink-0 place-items-center rounded-2xl bg-green-500 text-xl sm:text-2xl text-white shadow-lg shadow-green-500/30">💬</a>
@@ -322,7 +305,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </div>
 
-<!-- TOAST -->
 <div id="toast" class="pointer-events-none fixed bottom-24 right-4 z-30 hidden w-[min(320px,calc(100vw-2rem))]">
   <div class="flex items-center gap-3 rounded-3xl border border-brand-pinkLight bg-white p-3 shadow-2xl">
     <div class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-pinkLight text-2xl">🎒</div>
@@ -365,14 +347,11 @@ const IMGS = {
   window.addEventListener('scroll',upd,{passive:true});upd();
 })();
 
-/* المدن */
 const CITIES=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة","ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان","الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة","تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور","الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"];
 (function(){const s=document.getElementById('fCity');CITIES.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;s.appendChild(o);});})();
 
-/* الإشعارات */
 const NOTIFS=[{n:"فاطمة",c:"الدار البيضاء",t:"قبل دقيقة"},{n:"سلمى",c:"الرباط",t:"قبل 3 دقائق"},{n:"ياسمين",c:"مراكش",t:"قبل دقيقتين"},{n:"هند",c:"طنجة",t:"قبل 5 دقائق"},{n:"مريم",c:"أكادير",t:"قبل دقيقة"},{n:"نور",c:"فاس",t:"قبل 4 دقائق"},{n:"إيمان",c:"مكناس",t:"قبل دقيقتين"},{n:"خديجة",c:"وجدة",t:"قبل 6 دقائق"},{n:"زينب",c:"تطوان",t:"قبل 3 دقائق"},{n:"أمينة",c:"القنيطرة",t:"قبل دقيقة"}];
 
-/* التقييمات */
 const REVIEWS=[
   {i:"ف",n:"فاطمة الزهراء",c:"الدار البيضاء",t:"بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة.",e:"🎒"},
   {i:"س",n:"سلمى بنعلي",c:"الرباط",t:"الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي.",e:"🛍️"},
@@ -393,7 +372,6 @@ const REVIEWS=[
   </article>`).join('');
 })();
 
-/* FAQ */
 const FAQS=[
   {q:"واش الدفع عند الاستلام؟",a:"نعم 100%. كتخلصي غير ملي توصلك الطلبية وكتشوفي الحقيبة بعينيك."},
   {q:"شحال كتاخد الطلبية باش توصل؟",a:"بين 24 و 48 ساعة فالمدن الكبرى، و48-72 ساعة فالمناطق البعيدة."},
@@ -419,10 +397,8 @@ const FAQS=[
   });
 })();
 
-/* الحالة */
 const state={color:"وردي",qty:1,userPicked:false};
 
-/* العدّاد — كيخدم للنسختين (Desktop + Mobile) */
 let cd=2*3600+14*60+33;
 function renderCd(){
   const h=Math.floor(cd/3600),m=Math.floor(cd%3600/60),s=cd%60,p=n=>String(n).padStart(2,'0');
@@ -432,7 +408,6 @@ function renderCd(){
 }
 setInterval(()=>{cd--;if(cd<0)cd=2*3600+14*60+33;renderCd();},1000);renderCd();
 
-/* تبديل اللون */
 const mainImg=document.getElementById('mainImage');
 function applyColor(c,fromUser=true){
   if(!IMGS[c])c="وردي";state.color=c;
@@ -448,14 +423,12 @@ const colorKeys=Object.keys(IMGS);let sliderIdx=colorKeys.indexOf("وردي");
 setInterval(()=>{if(state.userPicked)return;sliderIdx=(sliderIdx+1)%colorKeys.length;applyColor(colorKeys[sliderIdx],false);},4500);
 applyColor("وردي",false);
 
-/* الكمية */
 const qtyEl=document.getElementById('qtyValue'),sumQty=document.getElementById('sumQty'),sumTotal=document.getElementById('sumTotal'),sumUnit=document.getElementById('sumUnit');
 function renderQty(){qtyEl.textContent=state.qty;sumQty.textContent=state.qty;sumUnit.textContent=PRICE;sumTotal.textContent=PRICE*state.qty;}
 document.getElementById('qtyPlus').addEventListener('click',()=>{if(state.qty<5){state.qty++;renderQty();}});
 document.getElementById('qtyMinus').addEventListener('click',()=>{if(state.qty>1){state.qty--;renderQty();}});
 renderQty();
 
-/* التقييم */
 (function(){const r=document.getElementById('starsRow');for(let i=0;i<5;i++){const s=document.createElement('span');s.textContent="★";s.style.opacity="0";r.appendChild(s);}})();
 let ratingDone=false;
 function playRating(){
@@ -467,13 +440,11 @@ function playRating(){
   const iv2=setInterval(()=>{c+=Math.ceil(tc/45);if(c>=tc){c=tc;clearInterval(iv2);}cnt.textContent=c;},24);
 }
 
-/* الظهور */
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 const sObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){playRating();sObs.disconnect();}});},{threshold:.4});
 sObs.observe(document.getElementById('starsRow'));
 
-/* Toast */
 const toast=document.getElementById('toast');let ni=0;
 function showToast(){
   const n=NOTIFS[ni%NOTIFS.length];ni++;
@@ -486,9 +457,8 @@ function showToast(){
 }
 setTimeout(showToast,4000);setInterval(showToast,7000);
 
-/* الإرسال */
 const form=document.getElementById('orderForm'),submitBtn=document.getElementById('submitBtn'),successBox=document.getElementById('formSuccess');
-const BTN_DEF="btn-confirm w-full rounded-2xl bg-brand-yellow py-4 text-base sm:text-lg font-black border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4px_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70";
+const BTN_DEF="btn-confirm w-full rounded-2xl bg-brand-yellow py-4 text-base sm:text-lg font-black border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_4_0_0_rgba(17,17,17,1)] active:translate-y-2 active:shadow-none disabled:opacity-70";
 const BTN_LD="w-full rounded-2xl bg-brand-pink py-4 text-base sm:text-lg font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)] opacity-70";
 const BTN_OK="w-full rounded-2xl bg-green-500 py-4 text-base sm:text-lg font-black text-white border-4 border-brand-dark shadow-[0_8px_0_0_rgba(17,17,17,1)]";
 
@@ -523,6 +493,143 @@ form.addEventListener('submit',async e=>{
 });
 
 document.getElementById('year').textContent=new Date().getFullYear();
+
+/* ============================================================
+   🔐 لوحة التحكم السرية — كتفتح غير بـ ?admin
+   ============================================================ */
+(function(){
+  const COLORS = ['أحمر','وردي','أبيض منقط','أسود','بنفسجي'];
+  const STORAGE_KEY = 'admin_stock';
+
+  function getStock(){
+    try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}
+    catch(e){return {};}
+  }
+
+  /* تطبيق حالة المخزون على الصفحة */
+  function applyStock(){
+    const stock = getStock();
+    COLORS.forEach(color => {
+      const chip = document.querySelector(`[data-color="${color}"]`);
+      const formLabel = document.querySelector(`[data-form-color="${color}"]`);
+      const avail = stock[color] !== false; // default = متوفر
+
+      /* بطاقة اللون فالصفحة */
+      if(chip){
+        const oldBadge = chip.querySelector('.soldout-badge');
+        if(!avail){
+          chip.classList.add('opacity-40','pointer-events-none');
+          chip.style.position = 'relative';
+          if(!oldBadge){
+            const b = document.createElement('span');
+            b.className = 'soldout-badge';
+            b.style.cssText = 'position:absolute;inset:0;background:rgba(220,38,38,.9);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;border-radius:1rem;pointer-events:none;z-index:5';
+            b.textContent = 'نفذ';
+            chip.appendChild(b);
+          }
+        } else {
+          chip.classList.remove('opacity-40','pointer-events-none');
+          if(oldBadge) oldBadge.remove();
+        }
+      }
+
+      /* خيار اللون فالاستمارة */
+      if(formLabel){
+        const input = formLabel.querySelector('input[type="radio"]');
+        if(!avail){
+          formLabel.classList.add('opacity-40','pointer-events-none');
+          if(input) input.disabled = true;
+          if(input && input.checked){
+            /* إلا كان المختار نفذ، نحولو لأول لون متوفر */
+            const first = COLORS.find(c => stock[c] !== false);
+            if(first){
+              const alt = document.querySelector(`input[name="color"][value="${first}"]`);
+              if(alt){alt.checked = true; alt.disabled = false;}
+            }
+          }
+        } else {
+          formLabel.classList.remove('opacity-40','pointer-events-none');
+          if(input) input.disabled = false;
+        }
+      }
+    });
+
+    /* إلا كان اللون المختار حالياً نفذ، بدلو */
+    if(stock[state.color] === false){
+      const firstAvail = COLORS.find(c => stock[c] !== false);
+      if(firstAvail) applyColor(firstAvail, false);
+    }
+  }
+
+  /* تطبيق فكل تحميل للصفحة */
+  applyStock();
+
+  /* إلا ما كانش ?admin فالرابط، ما نديرو حتى حاجة */
+  if(!new URLSearchParams(location.search).has('admin')) return;
+
+  /* كلمة السر */
+  const pass = prompt('🔐 أدخل كلمة السر:');
+  if(pass !== '1234'){
+    location.href = '/';
+    return;
+  }
+
+  /* بناء اللوحة */
+  const stock = getStock();
+  const panel = document.createElement('div');
+  panel.id = 'adminPanel';
+  panel.style.cssText = 'position:fixed;bottom:100px;left:16px;z-index:9999;background:#111;color:#fff;border-radius:18px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:Tajawal,sans-serif;min-width:250px;max-width:90vw;direction:rtl;border:2px solid #FFD93D';
+
+  panel.innerHTML = `
+    <div style="font-weight:900;font-size:16px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+      <span>🎛️ لوحة التحكم</span>
+      <span style="font-size:10px;background:#FFD93D;color:#111;padding:3px 8px;border-radius:8px;font-weight:900">ADMIN</span>
+    </div>
+    <div style="font-size:11.5px;opacity:.6;margin-bottom:10px">حدد الألوان المتوفرة للزبناء</div>
+    <div id="adminColors" style="border-top:1px solid #333;padding-top:8px;margin-bottom:12px;max-height:280px;overflow-y:auto"></div>
+    <div style="display:flex;gap:8px">
+      <button id="adminSave" style="flex:1;background:#FFD93D;color:#111;font-weight:900;border:0;padding:10px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">💾 حفظ</button>
+      <button id="adminClose" style="flex:1;background:#333;color:#fff;font-weight:900;border:0;padding:10px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">✖ إغلاق</button>
+    </div>
+    <div id="adminMsg" style="margin-top:8px;font-size:12px;text-align:center;opacity:0;transition:.3s;font-weight:700"></div>
+  `;
+
+  const colorsDiv = panel.querySelector('#adminColors');
+  COLORS.forEach(color => {
+    const avail = stock[color] !== false;
+    const row = document.createElement('label');
+    row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:9px 0;cursor:pointer;font-size:14px;font-weight:600;border-bottom:1px solid #222';
+    row.innerHTML = `
+      <input type="checkbox" data-admin-color="${color}" ${avail?'checked':''} style="width:18px;height:18px;accent-color:#FFD93D;cursor:pointer;flex-shrink:0">
+      <span style="flex:1">${color}</span>
+      <span style="font-size:10px;opacity:.4">${avail?'متوفر':'نفذ'}</span>
+    `;
+    colorsDiv.appendChild(row);
+  });
+
+  document.body.appendChild(panel);
+
+  /* حفظ */
+  panel.querySelector('#adminSave').addEventListener('click', () => {
+    const newStock = {};
+    panel.querySelectorAll('input[data-admin-color]').forEach(cb => {
+      newStock[cb.dataset.adminColor] = cb.checked;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newStock));
+    const msg = panel.querySelector('#adminMsg');
+    msg.textContent = '✅ تم الحفظ بنجاح';
+    msg.style.color = '#4ade80';
+    msg.style.opacity = '1';
+    setTimeout(()=>{msg.style.opacity='0';},2000);
+    applyStock();
+  });
+
+  /* إغلاق */
+  panel.querySelector('#adminClose').addEventListener('click', () => {
+    panel.remove();
+    history.replaceState(null,'',location.pathname);
+  });
+})();
 </script>
 </body>
 </html>
