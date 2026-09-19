@@ -362,7 +362,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
     <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">🎨 اللون</label>
     <input id="adminNewHex" type="color" value="#3b82f6" style="width:100%;height:42px;background:#1a1a1a;border:1px solid #333;border-radius:9px;cursor:pointer;margin-bottom:8px">
     <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">🖼️ رابط الصورة (ImgBB)</label>
-    <input id="adminNewImg" type="text" class="admin-input" placeholder="https://i.ibb.co/..." style="direction:ltr;font-family:monospace;font-size:11px">
+    <input id="adminNewImg" type="text" class="admin-input" placeholder="https://ibb.co/... أو https://i.ibb.co/..." style="direction:ltr;font-family:monospace;font-size:11px">
     <div id="adminNewPreview" style="width:100%;height:90px;background:#1a1a1a;border:1px dashed #333;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#666;margin-bottom:8px;overflow:hidden">معاينة الصورة</div>
     <button type="button" id="adminAddColor" class="admin-add-btn">➕ إضافة اللون</button>
   </div>
@@ -381,7 +381,6 @@ var WHATSAPP_NUMBER = "212691071441";
 var DEFAULT_PRICE = 149;
 var DEFAULT_OLD_PRICE = 249;
 
-/* ============ الألوان الافتراضية ============ */
 var DEFAULT_COLORS = [
   {name:"أحمر",      hex:"#dc2626", img:"https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg", available:true},
   {name:"وردي",      hex:"#f472b6", img:"https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg", available:true},
@@ -392,6 +391,43 @@ var DEFAULT_COLORS = [
 
 var STORAGE_COLORS = 'admin_colors';
 
+/* ============ ✅ تحويل رابط ImgBB تلقائياً ============ */
+async function toDirectImgBB(url){
+  if(!url) return url;
+  url = url.trim();
+  
+  // إلا كان رابط مباشر، رجعو
+  if(url.indexOf('i.ibb.co') !== -1) return url;
+  
+  // إلا ماشي ImgBB، رجعو
+  if(url.indexOf('ibb.co') === -1) return url;
+  
+  // جرب استخراج الرابط المباشر
+  try {
+    var proxy = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+    var res = await fetch(proxy);
+    var html = await res.text();
+    
+    // نلقاو من og:image
+    var m = html.match(/<meta property="og:image" content="([^"]+)"/);
+    if(m && m[1]){
+      console.log('✅ تحول الرابط:', url, '→', m[1]);
+      return m[1];
+    }
+    
+    // بديل: نلقاو من image_src
+    var m2 = html.match(/<link rel="image_src" href="([^"]+)"/);
+    if(m2 && m2[1]){
+      console.log('✅ تحول الرابط:', url, '→', m2[1]);
+      return m2[1];
+    }
+  } catch(e) {
+    console.warn('تعذر التحويل التلقائي:', e);
+  }
+  
+  return url;
+}
+
 function getColors(){
   try {
     var saved = JSON.parse(localStorage.getItem(STORAGE_COLORS) || 'null');
@@ -400,7 +436,6 @@ function getColors(){
   return JSON.parse(JSON.stringify(DEFAULT_COLORS));
 }
 
-/* ============ ✅ حفظ + تحميل من السيرفر ============ */
 function saveColors(colors){
   try { localStorage.setItem(STORAGE_COLORS, JSON.stringify(colors)); } catch(e){}
   saveToServer();
@@ -461,7 +496,6 @@ function migrateOld(){
 function getPrice(){ var p = localStorage.getItem('admin_price'); return p ? Number(p) : DEFAULT_PRICE; }
 function getOldPrice(){ var p = localStorage.getItem('admin_old_price'); return p ? Number(p) : DEFAULT_OLD_PRICE; }
 
-/* ============ Globals ============ */
 var COLORS = [];
 var IMGS = {};
 var COLOR_HEX = {};
@@ -477,7 +511,6 @@ function refreshGlobals(){
   });
 }
 
-/* ============ الرسم ============ */
 function renderColorChips(){
   var container = document.getElementById('colorChips');
   var colors = getColors();
@@ -579,12 +612,13 @@ function renderAdminImageRows(){
     container.appendChild(row);
     var input = row.querySelector('input');
     var preview = row.querySelector('[data-preview]');
-    input.addEventListener('input', function(){
+    input.addEventListener('input', async function(){
       var v = input.value.trim();
       if(v.indexOf('http') === 0){
-        preview.src = v;
+        var direct = await toDirectImgBB(v);
+        preview.src = direct;
         var colors = getColors();
-        colors.forEach(function(x){ if(x.name === c.name) x.img = v; });
+        colors.forEach(function(x){ if(x.name === c.name) x.img = direct; });
         saveColors(colors);
         applyAll();
       }
@@ -599,7 +633,6 @@ function renderAdminPanel(){
   document.getElementById('adminOldPriceInput').value = OLD_PRICE;
 }
 
-/* ============ تطبيق شامل ============ */
 function applyAll(){
   refreshGlobals();
   renderColorChips();
@@ -635,7 +668,6 @@ function applyStockVisibility(){
   });
 }
 
-/* ============ منع الهبوط للاستمارة ============ */
 (function(){
   if(location.hash) history.replaceState(null,'',location.pathname+location.search);
   window.scrollTo(0,0);
@@ -647,7 +679,6 @@ function applyStockVisibility(){
   setTimeout(function(){window.scrollTo(0,0);},800);
 })();
 
-/* ============ الشريط السفلي ============ */
 (function(){
   var bar = document.getElementById('stickyBar');
   var shown = false;
@@ -659,7 +690,6 @@ function applyStockVisibility(){
   upd();
 })();
 
-/* ============ المدن ============ */
 var CITIES = ["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة","ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان","الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة","تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور","الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"];
 (function(){
   var s = document.getElementById('fCity');
@@ -670,7 +700,6 @@ var CITIES = ["الدار البيضاء","الرباط","مراكش","فاس","
   });
 })();
 
-/* ============ الإشعارات ============ */
 var NOTIFS = [
   {n:"فاطمة",c:"الدار البيضاء",t:"قبل دقيقة"},
   {n:"سلمى",c:"الرباط",t:"قبل 3 دقائق"},
@@ -684,7 +713,6 @@ var NOTIFS = [
   {n:"أمينة",c:"القنيطرة",t:"قبل دقيقة"}
 ];
 
-/* ============ التقييمات ============ */
 var REVIEWS = [
   {i:"ف",n:"فاطمة الزهراء",c:"الدار البيضاء",t:"بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة.",e:"🎒"},
   {i:"س",n:"سلمى بنعلي",c:"الرباط",t:"الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي.",e:"🛍️"},
@@ -709,7 +737,6 @@ var REVIEWS = [
   document.getElementById('reviewsWrap').innerHTML = html;
 })();
 
-/* ============ FAQ ============ */
 var FAQS = [
   {q:"واش الدفع عند الاستلام؟",a:"نعم 100%. كتخلصي غير ملي توصلك الطلبية وكتشوفي الحقيبة بعينيك."},
   {q:"شحال كتاخد الطلبية باش توصل؟",a:"بين 24 و 48 ساعة فالمدن الكبرى، و48-72 ساعة فالمناطق البعيدة."},
@@ -740,10 +767,8 @@ var FAQS = [
   });
 })();
 
-/* ============ الحالة ============ */
 var state = {color:"وردي", qty:1, userPicked:false};
 
-/* ============ العدّاد ============ */
 var cd = 2*3600 + 14*60 + 33;
 function renderCd(){
   var h = Math.floor(cd/3600), m = Math.floor((cd%3600)/60), s = cd%60;
@@ -755,7 +780,6 @@ function renderCd(){
 setInterval(function(){cd--;if(cd<0)cd=2*3600+14*60+33;renderCd();},1000);
 renderCd();
 
-/* ============ تحديث الأثمنة ============ */
 function updateAllPrices(){
   document.querySelectorAll('[data-price-display]').forEach(function(el){el.textContent = PRICE;});
   document.querySelectorAll('[data-old-price-display]').forEach(function(el){el.textContent = OLD_PRICE + ' درهم';});
@@ -763,7 +787,6 @@ function updateAllPrices(){
   renderQty();
 }
 
-/* ============ تبديل اللون ============ */
 var mainImg = document.getElementById('mainImage');
 function applyColor(c, fromUser){
   if(fromUser === undefined) fromUser = true;
@@ -791,7 +814,6 @@ setInterval(function(){
   applyColor(avail[idx].name, false);
 }, 4500);
 
-/* ============ الكمية ============ */
 var qtyEl = document.getElementById('qtyValue');
 var sumQty = document.getElementById('sumQty');
 var sumTotal = document.getElementById('sumTotal');
@@ -807,7 +829,6 @@ document.getElementById('qtyMinus').addEventListener('click', function(){
   if(state.qty > 1){state.qty--; renderQty();}
 });
 
-/* ============ التقييم ============ */
 (function(){
   var r = document.getElementById('starsRow');
   for(var i=0; i<5; i++){
@@ -861,7 +882,6 @@ var sObs = new IntersectionObserver(function(es){
 }, {threshold:0.4});
 sObs.observe(document.getElementById('starsRow'));
 
-/* ============ Toast ============ */
 var toast = document.getElementById('toast');
 var ni = 0;
 function showToast(){
@@ -879,7 +899,6 @@ function showToast(){
 setTimeout(showToast, 4000);
 setInterval(showToast, 7000);
 
-/* ============ الإرسال ============ */
 var form = document.getElementById('orderForm');
 var submitBtn = document.getElementById('submitBtn');
 var successBox = document.getElementById('formSuccess');
@@ -969,24 +988,17 @@ form.addEventListener('submit', async function(e){
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ============================================================
-   🚀 البدء + تحميل من السيرفر
-   ============================================================ */
 migrateOld();
 PRICE = getPrice();
 OLD_PRICE = getOldPrice();
 applyAll();
 
-// ✅ حمل الإعدادات من السيرفر
 loadFromServer().then(function(){
   PRICE = getPrice();
   OLD_PRICE = getOldPrice();
   applyAll();
 });
 
-/* ============================================================
-   🔐 لوحة التحكم
-   ============================================================ */
 (function(){
   if(!new URLSearchParams(location.search).has('admin')) return;
 
@@ -1011,22 +1023,37 @@ loadFromServer().then(function(){
 
   var newImgInput = document.getElementById('adminNewImg');
   var newPreview = document.getElementById('adminNewPreview');
-  newImgInput.addEventListener('input', function(){
+  
+  // ✅ معاينة مع تحويل تلقائي
+  newImgInput.addEventListener('input', async function(){
     var v = newImgInput.value.trim();
-    if(v.indexOf('http') === 0){
-      newPreview.innerHTML = '<img src="' + v + '" style="max-width:100%;max-height:100%;object-fit:contain">';
-    } else {
+    if(v.indexOf('http') !== 0){
       newPreview.textContent = 'معاينة الصورة';
+      return;
     }
+    newPreview.textContent = '⏳ جاري التحميل...';
+    var direct = await toDirectImgBB(v);
+    newPreview.innerHTML = '<img src="' + direct + '" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.parentElement.innerHTML=\'❌ الصورة ما تحملتش<br><small style=color:#888>تأكد من الرابط</small>\'">';
   });
 
-  document.getElementById('adminAddColor').addEventListener('click', function(){
+  // ✅ إضافة اللون مع تحويل تلقائي
+  document.getElementById('adminAddColor').addEventListener('click', async function(){
     var name = document.getElementById('adminNewName').value.trim();
     var hex = document.getElementById('adminNewHex').value;
     var img = document.getElementById('adminNewImg').value.trim();
 
     if(!name){ alert('عافاك كتبي اسم اللون'); return; }
     if(!img || img.indexOf('http') !== 0){ alert('عافاك حط رابط صورة صحيح'); return; }
+
+    var btn = document.getElementById('adminAddColor');
+    btn.textContent = '⏳ جاري معالجة الصورة...';
+    btn.disabled = true;
+
+    // ✅ حول الرابط تلقائياً
+    img = await toDirectImgBB(img);
+
+    btn.textContent = '➕ إضافة اللون';
+    btn.disabled = false;
 
     var colors = getColors();
     if(colors.find(function(x){return x.name === name;})){
