@@ -319,7 +319,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </div>
 
-<!-- ============ لوحة التحكم ============ -->
 <div id="adminPanel" style="position:fixed;bottom:100px;left:16px;z-index:9999;background:#111;color:#fff;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:Tajawal,sans-serif;width:360px;max-width:92vw;direction:rtl;border:2px solid #FFD93D;max-height:80vh;overflow-y:auto">
 
   <div style="font-weight:900;font-size:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px">
@@ -376,7 +375,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 </div>
 
 <script>
-/* ============ الإعدادات الثابتة ============ */
+/* ============ الإعدادات ============ */
 var SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
 var WHATSAPP_NUMBER = "212691071441";
 var DEFAULT_PRICE = 149;
@@ -391,7 +390,6 @@ var DEFAULT_COLORS = [
   {name:"بنفسجي",    hex:"#a855f7", img:"https://i.ibb.co/99b4400J/Whats-App-Image-2026-09-16-at-22-03-30.jpg", available:true}
 ];
 
-/* ============ التخزين ============ */
 var STORAGE_COLORS = 'admin_colors';
 
 function getColors(){
@@ -402,8 +400,48 @@ function getColors(){
   return JSON.parse(JSON.stringify(DEFAULT_COLORS));
 }
 
+/* ============ ✅ حفظ + تحميل من السيرفر ============ */
 function saveColors(colors){
   try { localStorage.setItem(STORAGE_COLORS, JSON.stringify(colors)); } catch(e){}
+  saveToServer();
+}
+
+async function saveToServer(){
+  if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return;
+  try {
+    var payload = {
+      _type: 'settings',
+      colors: getColors(),
+      price: Number(localStorage.getItem('admin_price')) || DEFAULT_PRICE,
+      old_price: Number(localStorage.getItem('admin_old_price')) || DEFAULT_OLD_PRICE
+    };
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    });
+    console.log('✅ تم الحفظ فالسيرفر');
+  } catch(e) {
+    console.warn('❌ فشل الحفظ فالسيرفر:', e);
+  }
+}
+
+async function loadFromServer(){
+  if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return false;
+  try {
+    var res = await fetch(SHEET_URL, { method: 'GET' });
+    var data = await res.json();
+    if(!data || Object.keys(data).length === 0) return false;
+
+    if(data.colors) localStorage.setItem(STORAGE_COLORS, JSON.stringify(data.colors));
+    if(data.price) localStorage.setItem('admin_price', data.price);
+    if(data.old_price) localStorage.setItem('admin_old_price', data.old_price);
+    console.log('✅ تحملات الإعدادات من السيرفر');
+    return true;
+  } catch(e) {
+    console.warn('❌ فشل التحميل من السيرفر:', e);
+    return false;
+  }
 }
 
 function migrateOld(){
@@ -423,7 +461,7 @@ function migrateOld(){
 function getPrice(){ var p = localStorage.getItem('admin_price'); return p ? Number(p) : DEFAULT_PRICE; }
 function getOldPrice(){ var p = localStorage.getItem('admin_old_price'); return p ? Number(p) : DEFAULT_OLD_PRICE; }
 
-/* ============ Globals (dynamic) ============ */
+/* ============ Globals ============ */
 var COLORS = [];
 var IMGS = {};
 var COLOR_HEX = {};
@@ -568,7 +606,6 @@ function applyAll(){
   renderFormColors();
   updateAllPrices();
   applyStockVisibility();
-  // reapply current color
   var activeColor = state.color;
   var colorObj = getColors().find(function(x){return x.name === activeColor;});
   if(!colorObj || colorObj.available === false){
@@ -745,7 +782,6 @@ function applyColor(c, fromUser){
   if(fromUser) state.userPicked = true;
 }
 
-/* سلايدر تلقائي */
 setInterval(function(){
   if(state.userPicked) return;
   var avail = getColors().filter(function(x){return x.available !== false;});
@@ -808,7 +844,6 @@ function playRating(){
   }, 24);
 }
 
-/* ============ الظهور عند التمرير ============ */
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){
     if(e.isIntersecting){
@@ -935,12 +970,19 @@ form.addEventListener('submit', async function(e){
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ============================================================
-   🚀 البدء
+   🚀 البدء + تحميل من السيرفر
    ============================================================ */
 migrateOld();
 PRICE = getPrice();
 OLD_PRICE = getOldPrice();
 applyAll();
+
+// ✅ حمل الإعدادات من السيرفر
+loadFromServer().then(function(){
+  PRICE = getPrice();
+  OLD_PRICE = getOldPrice();
+  applyAll();
+});
 
 /* ============================================================
    🔐 لوحة التحكم
@@ -958,7 +1000,6 @@ applyAll();
   panel.classList.add('show');
   renderAdminPanel();
 
-  // Tabs
   panel.querySelectorAll('.admin-tab').forEach(function(tab){
     tab.addEventListener('click', function(){
       panel.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active');});
@@ -968,7 +1009,6 @@ applyAll();
     });
   });
 
-  // معاينة صورة اللون الجديد
   var newImgInput = document.getElementById('adminNewImg');
   var newPreview = document.getElementById('adminNewPreview');
   newImgInput.addEventListener('input', function(){
@@ -980,7 +1020,6 @@ applyAll();
     }
   });
 
-  // إضافة لون جديد
   document.getElementById('adminAddColor').addEventListener('click', function(){
     var name = document.getElementById('adminNewName').value.trim();
     var hex = document.getElementById('adminNewHex').value;
@@ -998,7 +1037,6 @@ applyAll();
     colors.push({name:name, hex:hex, img:img, available:true});
     saveColors(colors);
 
-    // تصفير الحقول
     document.getElementById('adminNewName').value = '';
     document.getElementById('adminNewImg').value = '';
     newPreview.textContent = 'معاينة الصورة';
@@ -1006,7 +1044,6 @@ applyAll();
     applyAll();
     renderAdminPanel();
 
-    // ننتقل لتبويب المخزون
     panel.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active');});
     panel.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});
     panel.querySelector('[data-tab="stock"]').classList.add('active');
@@ -1019,12 +1056,12 @@ applyAll();
     setTimeout(function(){msg.style.opacity = '0';}, 2500);
   });
 
-  // حفظ (الثمن فقط — الباقي كيتحفظ فورياً)
   document.getElementById('adminSave').addEventListener('click', function(){
     var newPrice = Number(document.getElementById('adminPriceInput').value) || DEFAULT_PRICE;
     var newOldPrice = Number(document.getElementById('adminOldPriceInput').value) || DEFAULT_OLD_PRICE;
     localStorage.setItem('admin_price', newPrice);
     localStorage.setItem('admin_old_price', newOldPrice);
+    saveToServer();
     PRICE = newPrice;
     OLD_PRICE = newOldPrice;
     updateAllPrices();
@@ -1035,7 +1072,6 @@ applyAll();
     setTimeout(function(){msg.style.opacity = '0';}, 2000);
   });
 
-  // إغلاق
   document.getElementById('adminClose').addEventListener('click', function(){
     panel.classList.remove('show');
     history.replaceState(null, '', location.pathname);
