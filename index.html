@@ -38,7 +38,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 .btn-confirm{animation:pulseShadow 2s infinite}
 #adminPanel{display:none}
 #adminPanel.show{display:block}
-.admin-tab{background:#222;color:#fff;border:0;padding:8px 8px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:800;flex:1;transition:.2s}
+.admin-tab{background:#222;color:#fff;border:0;padding:8px 5px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:10.5px;font-weight:800;flex:1;transition:.2s}
 .admin-tab.active{background:#FFD93D;color:#111}
 .admin-section{display:none}
 .admin-section.active{display:block}
@@ -46,6 +46,8 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 .admin-row:last-child{border-bottom:0}
 .admin-input{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:9px 10px;border-radius:9px;font-size:13px;outline:0;font-family:inherit;margin-bottom:8px}
 .admin-input:focus{border-color:#FFD93D}
+.admin-textarea{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:9px 10px;border-radius:9px;font-size:12.5px;outline:0;font-family:inherit;margin-bottom:8px;resize:vertical;min-height:80px;line-height:1.6}
+.admin-textarea:focus{border-color:#FFD93D}
 .admin-img-input{flex:1;background:#1a1a1a;border:1px solid #333;color:#fff;padding:7px 9px;border-radius:8px;font-size:11px;outline:0;font-family:monospace;direction:ltr;min-width:0}
 .admin-img-input:focus{border-color:#FFD93D}
 .admin-color-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:2px solid #444}
@@ -56,6 +58,8 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 .admin-status.ok{background:rgba(74,222,128,.15);color:#4ade80}
 .admin-status.warn{background:rgba(251,191,36,.15);color:#fbbf24}
 .admin-status.err{background:rgba(239,68,68,.15);color:#ef4444}
+.admin-label{display:block;font-size:11.5px;font-weight:800;margin-bottom:5px;color:#ddd}
+.admin-hint{font-size:10.5px;color:#666;margin-bottom:6px;line-height:1.5}
 </style>
 </head>
 <body class="bg-white text-brand-dark antialiased overflow-x-hidden">
@@ -71,8 +75,8 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
         <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" class="w-full h-full object-contain">
       </div>
       <div class="leading-none">
-        <div class="font-black text-xl">KATAKIT</div>
-        <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
+        <div class="font-black text-xl" data-text="brandName">KATAKIT</div>
+        <div class="text-[11px] font-extrabold text-brand-pink mt-0.5" data-text="brandSub">كتاكيت</div>
       </div>
     </a>
     <a href="https://wa.me/212691071441" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-green-500 px-4 py-2 text-[13px] font-extrabold text-white shadow-lg shadow-green-500/30 hover:bg-green-600">
@@ -90,11 +94,11 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
       <div class="absolute -top-4 right-6 z-20 bg-brand-yellow font-black text-sm px-4 py-2 rounded-full shadow-lg -rotate-3 border-2 border-brand-dark/10 hidden sm:block">خصم 40% 🔥</div>
       <div class="relative rounded-[2rem] bg-gradient-to-br from-brand-pinkLight via-white to-brand-yellowLight p-3 border border-white shadow-[0_35px_70px_-35px_rgba(255,144,188,.95)]">
         <div class="relative overflow-hidden rounded-[1.7rem] bg-white">
-          <img id="mainImage" src="" alt="حقيبة ميكي ماوس" class="w-full h-[280px] sm:h-[380px] object-cover transition-all duration-500">
+          <img id="mainImage" src="" alt="منتج" class="w-full h-[280px] sm:h-[380px] object-cover transition-all duration-500">
         </div>
       </div>
       <div class="mt-3 flex items-center justify-center gap-2 text-[13px] font-black text-brand-pinkDark animate-blink">
-        <span>⚡</span><span>المخزون محدود — سارع قبل ما يسالي</span><span>⚡</span>
+        <span>⚡</span><span data-text="stockAlert">المخزون محدود — سارع قبل ما يسالي</span><span>⚡</span>
       </div>
       <div id="colorChips" class="mt-3 flex flex-wrap items-center justify-center gap-2"></div>
       <div class="mt-4 flex items-center justify-center gap-2 text-sm">
@@ -105,8 +109,8 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
       </div>
 
       <div class="mt-5 lg:hidden text-center">
-        <h1 class="text-[26px] leading-tight font-black">
-          حقيبة ميكي اللي كل البنات <span class="relative inline-block"><span class="relative z-10">هبلو عليها</span><span class="absolute inset-x-0 bottom-1 z-0 h-3 rounded-full bg-brand-yellow/70"></span></span> 🎒
+        <h1 class="text-[26px] leading-tight font-black" data-text="heroTitle">
+          حقيبة ميكي اللي كل البنات هبلو عليها 🎒
         </h1>
         <div class="mt-4 flex items-end justify-center gap-3">
           <span class="text-5xl font-black text-brand-pink leading-none" data-price-display>149</span>
@@ -126,19 +130,14 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 
     <div>
       <div class="hidden lg:block text-right">
-        <span class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-1.5 text-[12px] font-extrabold text-brand-pinkDark">✨ الأكثر مبيعاً فالمغرب</span>
-        <h1 class="mt-3 text-[36px] leading-tight font-black">
-          حقيبة ميكي اللي كل البنات <span class="relative inline-block"><span class="relative z-10">هبلو عليها</span><span class="absolute inset-x-0 bottom-1 z-0 h-3 rounded-full bg-brand-yellow/70"></span></span> 🎒
+        <span class="inline-flex items-center gap-2 rounded-full bg-brand-pinkLight px-4 py-1.5 text-[12px] font-extrabold text-brand-pinkDark" data-text="heroBadge">✨ الأكثر مبيعاً فالمغرب</span>
+        <h1 class="mt-3 text-[36px] leading-tight font-black" data-text="heroTitle">
+          حقيبة ميكي اللي كل البنات هبلو عليها 🎒
         </h1>
-        <p class="mt-3 text-[14.5px] leading-relaxed text-gray-600 font-medium">
+        <p class="mt-3 text-[14.5px] leading-relaxed text-gray-600 font-medium" data-text="heroDesc">
           حقيبة مدرسية كيوت بتصميم ميكي ماوس الأصلي، قماش متين وخياطة قوية، واسعة بزاف ومريحة للظهر.
         </p>
-        <ul class="mt-4 space-y-2">
-          <li class="flex items-center gap-2 text-[14px] font-bold"><span class="text-green-500">✅</span> تصميم ميكي ماوس الأصلي بجودة عالية</li>
-          <li class="flex items-center gap-2 text-[14px] font-bold"><span class="text-green-500">✅</span> قماش متين ما كيتقطعش ولا كيبهت</li>
-          <li class="flex items-center gap-2 text-[14px] font-bold"><span class="text-green-500">✅</span> واسعة: دفاتر + مقلمة + قنينة الماء</li>
-          <li class="flex items-center gap-2 text-[14px] font-bold"><span class="text-green-500">✅</span> حمالات مبطنة مريحة على الكتاف</li>
-        </ul>
+        <ul class="mt-4 space-y-2" id="heroFeaturesList"></ul>
         <div class="mt-4 flex items-end gap-3">
           <span class="text-5xl font-black text-brand-pink leading-none" data-price-display>149</span>
           <span class="text-lg font-extrabold text-brand-pink mb-1">درهم</span>
@@ -157,8 +156,8 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
       <div id="order" class="mt-6 rounded-[2rem] bg-white p-5 sm:p-6 shadow-2xl border border-brand-pinkLight scroll-mt-20">
         <div class="text-center mb-5">
           <span class="inline-block rounded-full bg-brand-yellow px-3 py-1 text-[12px] font-black">📝 استمارة الطلب</span>
-          <h2 class="mt-2 text-xl sm:text-2xl font-black">أطلبي الآن — الدفع عند الاستلام</h2>
-          <p class="mt-1 text-[12.5px] text-gray-500 font-medium">عمري المعلومات وحنا كنتواصلو معاك فالواتساب ✅</p>
+          <h2 class="mt-2 text-xl sm:text-2xl font-black" data-text="orderTitle">أطلبي الآن — الدفع عند الاستلام</h2>
+          <p class="mt-1 text-[12.5px] text-gray-500 font-medium" data-text="orderSub">عمري المعلومات وحنا كنتواصلو معاك فالواتساب ✅</p>
         </div>
 
         <div id="formSuccess" class="hidden mb-5 rounded-2xl border-2 border-green-200 bg-green-50 p-4 text-center animate-popIn">
@@ -209,7 +208,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
           </div>
 
           <div class="rounded-2xl border-2 border-dashed border-brand-pink/40 bg-brand-pinkLight/40 p-3.5">
-            <div class="flex items-center justify-between text-[13px] font-bold"><span>حقيبة ميكي ماوس الكيوت</span><span><span data-price-display>149</span> درهم</span></div>
+            <div class="flex items-center justify-between text-[13px] font-bold"><span data-text="productName">حقيبة ميكي ماوس الكيوت</span><span><span data-price-display>149</span> درهم</span></div>
             <div class="mt-1.5 flex items-center justify-between text-[13px] font-bold"><span>الكمية</span><span>× <span id="sumQty">1</span></span></div>
             <div class="mt-1.5 flex items-center justify-between text-[13px] font-bold"><span>التوصيل</span><span class="text-green-600">مجاني 🚚</span></div>
             <div class="mt-2.5 flex items-center justify-between border-t-2 border-dashed border-brand-pink/40 pt-2.5">
@@ -236,15 +235,10 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 <section class="bg-gradient-to-b from-white to-brand-pinkLight/40 py-14 sm:py-20">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
-      <span class="inline-block rounded-full bg-brand-yellow/40 px-4 py-1.5 text-[13px] font-extrabold">💛 لماذا كتعجب البنات</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-black">لماذا سيحبها طفلك؟</h2>
+      <span class="inline-block rounded-full bg-brand-yellow/40 px-4 py-1.5 text-[13px] font-extrabold" data-text="featuresBadge">💛 لماذا كتعجب البنات</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-black" data-text="featuresTitle">لماذا سيحبها طفلك؟</h2>
     </div>
-    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <div class="card text-center hover:-translate-y-2 transition" data-reveal><div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty">🎨</div><h3 class="mt-5 font-black text-lg">تصميم كيوت</h3><p class="mt-2 text-sm text-gray-600 font-medium">رسومات ميكي ماوس بألوان زاهية.</p></div>
-      <div class="card text-center hover:-translate-y-2 transition" data-reveal><div class="mx-auto w-16 h-16 rounded-3xl bg-brand-yellowLight grid place-items-center text-3xl animate-floaty" style="animation-delay:.4s">🧵</div><h3 class="mt-5 font-black text-lg">جودة كتدوم</h3><p class="mt-2 text-sm text-gray-600 font-medium">قماش سميك وخياطة مقواة.</p></div>
-      <div class="card text-center hover:-translate-y-2 transition" data-reveal><div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty" style="animation-delay:.8s">📚</div><h3 class="mt-5 font-black text-lg">واسعة ومنظمة</h3><p class="mt-2 text-sm text-gray-600 font-medium">جيب كبير + جيوب صغيرة.</p></div>
-      <div class="card text-center hover:-translate-y-2 transition" data-reveal><div class="mx-auto w-16 h-16 rounded-3xl bg-brand-yellowLight grid place-items-center text-3xl animate-floaty" style="animation-delay:1.2s">🎒</div><h3 class="mt-5 font-black text-lg">مريحة على الظهر</h3><p class="mt-2 text-sm text-gray-600 font-medium">حمالات مبطنة وخفيفة.</p></div>
-    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="featuresGrid"></div>
   </div>
 </section>
 
@@ -252,8 +246,8 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto" data-reveal>
       <span class="inline-block rounded-full bg-brand-pinkLight px-4 py-1.5 text-[13px] font-extrabold text-brand-pinkDark">⭐ آراء حقيقية</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-black">شنو قالو الزبناء؟</h2>
-      <p class="mt-3 text-gray-600 font-medium">أكثر من 1240 أم مغربية عجبهم الحال 💕</p>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-black" data-text="reviewsTitle">شنو قالو الزبناء؟</h2>
+      <p class="mt-3 text-gray-600 font-medium" data-text="reviewsSub">أكثر من 1240 أم مغربية عجبهم الحال 💕</p>
     </div>
     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="reviewsWrap"></div>
   </div>
@@ -278,11 +272,11 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
             <img src="https://i.ibb.co/93ntBsLh/kjk.png" alt="KATAKIT" class="w-full h-full object-contain">
           </div>
           <div class="leading-none">
-            <div class="font-black text-xl">KATAKIT</div>
-            <div class="text-[11px] font-extrabold text-brand-pink mt-0.5">كتاكيت</div>
+            <div class="font-black text-xl" data-text="brandName">KATAKIT</div>
+            <div class="text-[11px] font-extrabold text-brand-pink mt-0.5" data-text="brandSub">كتاكيت</div>
           </div>
         </div>
-        <p class="mt-4 text-[13px] leading-relaxed text-gray-500 font-medium">متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال.</p>
+        <p class="mt-4 text-[13px] leading-relaxed text-gray-500 font-medium" data-text="footerDesc">متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال.</p>
       </div>
       <div>
         <h4 class="font-black text-[15px]">روابط سريعة</h4>
@@ -299,7 +293,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
         </div>
       </div>
     </div>
-    <div class="mt-10 border-t border-gray-100 pt-6 text-center text-[12.5px] font-bold text-gray-400">© <span id="year">2025</span> KATAKIT — كتاكيت. جميع الحقوق محفوظة.</div>
+    <div class="mt-10 border-t border-gray-100 pt-6 text-center text-[12.5px] font-bold text-gray-400">© <span id="year">2025</span> <span data-text="brandName">KATAKIT</span> — جميع الحقوق محفوظة.</div>
   </div>
 </footer>
 
@@ -324,7 +318,7 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </div>
 
-<div id="adminPanel" style="position:fixed;bottom:100px;left:16px;z-index:9999;background:#111;color:#fff;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:Tajawal,sans-serif;width:360px;max-width:92vw;direction:rtl;border:2px solid #FFD93D;max-height:80vh;overflow-y:auto">
+<div id="adminPanel" style="position:fixed;bottom:100px;left:16px;z-index:9999;background:#111;color:#fff;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:Tajawal,sans-serif;width:400px;max-width:94vw;direction:rtl;border:2px solid #FFD93D;max-height:85vh;overflow-y:auto">
 
   <div style="font-weight:900;font-size:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px">
     <span>🎛️ لوحة التحكم</span>
@@ -333,10 +327,11 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 
   <div id="adminSyncStatus" class="admin-status warn">⏳ جاري التحقق من السيرفر...</div>
 
-  <div style="display:flex;gap:5px;margin-bottom:12px">
+  <div style="display:flex;gap:4px;margin-bottom:12px">
     <button type="button" class="admin-tab active" data-tab="stock">📦 المخزون</button>
     <button type="button" class="admin-tab" data-tab="images">🖼️ الصور</button>
     <button type="button" class="admin-tab" data-tab="price">💰 الثمن</button>
+    <button type="button" class="admin-tab" data-tab="texts">✏️ العناوين</button>
     <button type="button" class="admin-tab" data-tab="add">➕ إضافة</button>
   </div>
 
@@ -353,22 +348,56 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   <div class="admin-section" data-section="price">
     <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">غيّر الثمن الحالي والقديم</div>
     <div style="padding:8px 0">
-      <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">💰 الثمن الحالي (درهم)</label>
+      <label class="admin-label">💰 الثمن الحالي (درهم)</label>
       <input id="adminPriceInput" type="number" class="admin-input">
     </div>
     <div style="padding:8px 0">
-      <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">✂️ الثمن القديم (مشطوب)</label>
+      <label class="admin-label">✂️ الثمن القديم (مشطوب)</label>
       <input id="adminOldPriceInput" type="number" class="admin-input">
     </div>
   </div>
 
+  <div class="admin-section" data-section="texts">
+    <div class="admin-hint">✏️ بدّل العناوين والنصوص باش تلائم المنتج ديالك</div>
+
+    <label class="admin-label">🏪 اسم البراند</label>
+    <input id="txtBrandName" type="text" class="admin-input" placeholder="KATAKIT">
+
+    <label class="admin-label">🏷️ اسم البراند (بالعربية)</label>
+    <input id="txtBrandSub" type="text" class="admin-input" placeholder="كتاكيت">
+
+    <label class="admin-label">🎯 العنوان الرئيسي (Hero)</label>
+    <input id="txtHeroTitle" type="text" class="admin-input" placeholder="حقيبة ميكي اللي كل البنات هبلو عليها 🎒">
+
+    <label class="admin-label">📝 وصف المنتج</label>
+    <textarea id="txtHeroDesc" class="admin-textarea" placeholder="وصف المنتج..."></textarea>
+
+    <label class="admin-label">🏷️ اسم المنتج (في الاستمارة)</label>
+    <input id="txtProductName" type="text" class="admin-input" placeholder="حقيبة ميكي ماوس الكيوت">
+
+    <label class="admin-label">📋 عنوان الاستمارة</label>
+    <input id="txtOrderTitle" type="text" class="admin-input" placeholder="أطلبي الآن — الدفع عند الاستلام">
+
+    <label class="admin-label">📌 المميزات (كل ميزة في سطر)</label>
+    <textarea id="txtFeatures" class="admin-textarea" placeholder="✅ ميزة 1&#10;✅ ميزة 2"></textarea>
+
+    <label class="admin-label">💛 عنوان قسم المميزات</label>
+    <input id="txtFeaturesTitle" type="text" class="admin-input" placeholder="لماذا سيحبها طفلك؟">
+
+    <label class="admin-label">⭐ عنوان التقييمات</label>
+    <input id="txtReviewsTitle" type="text" class="admin-input" placeholder="شنو قالو الزبناء؟">
+
+    <label class="admin-label">📢 نص المخزون المحدود</label>
+    <input id="txtStockAlert" type="text" class="admin-input" placeholder="المخزون محدود — سارع قبل ما يسالي">
+  </div>
+
   <div class="admin-section" data-section="add">
-    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">أضف لون ومنتج جديد</div>
-    <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">🏷️ اسم اللون</label>
+    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">أضف لون جديد</div>
+    <label class="admin-label">🏷️ اسم اللون</label>
     <input id="adminNewName" type="text" class="admin-input" placeholder="مثال: أزرق">
-    <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">🎨 اللون</label>
+    <label class="admin-label">🎨 اللون</label>
     <input id="adminNewHex" type="color" value="#3b82f6" style="width:100%;height:42px;background:#1a1a1a;border:1px solid #333;border-radius:9px;cursor:pointer;margin-bottom:8px">
-    <label style="display:block;font-size:12px;font-weight:800;margin-bottom:6px">🖼️ رابط الصورة (i.ibb.co)</label>
+    <label class="admin-label">🖼️ رابط الصورة (i.ibb.co)</label>
     <input id="adminNewImg" type="text" class="admin-input" placeholder="https://i.ibb.co/..." style="direction:ltr;font-family:monospace;font-size:11px">
     <div id="adminNewPreview" style="width:100%;height:90px;background:#1a1a1a;border:1px dashed #333;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#666;margin-bottom:8px;overflow:hidden">معاينة الصورة</div>
     <button type="button" id="adminAddColor" class="admin-add-btn">➕ إضافة اللون</button>
@@ -399,9 +428,34 @@ var DEFAULT_COLORS = [
   {name:"بنفسجي",    hex:"#a855f7", img:"https://i.ibb.co/99b4400J/Whats-App-Image-2026-09-16-at-22-03-30.jpg", available:true}
 ];
 
+var DEFAULT_TEXTS = {
+  brandName: "KATAKIT",
+  brandSub: "كتاكيت",
+  heroTitle: "حقيبة ميكي اللي كل البنات هبلو عليها 🎒",
+  heroDesc: "حقيبة مدرسية كيوت بتصميم ميكي ماوس الأصلي، قماش متين وخياطة قوية، واسعة بزاف ومريحة للظهر.",
+  heroBadge: "✨ الأكثر مبيعاً فالمغرب",
+  productName: "حقيبة ميكي ماوس الكيوت",
+  orderTitle: "أطلبي الآن — الدفع عند الاستلام",
+  orderSub: "عمري المعلومات وحنا كنتواصلو معاك فالواتساب ✅",
+  featuresTitle: "لماذا سيحبها طفلك؟",
+  featuresBadge: "💛 لماذا كتعجب البنات",
+  features: [
+    "تصميم كيوت بزاف||رسومات ميكي ماوس بألوان زاهية.||🎨",
+    "جودة كتدوم||قماش سميك وخياطة مقواة.||🧵",
+    "واسعة ومنظمة||جيب كبير + جيوب صغيرة.||📚",
+    "مريحة على الظهر||حمالات مبطنة وخفيفة.||🎒"
+  ],
+  reviewsTitle: "شنو قالو الزبناء؟",
+  reviewsSub: "أكثر من 1240 أم مغربية عجبهم الحال 💕",
+  stockAlert: "المخزون محدود — سارع قبل ما يسالي",
+  footerDesc: "متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال."
+};
+
 var STORAGE_COLORS = 'admin_colors';
+var STORAGE_TEXTS = 'admin_texts';
 var IS_ADMIN = new URLSearchParams(location.search).has('admin');
 
+/* ============ تحويل ImgBB ============ */
 async function toDirectImgBB(url){
   if(!url) return url;
   url = url.trim();
@@ -425,6 +479,71 @@ async function toDirectImgBB(url){
   return url;
 }
 
+/* ============ النصوص ============ */
+function getTexts(){
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORAGE_TEXTS) || 'null');
+    if(saved && typeof saved === 'object') {
+      var merged = JSON.parse(JSON.stringify(DEFAULT_TEXTS));
+      Object.keys(saved).forEach(function(k){ if(saved[k]) merged[k] = saved[k]; });
+      return merged;
+    }
+  } catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_TEXTS));
+}
+
+function saveTextsLocal(texts){
+  try { localStorage.setItem(STORAGE_TEXTS, JSON.stringify(texts)); } catch(e){}
+}
+
+function applyTexts(){
+  var t = getTexts();
+
+  // كل العناصر اللي فيها data-text
+  document.querySelectorAll('[data-text]').forEach(function(el){
+    var key = el.dataset.text;
+    if(t[key]) el.textContent = t[key];
+  });
+
+  // المميزات (Hero)
+  var heroList = document.getElementById('heroFeaturesList');
+  if(heroList && t.features){
+    heroList.innerHTML = '';
+    t.features.forEach(function(f){
+      var parts = f.split('||');
+      var li = document.createElement('li');
+      li.className = 'flex items-center gap-2 text-[14px] font-bold';
+      li.innerHTML = '<span class="text-green-500">✅</span> ' + parts[0];
+      heroList.appendChild(li);
+    });
+  }
+
+  // قسم المميزات (الكروت)
+  var grid = document.getElementById('featuresGrid');
+  if(grid && t.features){
+    var html = '';
+    t.features.forEach(function(f){
+      var parts = f.split('||');
+      var title = parts[0] || '';
+      var desc = parts[1] || '';
+      var icon = parts[2] || '✨';
+      html += '<div class="card text-center hover:-translate-y-2 transition" data-reveal>';
+      html += '<div class="mx-auto w-16 h-16 rounded-3xl bg-brand-pinkLight grid place-items-center text-3xl animate-floaty">' + icon + '</div>';
+      html += '<h3 class="mt-5 font-black text-lg">' + title + '</h3>';
+      html += '<p class="mt-2 text-sm text-gray-600 font-medium">' + desc + '</p>';
+      html += '</div>';
+    });
+    grid.innerHTML = html;
+    grid.querySelectorAll('[data-reveal]').forEach(function(el){
+      setTimeout(function(){ el.classList.add('is-visible'); }, 100);
+    });
+  }
+
+  // Update title tag
+  document.title = t.productName + ' — ' + t.brandName;
+}
+
+/* ============ الألوان ============ */
 function getColors(){
   try {
     var saved = JSON.parse(localStorage.getItem(STORAGE_COLORS) || 'null');
@@ -437,18 +556,18 @@ function saveColorsLocal(colors){
   try { localStorage.setItem(STORAGE_COLORS, JSON.stringify(colors)); } catch(e){}
 }
 
-/* ============ ✅ حفظ فالسيرفر (مع cache-busting) ============ */
+/* ============ حفظ + تحميل من السيرفر ============ */
 async function saveToServer(){
   if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return {ok:false, msg:'SHEET_URL غير مضبوط'};
   try {
     var payload = {
       _type: 'settings',
       colors: getColors(),
+      texts: getTexts(),
       price: Number(localStorage.getItem('admin_price')) || DEFAULT_PRICE,
       old_price: Number(localStorage.getItem('admin_old_price')) || DEFAULT_OLD_PRICE,
       timestamp: Date.now()
     };
-    // ✅ cache-busting: ?t=Timestamp
     var res = await fetch(SHEET_URL + '?t=' + Date.now(), {
       method: 'POST',
       cache: 'no-store',
@@ -456,54 +575,48 @@ async function saveToServer(){
       body: JSON.stringify(payload)
     });
     var data = await res.json();
-    console.log('📤 استجابة السيرفر:', data);
-    return {ok: true, msg: 'تم الحفظ فالسيرفر'};
+    return {ok: true, msg: 'تم الحفظ'};
   } catch(e) {
-    console.error('❌ فشل الحفظ:', e);
-    return {ok: false, msg: 'فشل الاتصال بالسيرفر'};
+    return {ok: false, msg: 'فشل الاتصال'};
   }
 }
 
-/* ============ ✅ تحميل من السيرفر (مع cache-busting) ============ */
 async function fetchFromServer(){
   if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return null;
   try {
-    // ✅ cache-busting: ?t=Timestamp
-    var res = await fetch(SHEET_URL + '?t=' + Date.now(), {
-      method: 'GET',
-      cache: 'no-store'
-    });
+    var res = await fetch(SHEET_URL + '?t=' + Date.now(), { method: 'GET', cache: 'no-store' });
     var data = await res.json();
-    if(!data || !data.colors || !Array.isArray(data.colors) || data.colors.length === 0) {
-      return null;
-    }
+    if(!data) return null;
+    if((!data.colors || data.colors.length === 0) && !data.texts) return null;
     return data;
   } catch(e) {
-    console.warn('❌ فشل التحميل من السيرفر:', e);
     return null;
   }
 }
 
 function applyServerData(data){
   if(!data) return false;
-  localStorage.setItem(STORAGE_COLORS, JSON.stringify(data.colors));
-  if(data.price) localStorage.setItem('admin_price', data.price);
-  if(data.old_price) localStorage.setItem('admin_old_price', data.old_price);
-  return true;
+  var changed = false;
+  if(data.colors && Array.isArray(data.colors) && data.colors.length > 0){
+    localStorage.setItem(STORAGE_COLORS, JSON.stringify(data.colors));
+    changed = true;
+  }
+  if(data.texts && typeof data.texts === 'object'){
+    localStorage.setItem(STORAGE_TEXTS, JSON.stringify(data.texts));
+    changed = true;
+  }
+  if(data.price){ localStorage.setItem('admin_price', data.price); }
+  if(data.old_price){ localStorage.setItem('admin_old_price', data.old_price); }
+  return changed;
 }
 
 function migrateOld(){
-  if(localStorage.getItem(STORAGE_COLORS)) return;
-  var oldStock = {}, oldImgs = {};
-  try { oldStock = JSON.parse(localStorage.getItem('admin_stock') || '{}'); } catch(e){}
-  try { oldImgs = JSON.parse(localStorage.getItem('admin_images') || '{}'); } catch(e){}
-  var colors = DEFAULT_COLORS.map(function(c){
-    var copy = JSON.parse(JSON.stringify(c));
-    if(oldImgs[c.name]) copy.img = oldImgs[c.name];
-    if(oldStock[c.name] === false) copy.available = false;
-    return copy;
-  });
-  saveColorsLocal(colors);
+  if(!localStorage.getItem(STORAGE_COLORS)){
+    saveColorsLocal(JSON.parse(JSON.stringify(DEFAULT_COLORS)));
+  }
+  if(!localStorage.getItem(STORAGE_TEXTS)){
+    saveTextsLocal(JSON.parse(JSON.stringify(DEFAULT_TEXTS)));
+  }
 }
 
 function getPrice(){ var p = localStorage.getItem('admin_price'); return p ? Number(p) : DEFAULT_PRICE; }
@@ -627,9 +740,25 @@ function renderAdminImageRows(){
   });
 }
 
+function renderAdminTexts(){
+  var t = getTexts();
+  var set = function(id, val){ var el = document.getElementById(id); if(el) el.value = val || ''; };
+  set('txtBrandName', t.brandName);
+  set('txtBrandSub', t.brandSub);
+  set('txtHeroTitle', t.heroTitle);
+  set('txtHeroDesc', t.heroDesc);
+  set('txtProductName', t.productName);
+  set('txtOrderTitle', t.orderTitle);
+  set('txtFeatures', (t.features || []).join('\n'));
+  set('txtFeaturesTitle', t.featuresTitle);
+  set('txtReviewsTitle', t.reviewsTitle);
+  set('txtStockAlert', t.stockAlert);
+}
+
 function renderAdminPanel(){
   renderAdminStockRows();
   renderAdminImageRows();
+  renderAdminTexts();
   document.getElementById('adminPriceInput').value = PRICE;
   document.getElementById('adminOldPriceInput').value = OLD_PRICE;
 }
@@ -637,6 +766,7 @@ function renderAdminPanel(){
 function applyAll(){
   renderColorChips();
   renderFormColors();
+  applyTexts();
   updateAllPrices();
   applyStockVisibility();
   var activeColor = state.color;
@@ -944,6 +1074,7 @@ form.addEventListener('submit', async function(e){
   var colorRadio = document.querySelector('input[name="color"]:checked');
   var color = colorRadio ? colorRadio.value : state.color;
   var qty = state.qty;
+  var texts = getTexts();
 
   var ok = true;
   if(name.length < 3){setErr(nEl, true); ok = false;} else setErr(nEl, false);
@@ -961,13 +1092,13 @@ form.addEventListener('submit', async function(e){
 
   var payload = {
     name:name, phone:phone, city:city, color:color,
-    qty:qty, address:address, product:"حقيبة ميكي",
+    qty:qty, address:address, product:texts.productName,
     price:PRICE, total:PRICE*qty, date:new Date().toLocaleString('ar-MA')
   };
 
   await sendToSheet(payload);
 
-  var msg = 'سلام كتاكيت، بغيت حقيبة ميكي اللون ' + color + ' الكمية ' + qty + ' المدينة ' + city + ' السمية ' + name;
+  var msg = 'سلام ' + texts.brandSub + '، بغيت ' + texts.productName + ' اللون ' + color + ' الكمية ' + qty + ' المدينة ' + city + ' السمية ' + name;
   var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
 
   if(wa && !wa.closed) wa.location.href = url;
@@ -991,33 +1122,21 @@ form.addEventListener('submit', async function(e){
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ============================================================
-   🚀 البدء — كل زائر كيقرا من السيرفر (مع cache-busting)
-   ============================================================ */
 migrateOld();
-
 PRICE = getPrice();
 OLD_PRICE = getOldPrice();
 applyAll();
 
-// ✅ جلب من السيرفر مع cache-busting
 fetchFromServer().then(function(data){
   if(data){
-    var changed = applyServerData(data);
-    if(changed){
-      PRICE = getPrice();
-      OLD_PRICE = getOldPrice();
-      applyAll();
-      console.log('✅ تم التحديث من السيرفر (fresh)');
-    }
-  } else {
-    console.log('ℹ️ ما كاينش بيانات فالسيرفر');
+    applyServerData(data);
+    PRICE = getPrice();
+    OLD_PRICE = getOldPrice();
+    applyAll();
+    console.log('✅ تم التحديث من السيرفر');
   }
 });
 
-/* ============================================================
-   🔐 لوحة التحكم
-   ============================================================ */
 (function(){
   if(!IS_ADMIN) return;
 
@@ -1041,6 +1160,7 @@ fetchFromServer().then(function(data){
       panel.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});
       tab.classList.add('active');
       panel.querySelector('[data-section="'+tab.dataset.tab+'"]').classList.add('active');
+      if(tab.dataset.tab === 'texts') renderAdminTexts();
     });
   });
 
@@ -1055,7 +1175,7 @@ fetchFromServer().then(function(data){
     }
     newPreview.textContent = '⏳ جاري التحميل...';
     var direct = await toDirectImgBB(v);
-    newPreview.innerHTML = '<img src="' + direct + '" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.parentElement.innerHTML=\'❌ الصورة ما تحملتش<br><small style=color:#888>استعمل رابط i.ibb.co</small>\'">';
+    newPreview.innerHTML = '<img src="' + direct + '" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.parentElement.innerHTML=\'❌ ما تحملتش\'">';
   });
 
   document.getElementById('adminAddColor').addEventListener('click', async function(){
@@ -1067,7 +1187,7 @@ fetchFromServer().then(function(data){
     if(!img || img.indexOf('http') !== 0){ alert('عافاك حط رابط صورة صحيح'); return; }
 
     var btn = document.getElementById('adminAddColor');
-    btn.textContent = '⏳ جاري معالجة الصورة...';
+    btn.textContent = '⏳ جاري...';
     btn.disabled = true;
 
     img = await toDirectImgBB(img);
@@ -1096,29 +1216,40 @@ fetchFromServer().then(function(data){
 
     var res = await saveToServer();
     var msg = document.getElementById('adminMsg');
-    if(res.ok){
-      msg.textContent = '✅ تزاد اللون "' + name + '" + تحفظ فالسيرفر';
-      msg.style.color = '#4ade80';
-      syncStatus.className = 'admin-status ok';
-      syncStatus.textContent = '✅ متزامن مع السيرفر';
-    } else {
-      msg.textContent = '⚠️ تزاد محلياً ولكن فشل الحفظ';
-      msg.style.color = '#fbbf24';
-      syncStatus.className = 'admin-status warn';
-      syncStatus.textContent = '⚠️ ' + res.msg;
-    }
+    msg.textContent = res.ok ? '✅ تزاد اللون "' + name + '"' : '⚠️ فشل الحفظ';
+    msg.style.color = res.ok ? '#4ade80' : '#fbbf24';
     msg.style.opacity = '1';
     setTimeout(function(){msg.style.opacity = '0';}, 3000);
   });
 
   document.getElementById('adminSave').addEventListener('click', async function(){
+    // الثمن
     var newPrice = Number(document.getElementById('adminPriceInput').value) || DEFAULT_PRICE;
     var newOldPrice = Number(document.getElementById('adminOldPriceInput').value) || DEFAULT_OLD_PRICE;
-
     localStorage.setItem('admin_price', newPrice);
     localStorage.setItem('admin_old_price', newOldPrice);
     PRICE = newPrice;
     OLD_PRICE = newOldPrice;
+
+    // النصوص
+    var t = getTexts();
+    var gv = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+    t.brandName = gv('txtBrandName') || t.brandName;
+    t.brandSub = gv('txtBrandSub') || t.brandSub;
+    t.heroTitle = gv('txtHeroTitle') || t.heroTitle;
+    t.heroDesc = gv('txtHeroDesc') || t.heroDesc;
+    t.productName = gv('txtProductName') || t.productName;
+    t.orderTitle = gv('txtOrderTitle') || t.orderTitle;
+    t.featuresTitle = gv('txtFeaturesTitle') || t.featuresTitle;
+    t.reviewsTitle = gv('txtReviewsTitle') || t.reviewsTitle;
+    t.stockAlert = gv('txtStockAlert') || t.stockAlert;
+
+    var featRaw = gv('txtFeatures');
+    if(featRaw){
+      t.features = featRaw.split('\n').filter(function(l){ return l.trim(); });
+    }
+    saveTextsLocal(t);
+
     applyAll();
 
     var msg = document.getElementById('adminMsg');
@@ -1129,7 +1260,7 @@ fetchFromServer().then(function(data){
     var res = await saveToServer();
 
     if(res.ok){
-      msg.textContent = '✅ تم الحفظ فالسيرفر';
+      msg.textContent = '✅ تم الحفظ بنجاح — كل الزوار غادي يشوفو';
       msg.style.color = '#4ade80';
       syncStatus.className = 'admin-status ok';
       syncStatus.textContent = '✅ متزامن مع السيرفر';
@@ -1157,13 +1288,9 @@ fetchFromServer().then(function(data){
       renderAdminPanel();
       msg.textContent = '✅ تحملات من السيرفر';
       msg.style.color = '#4ade80';
-      syncStatus.className = 'admin-status ok';
-      syncStatus.textContent = '✅ متزامن';
     } else {
       msg.textContent = '❌ ما كاينش بيانات';
       msg.style.color = '#ef4444';
-      syncStatus.className = 'admin-status err';
-      syncStatus.textContent = '❌ فشل';
     }
     setTimeout(function(){msg.style.opacity = '0';}, 3000);
   });
