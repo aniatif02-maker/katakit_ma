@@ -420,6 +420,22 @@ var WHATSAPP_NUMBER = "212691071441";
 var DEFAULT_PRICE = 149;
 var DEFAULT_OLD_PRICE = 249;
 
+/* ========================================================
+   🛡️  عزل الصفحة عن باقي المشاريع (وردة دريسينغ وغيرها)
+   ========================================================
+   ⚠️  مهم: إلا عندك صفحة أخرى (وردة دريسينغ)، خاصها تكون
+       بـ SITE_ID مختلف (مثلاً: 'warda') باش ما يتداخلو.
+   ======================================================== */
+var SITE_ID = 'katakit';
+var STORAGE_PREFIX = SITE_ID + '_';
+var STORAGE_COLORS    = STORAGE_PREFIX + 'colors';
+var STORAGE_TEXTS     = STORAGE_PREFIX + 'texts';
+var STORAGE_PRICE     = STORAGE_PREFIX + 'price';
+var STORAGE_OLD_PRICE = STORAGE_PREFIX + 'old_price';
+var STORAGE_VERSION   = STORAGE_PREFIX + 'v1';
+
+var IS_ADMIN = new URLSearchParams(location.search).has('admin');
+
 var DEFAULT_COLORS = [
   {name:"أحمر",      hex:"#dc2626", img:"https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg", available:true},
   {name:"وردي",      hex:"#f472b6", img:"https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg", available:true},
@@ -450,10 +466,6 @@ var DEFAULT_TEXTS = {
   stockAlert: "المخزون محدود — سارع قبل ما يسالي",
   footerDesc: "متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال."
 };
-
-var STORAGE_COLORS = 'admin_colors';
-var STORAGE_TEXTS = 'admin_texts';
-var IS_ADMIN = new URLSearchParams(location.search).has('admin');
 
 /* ============ تحويل ImgBB ============ */
 async function toDirectImgBB(url){
@@ -562,10 +574,11 @@ async function saveToServer(){
   try {
     var payload = {
       _type: 'settings',
+      _site: SITE_ID,
       colors: getColors(),
       texts: getTexts(),
-      price: Number(localStorage.getItem('admin_price')) || DEFAULT_PRICE,
-      old_price: Number(localStorage.getItem('admin_old_price')) || DEFAULT_OLD_PRICE,
+      price: Number(localStorage.getItem(STORAGE_PRICE)) || DEFAULT_PRICE,
+      old_price: Number(localStorage.getItem(STORAGE_OLD_PRICE)) || DEFAULT_OLD_PRICE,
       timestamp: Date.now()
     };
     var res = await fetch(SHEET_URL + '?t=' + Date.now(), {
@@ -587,6 +600,13 @@ async function fetchFromServer(){
     var res = await fetch(SHEET_URL + '?t=' + Date.now(), { method: 'GET', cache: 'no-store' });
     var data = await res.json();
     if(!data) return null;
+
+    /* 🛡️ العزل: إلا كانت البيانات من موقع آخر، ارفضها */
+    if(data._site && data._site !== SITE_ID){
+      console.warn('🚫 تم تجاهل بيانات من موقع آخر:', data._site, '| المتوقع:', SITE_ID);
+      return null;
+    }
+
     if((!data.colors || data.colors.length === 0) && !data.texts) return null;
     return data;
   } catch(e) {
@@ -596,6 +616,13 @@ async function fetchFromServer(){
 
 function applyServerData(data){
   if(!data) return false;
+
+  /* 🛡️ حماية مزدوجة: ما نطبقو حتى البيانات إلا كانت ديالنا */
+  if(data._site && data._site !== SITE_ID){
+    console.warn('🚫 applyServerData: رفض بيانات موقع آخر:', data._site);
+    return false;
+  }
+
   var changed = false;
   if(data.colors && Array.isArray(data.colors) && data.colors.length > 0){
     localStorage.setItem(STORAGE_COLORS, JSON.stringify(data.colors));
@@ -605,22 +632,43 @@ function applyServerData(data){
     localStorage.setItem(STORAGE_TEXTS, JSON.stringify(data.texts));
     changed = true;
   }
-  if(data.price){ localStorage.setItem('admin_price', data.price); }
-  if(data.old_price){ localStorage.setItem('admin_old_price', data.old_price); }
+  if(data.price){ localStorage.setItem(STORAGE_PRICE, data.price); }
+  if(data.old_price){ localStorage.setItem(STORAGE_OLD_PRICE, data.old_price); }
   return changed;
 }
 
 function migrateOld(){
+  /* 🧹 تنظيف المفاتيح القديمة المتداخلة (مرة وحدة فقط) */
+  if(!localStorage.getItem(STORAGE_VERSION)){
+    ['admin_colors','admin_texts','admin_price','admin_old_price'].forEach(function(k){
+      localStorage.removeItem(k);
+    });
+    localStorage.setItem(STORAGE_VERSION, '1');
+    console.log('🧹 تم تنظيف المفاتيح القديمة');
+  }
+
   if(!localStorage.getItem(STORAGE_COLORS)){
     saveColorsLocal(JSON.parse(JSON.stringify(DEFAULT_COLORS)));
   }
   if(!localStorage.getItem(STORAGE_TEXTS)){
     saveTextsLocal(JSON.parse(JSON.stringify(DEFAULT_TEXTS)));
   }
+  if(!localStorage.getItem(STORAGE_PRICE)){
+    localStorage.setItem(STORAGE_PRICE, DEFAULT_PRICE);
+  }
+  if(!localStorage.getItem(STORAGE_OLD_PRICE)){
+    localStorage.setItem(STORAGE_OLD_PRICE, DEFAULT_OLD_PRICE);
+  }
 }
 
-function getPrice(){ var p = localStorage.getItem('admin_price'); return p ? Number(p) : DEFAULT_PRICE; }
-function getOldPrice(){ var p = localStorage.getItem('admin_old_price'); return p ? Number(p) : DEFAULT_OLD_PRICE; }
+function getPrice(){
+  var p = localStorage.getItem(STORAGE_PRICE);
+  return p ? Number(p) : DEFAULT_PRICE;
+}
+function getOldPrice(){
+  var p = localStorage.getItem(STORAGE_OLD_PRICE);
+  return p ? Number(p) : DEFAULT_OLD_PRICE;
+}
 
 var PRICE = getPrice();
 var OLD_PRICE = getOldPrice();
@@ -1091,6 +1139,7 @@ form.addEventListener('submit', async function(e){
   submitBtn.innerHTML = '<span class="spinner"></span> جاري الإرسال...';
 
   var payload = {
+    _site: SITE_ID,
     name:name, phone:phone, city:city, color:color,
     qty:qty, address:address, product:texts.productName,
     price:PRICE, total:PRICE*qty, date:new Date().toLocaleString('ar-MA')
@@ -1134,6 +1183,8 @@ fetchFromServer().then(function(data){
     OLD_PRICE = getOldPrice();
     applyAll();
     console.log('✅ تم التحديث من السيرفر');
+  } else {
+    console.log('ℹ️ ما كاينش بيانات من السيرفر — كنستعملو الإعدادات المحلية');
   }
 });
 
@@ -1152,7 +1203,7 @@ fetchFromServer().then(function(data){
 
   var syncStatus = document.getElementById('adminSyncStatus');
   syncStatus.className = 'admin-status ok';
-  syncStatus.textContent = '✅ كلمة السر صحيحة';
+  syncStatus.textContent = '✅ كلمة السر صحيحة — SITE: ' + SITE_ID;
 
   panel.querySelectorAll('.admin-tab').forEach(function(tab){
     tab.addEventListener('click', function(){
@@ -1226,8 +1277,8 @@ fetchFromServer().then(function(data){
     // الثمن
     var newPrice = Number(document.getElementById('adminPriceInput').value) || DEFAULT_PRICE;
     var newOldPrice = Number(document.getElementById('adminOldPriceInput').value) || DEFAULT_OLD_PRICE;
-    localStorage.setItem('admin_price', newPrice);
-    localStorage.setItem('admin_old_price', newOldPrice);
+    localStorage.setItem(STORAGE_PRICE, newPrice);
+    localStorage.setItem(STORAGE_OLD_PRICE, newOldPrice);
     PRICE = newPrice;
     OLD_PRICE = newOldPrice;
 
@@ -1263,7 +1314,7 @@ fetchFromServer().then(function(data){
       msg.textContent = '✅ تم الحفظ بنجاح — كل الزوار غادي يشوفو';
       msg.style.color = '#4ade80';
       syncStatus.className = 'admin-status ok';
-      syncStatus.textContent = '✅ متزامن مع السيرفر';
+      syncStatus.textContent = '✅ متزامن مع السيرفر (SITE: ' + SITE_ID + ')';
     } else {
       msg.textContent = '❌ فشل: ' + res.msg;
       msg.style.color = '#ef4444';
@@ -1289,7 +1340,7 @@ fetchFromServer().then(function(data){
       msg.textContent = '✅ تحملات من السيرفر';
       msg.style.color = '#4ade80';
     } else {
-      msg.textContent = '❌ ما كاينش بيانات';
+      msg.textContent = '❌ ما كاينش بيانات (أو البيانات ديال موقع آخر)';
       msg.style.color = '#ef4444';
     }
     setTimeout(function(){msg.style.opacity = '0';}, 3000);
