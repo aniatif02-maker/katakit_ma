@@ -36,30 +36,6 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 .faq-item.is-open .faq-icon{transform:rotate(45deg);background:#FF90BC;color:#fff}
 @keyframes pulseShadow{0%,100%{box-shadow:0 8px 0 0 #111,0 0 0 0 rgba(255,217,61,.7)}50%{box-shadow:0 8px 0 0 #111,0 0 0 16px rgba(255,217,61,0)}}
 .btn-confirm{animation:pulseShadow 2s infinite}
-#adminPanel{display:none}
-#adminPanel.show{display:block}
-.admin-tab{background:#222;color:#fff;border:0;padding:8px 5px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:10.5px;font-weight:800;flex:1;transition:.2s}
-.admin-tab.active{background:#FFD93D;color:#111}
-.admin-section{display:none}
-.admin-section.active{display:block}
-.admin-row{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #262626;font-size:13px}
-.admin-row:last-child{border-bottom:0}
-.admin-input{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:9px 10px;border-radius:9px;font-size:13px;outline:0;font-family:inherit;margin-bottom:8px}
-.admin-input:focus{border-color:#FFD93D}
-.admin-textarea{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:9px 10px;border-radius:9px;font-size:12.5px;outline:0;font-family:inherit;margin-bottom:8px;resize:vertical;min-height:80px;line-height:1.6}
-.admin-textarea:focus{border-color:#FFD93D}
-.admin-img-input{flex:1;background:#1a1a1a;border:1px solid #333;color:#fff;padding:7px 9px;border-radius:8px;font-size:11px;outline:0;font-family:monospace;direction:ltr;min-width:0}
-.admin-img-input:focus{border-color:#FFD93D}
-.admin-color-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:2px solid #444}
-.admin-del{background:transparent;border:0;color:#ef4444;cursor:pointer;font-size:15px;padding:0 4px}
-.admin-add-btn{background:#4ade80;color:#111;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:13px;width:100%;margin-top:4px}
-.admin-sync-btn{background:#3b82f6;color:#fff;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:13px;width:100%;margin-top:4px}
-.admin-status{font-size:11px;padding:6px 8px;border-radius:8px;margin-bottom:8px;text-align:center;font-weight:700}
-.admin-status.ok{background:rgba(74,222,128,.15);color:#4ade80}
-.admin-status.warn{background:rgba(251,191,36,.15);color:#fbbf24}
-.admin-status.err{background:rgba(239,68,68,.15);color:#ef4444}
-.admin-label{display:block;font-size:11.5px;font-weight:800;margin-bottom:5px;color:#ddd}
-.admin-hint{font-size:10.5px;color:#666;margin-bottom:6px;line-height:1.5}
 </style>
 </head>
 <body class="bg-white text-brand-dark antialiased overflow-x-hidden">
@@ -318,123 +294,23 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
   </div>
 </div>
 
-<div id="adminPanel" style="position:fixed;bottom:100px;left:16px;z-index:9999;background:#111;color:#fff;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:Tajawal,sans-serif;width:400px;max-width:94vw;direction:rtl;border:2px solid #FFD93D;max-height:85vh;overflow-y:auto">
-
-  <div style="font-weight:900;font-size:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px">
-    <span>🎛️ لوحة التحكم</span>
-    <span style="font-size:10px;background:#FFD93D;color:#111;padding:3px 8px;border-radius:8px;font-weight:900">ADMIN</span>
-  </div>
-
-  <div id="adminSyncStatus" class="admin-status warn">⏳ جاري التحقق من السيرفر...</div>
-
-  <div style="display:flex;gap:4px;margin-bottom:12px">
-    <button type="button" class="admin-tab active" data-tab="stock">📦 المخزون</button>
-    <button type="button" class="admin-tab" data-tab="images">🖼️ الصور</button>
-    <button type="button" class="admin-tab" data-tab="price">💰 الثمن</button>
-    <button type="button" class="admin-tab" data-tab="texts">✏️ العناوين</button>
-    <button type="button" class="admin-tab" data-tab="add">➕ إضافة</button>
-  </div>
-
-  <div class="admin-section active" data-section="stock">
-    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">حدد الألوان المتوفرة + احذف</div>
-    <div id="adminStockRows"></div>
-  </div>
-
-  <div class="admin-section" data-section="images">
-    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">رابط الصورة لكل لون</div>
-    <div id="adminImageRows"></div>
-  </div>
-
-  <div class="admin-section" data-section="price">
-    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">غيّر الثمن الحالي والقديم</div>
-    <div style="padding:8px 0">
-      <label class="admin-label">💰 الثمن الحالي (درهم)</label>
-      <input id="adminPriceInput" type="number" class="admin-input">
-    </div>
-    <div style="padding:8px 0">
-      <label class="admin-label">✂️ الثمن القديم (مشطوب)</label>
-      <input id="adminOldPriceInput" type="number" class="admin-input">
-    </div>
-  </div>
-
-  <div class="admin-section" data-section="texts">
-    <div class="admin-hint">✏️ بدّل العناوين والنصوص باش تلائم المنتج ديالك</div>
-
-    <label class="admin-label">🏪 اسم البراند</label>
-    <input id="txtBrandName" type="text" class="admin-input" placeholder="KATAKIT">
-
-    <label class="admin-label">🏷️ اسم البراند (بالعربية)</label>
-    <input id="txtBrandSub" type="text" class="admin-input" placeholder="كتاكيت">
-
-    <label class="admin-label">🎯 العنوان الرئيسي (Hero)</label>
-    <input id="txtHeroTitle" type="text" class="admin-input" placeholder="حقيبة ميكي اللي كل البنات هبلو عليها 🎒">
-
-    <label class="admin-label">📝 وصف المنتج</label>
-    <textarea id="txtHeroDesc" class="admin-textarea" placeholder="وصف المنتج..."></textarea>
-
-    <label class="admin-label">🏷️ اسم المنتج (في الاستمارة)</label>
-    <input id="txtProductName" type="text" class="admin-input" placeholder="حقيبة ميكي ماوس الكيوت">
-
-    <label class="admin-label">📋 عنوان الاستمارة</label>
-    <input id="txtOrderTitle" type="text" class="admin-input" placeholder="أطلبي الآن — الدفع عند الاستلام">
-
-    <label class="admin-label">📌 المميزات (كل ميزة في سطر)</label>
-    <textarea id="txtFeatures" class="admin-textarea" placeholder="✅ ميزة 1&#10;✅ ميزة 2"></textarea>
-
-    <label class="admin-label">💛 عنوان قسم المميزات</label>
-    <input id="txtFeaturesTitle" type="text" class="admin-input" placeholder="لماذا سيحبها طفلك؟">
-
-    <label class="admin-label">⭐ عنوان التقييمات</label>
-    <input id="txtReviewsTitle" type="text" class="admin-input" placeholder="شنو قالو الزبناء؟">
-
-    <label class="admin-label">📢 نص المخزون المحدود</label>
-    <input id="txtStockAlert" type="text" class="admin-input" placeholder="المخزون محدود — سارع قبل ما يسالي">
-  </div>
-
-  <div class="admin-section" data-section="add">
-    <div style="font-size:11.5px;opacity:.6;margin-bottom:8px">أضف لون جديد</div>
-    <label class="admin-label">🏷️ اسم اللون</label>
-    <input id="adminNewName" type="text" class="admin-input" placeholder="مثال: أزرق">
-    <label class="admin-label">🎨 اللون</label>
-    <input id="adminNewHex" type="color" value="#3b82f6" style="width:100%;height:42px;background:#1a1a1a;border:1px solid #333;border-radius:9px;cursor:pointer;margin-bottom:8px">
-    <label class="admin-label">🖼️ رابط الصورة (i.ibb.co)</label>
-    <input id="adminNewImg" type="text" class="admin-input" placeholder="https://i.ibb.co/..." style="direction:ltr;font-family:monospace;font-size:11px">
-    <div id="adminNewPreview" style="width:100%;height:90px;background:#1a1a1a;border:1px dashed #333;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#666;margin-bottom:8px;overflow:hidden">معاينة الصورة</div>
-    <button type="button" id="adminAddColor" class="admin-add-btn">➕ إضافة اللون</button>
-  </div>
-
-  <div style="display:flex;flex-direction:column;gap:6px;margin-top:14px">
-    <button type="button" id="adminSync" class="admin-sync-btn">🔄 تحميل من السيرفر</button>
-  </div>
-
-  <div style="display:flex;gap:8px;margin-top:10px">
-    <button type="button" id="adminSave" style="flex:1;background:#FFD93D;color:#111;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">💾 حفظ</button>
-    <button type="button" id="adminClose" style="flex:1;background:#333;color:#fff;font-weight:900;border:0;padding:11px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px">✖ إغلاق</button>
-  </div>
-  <div id="adminMsg" style="margin-top:8px;font-size:12px;text-align:center;opacity:0;transition:.3s;font-weight:700"></div>
-</div>
-
 <script>
-var SHEET_URL = "https://script.google.com/macros/s/AKfycbxYnErbWRpdLD7h1sIA5Ky0b_PARtr6lfNkEo6E8KzK8ulDSzRMPwIQzhu7xw-pDrmC0Q/exec";
+/* ==================================================
+   الإعدادات الأساسية
+   ================================================== */
+var CONFIG_URL = "./config.json";
 var WHATSAPP_NUMBER = "212691071441";
 var DEFAULT_PRICE = 149;
 var DEFAULT_OLD_PRICE = 249;
 
-/* ========================================================
-   🛡️  عزل الصفحة عن باقي المشاريع (وردة دريسينغ وغيرها)
-   ========================================================
-   ⚠️  مهم: إلا عندك صفحة أخرى (وردة دريسينغ)، خاصها تكون
-       بـ SITE_ID مختلف (مثلاً: 'warda') باش ما يتداخلو.
-   ======================================================== */
+/* 🛡️ عزل الصفحة */
 var SITE_ID = 'katakit';
 var STORAGE_PREFIX = SITE_ID + '_';
 var STORAGE_COLORS    = STORAGE_PREFIX + 'colors';
 var STORAGE_TEXTS     = STORAGE_PREFIX + 'texts';
 var STORAGE_PRICE     = STORAGE_PREFIX + 'price';
 var STORAGE_OLD_PRICE = STORAGE_PREFIX + 'old_price';
-var STORAGE_VERSION   = STORAGE_PREFIX + 'v1';
-
-var IS_ADMIN = new URLSearchParams(location.search).has('admin');
+var STORAGE_VERSION   = STORAGE_PREFIX + 'v2';
 
 var DEFAULT_COLORS = [
   {name:"أحمر",      hex:"#dc2626", img:"https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg", available:true},
@@ -467,31 +343,9 @@ var DEFAULT_TEXTS = {
   footerDesc: "متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال."
 };
 
-/* ============ تحويل ImgBB ============ */
-async function toDirectImgBB(url){
-  if(!url) return url;
-  url = url.trim();
-  if(url.indexOf('i.ibb.co') !== -1) return url;
-  if(url.indexOf('ibb.co') === -1) return url;
-  var proxies = [
-    'https://corsproxy.io/?url=',
-    'https://api.codetabs.com/v1/proxy?quest=',
-    'https://api.allorigins.win/raw?url='
-  ];
-  for(var i = 0; i < proxies.length; i++){
-    try {
-      var res = await fetch(proxies[i] + encodeURIComponent(url));
-      var html = await res.text();
-      var m = html.match(/<meta property="og:image" content="([^"]+)"/i);
-      if(m && m[1] && m[1].indexOf('i.ibb.co') !== -1) return m[1];
-      var m2 = html.match(/<link rel="image_src" href="([^"]+)"/i);
-      if(m2 && m2[1] && m2[1].indexOf('i.ibb.co') !== -1) return m2[1];
-    } catch(e) {}
-  }
-  return url;
-}
-
-/* ============ النصوص ============ */
+/* ==================================================
+   النصوص
+   ================================================== */
 function getTexts(){
   try {
     var saved = JSON.parse(localStorage.getItem(STORAGE_TEXTS) || 'null');
@@ -511,13 +365,11 @@ function saveTextsLocal(texts){
 function applyTexts(){
   var t = getTexts();
 
-  // كل العناصر اللي فيها data-text
   document.querySelectorAll('[data-text]').forEach(function(el){
     var key = el.dataset.text;
     if(t[key]) el.textContent = t[key];
   });
 
-  // المميزات (Hero)
   var heroList = document.getElementById('heroFeaturesList');
   if(heroList && t.features){
     heroList.innerHTML = '';
@@ -530,7 +382,6 @@ function applyTexts(){
     });
   }
 
-  // قسم المميزات (الكروت)
   var grid = document.getElementById('featuresGrid');
   if(grid && t.features){
     var html = '';
@@ -551,11 +402,12 @@ function applyTexts(){
     });
   }
 
-  // Update title tag
   document.title = t.productName + ' — ' + t.brandName;
 }
 
-/* ============ الألوان ============ */
+/* ==================================================
+   الألوان
+   ================================================== */
 function getColors(){
   try {
     var saved = JSON.parse(localStorage.getItem(STORAGE_COLORS) || 'null');
@@ -568,48 +420,34 @@ function saveColorsLocal(colors){
   try { localStorage.setItem(STORAGE_COLORS, JSON.stringify(colors)); } catch(e){}
 }
 
-/* ============ حفظ + تحميل من السيرفر ============ */
-async function saveToServer(){
-  if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return {ok:false, msg:'SHEET_URL غير مضبوط'};
-  try {
-    var payload = {
-      _type: 'settings',
-      _site: SITE_ID,
-      colors: getColors(),
-      texts: getTexts(),
-      price: Number(localStorage.getItem(STORAGE_PRICE)) || DEFAULT_PRICE,
-      old_price: Number(localStorage.getItem(STORAGE_OLD_PRICE)) || DEFAULT_OLD_PRICE,
-      timestamp: Date.now()
-    };
-    var res = await fetch(SHEET_URL + '?t=' + Date.now(), {
-      method: 'POST',
-      cache: 'no-store',
-      headers: {'Content-Type': 'text/plain;charset=utf-8'},
-      body: JSON.stringify(payload)
-    });
-    var data = await res.json();
-    return {ok: true, msg: 'تم الحفظ'};
-  } catch(e) {
-    return {ok: false, msg: 'فشل الاتصال'};
-  }
-}
-
+/* ==================================================
+   تحميل config.json — المصدر الرئيسي
+   ================================================== */
 async function fetchFromServer(){
-  if(!SHEET_URL || SHEET_URL.indexOf('ضع هنا') !== -1) return null;
   try {
-    var res = await fetch(SHEET_URL + '?t=' + Date.now(), { method: 'GET', cache: 'no-store' });
+    var res = await fetch(CONFIG_URL + '?t=' + Date.now(), { cache: 'no-store' });
+    if(!res.ok){
+      console.log('ℹ️ config.json غير موجود — كنستعملو الإعدادات المحلية');
+      return null;
+    }
     var data = await res.json();
     if(!data) return null;
 
-    /* 🛡️ العزل: إلا كانت البيانات من موقع آخر، ارفضها */
-    if(data._site && data._site !== SITE_ID){
-      console.warn('🚫 تم تجاهل بيانات من موقع آخر:', data._site, '| المتوقع:', SITE_ID);
+    // 🛡️ عزل صارم — إلا ماشي ديالنا، ارفض
+    if(!data._site || data._site !== SITE_ID){
+      console.warn('🚫 رفض config.json — _site:', data._site, '| المتوقع:', SITE_ID);
       return null;
     }
 
-    if((!data.colors || data.colors.length === 0) && !data.texts) return null;
-    return data;
+    return {
+      _site: data._site,
+      colors: data.colors,
+      texts: data.texts,
+      price: data.price,
+      old_price: data.oldPrice
+    };
   } catch(e) {
+    console.warn('ℹ️ ما لقيناش config.json — كنستعملو localStorage');
     return null;
   }
 }
@@ -617,9 +455,8 @@ async function fetchFromServer(){
 function applyServerData(data){
   if(!data) return false;
 
-  /* 🛡️ حماية مزدوجة: ما نطبقو حتى البيانات إلا كانت ديالنا */
-  if(data._site && data._site !== SITE_ID){
-    console.warn('🚫 applyServerData: رفض بيانات موقع آخر:', data._site);
+  if(!data._site || data._site !== SITE_ID){
+    console.warn('🚫 applyServerData: رفض — _site:', data._site);
     return false;
   }
 
@@ -637,8 +474,10 @@ function applyServerData(data){
   return changed;
 }
 
+/* ==================================================
+   تنظيف المفاتيح القديمة
+   ================================================== */
 function migrateOld(){
-  /* 🧹 تنظيف المفاتيح القديمة المتداخلة (مرة وحدة فقط) */
   if(!localStorage.getItem(STORAGE_VERSION)){
     ['admin_colors','admin_texts','admin_price','admin_old_price'].forEach(function(k){
       localStorage.removeItem(k);
@@ -661,6 +500,9 @@ function migrateOld(){
   }
 }
 
+/* ==================================================
+   الأثمنة
+   ================================================== */
 function getPrice(){
   var p = localStorage.getItem(STORAGE_PRICE);
   return p ? Number(p) : DEFAULT_PRICE;
@@ -673,6 +515,9 @@ function getOldPrice(){
 var PRICE = getPrice();
 var OLD_PRICE = getOldPrice();
 
+/* ==================================================
+   عرض الألوان
+   ================================================== */
 function renderColorChips(){
   var container = document.getElementById('colorChips');
   var colors = getColors();
@@ -717,100 +562,9 @@ function renderFormColors(){
   });
 }
 
-function renderAdminStockRows(){
-  var container = document.getElementById('adminStockRows');
-  if(!container) return;
-  container.innerHTML = '';
-  var colors = getColors();
-  colors.forEach(function(c){
-    var avail = c.available !== false;
-    var row = document.createElement('div');
-    row.className = 'admin-row';
-    row.innerHTML = '<input type="checkbox" data-admin-color="' + c.name + '" ' + (avail?'checked':'') + ' style="width:18px;height:18px;accent-color:#FFD93D;cursor:pointer;flex-shrink:0">' +
-      '<span class="admin-color-dot" style="background:' + c.hex + '"></span>' +
-      '<span style="flex:1;font-weight:700">' + c.name + '</span>' +
-      '<button type="button" class="admin-del" data-del="' + c.name + '" title="حذف">🗑️</button>';
-    container.appendChild(row);
-  });
-  container.querySelectorAll('input[data-admin-color]').forEach(function(cb){
-    cb.addEventListener('change', function(){
-      var colors = getColors();
-      var name = cb.dataset.adminColor;
-      colors.forEach(function(x){ if(x.name === name) x.available = cb.checked; });
-      saveColorsLocal(colors);
-      applyAll();
-    });
-  });
-  container.querySelectorAll('[data-del]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var name = btn.dataset.del;
-      if(!confirm('متأكد من حذف "' + name + '"؟')) return;
-      var colors = getColors().filter(function(x){ return x.name !== name; });
-      if(colors.length === 0){ alert('لازم يبقى على الأقل لون واحد!'); return; }
-      saveColorsLocal(colors);
-      if(state.color === name){ state.color = colors[0].name; state.userPicked = false; }
-      applyAll();
-      renderAdminPanel();
-    });
-  });
-}
-
-function renderAdminImageRows(){
-  var container = document.getElementById('adminImageRows');
-  if(!container) return;
-  container.innerHTML = '';
-  var colors = getColors();
-  colors.forEach(function(c){
-    var row = document.createElement('div');
-    row.style.cssText = 'padding:8px 0;border-bottom:1px solid #262626';
-    row.innerHTML = '<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">' +
-      '<span class="admin-color-dot" style="background:' + c.hex + '"></span>' +
-      '<span style="font-size:12.5px;font-weight:800">' + c.name + '</span>' +
-      '</div>' +
-      '<div style="display:flex;gap:6px;align-items:center">' +
-      '<img src="' + c.img + '" style="width:36px;height:36px;object-fit:cover;border-radius:8px;border:1px solid #333;flex-shrink:0" data-preview>' +
-      '<input type="text" class="admin-img-input" data-img-color="' + c.name + '" value="' + c.img + '">' +
-      '</div>';
-    container.appendChild(row);
-    var input = row.querySelector('input');
-    var preview = row.querySelector('[data-preview]');
-    input.addEventListener('input', async function(){
-      var v = input.value.trim();
-      if(v.indexOf('http') === 0){
-        var direct = await toDirectImgBB(v);
-        preview.src = direct;
-        var colors = getColors();
-        colors.forEach(function(x){ if(x.name === c.name) x.img = direct; });
-        saveColorsLocal(colors);
-        applyAll();
-      }
-    });
-  });
-}
-
-function renderAdminTexts(){
-  var t = getTexts();
-  var set = function(id, val){ var el = document.getElementById(id); if(el) el.value = val || ''; };
-  set('txtBrandName', t.brandName);
-  set('txtBrandSub', t.brandSub);
-  set('txtHeroTitle', t.heroTitle);
-  set('txtHeroDesc', t.heroDesc);
-  set('txtProductName', t.productName);
-  set('txtOrderTitle', t.orderTitle);
-  set('txtFeatures', (t.features || []).join('\n'));
-  set('txtFeaturesTitle', t.featuresTitle);
-  set('txtReviewsTitle', t.reviewsTitle);
-  set('txtStockAlert', t.stockAlert);
-}
-
-function renderAdminPanel(){
-  renderAdminStockRows();
-  renderAdminImageRows();
-  renderAdminTexts();
-  document.getElementById('adminPriceInput').value = PRICE;
-  document.getElementById('adminOldPriceInput').value = OLD_PRICE;
-}
-
+/* ==================================================
+   applyAll
+   ================================================== */
 function applyAll(){
   renderColorChips();
   renderFormColors();
@@ -846,6 +600,9 @@ function applyStockVisibility(){
   });
 }
 
+/* ==================================================
+   Scroll reset + Sticky bar
+   ================================================== */
 (function(){
   if(location.hash) history.replaceState(null,'',location.pathname+location.search);
   window.scrollTo(0,0);
@@ -868,6 +625,9 @@ function applyStockVisibility(){
   upd();
 })();
 
+/* ==================================================
+   المدن
+   ================================================== */
 var CITIES = ["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","سلا","آسفي","الجديدة","الناظور","بني ملال","المحمدية","خريبكة","الصويرة","العيون","الداخلة","ورزازات","الرشيدية","تازة","سطات","بركان","العرائش","القصر الكبير","كلميم","تيزنيت","طانطان","الحسيمة","إفران","أزرو","شفشاون","سيدي سليمان","وادي زم","اليوسفية","مرتيل","أصيلة","زاكورة","تنغير","ميدلت","تارودانت","خنيفرة","سيدي قاسم","بوزنيقة","الصخيرات","تمارة","أزمور","سيدي بنور","الفقيه بن صالح","جرادة","فكيك","بولمان","الخميسات","بوجدور","أسا الزاك","سيدي إفني"];
 (function(){
   var s = document.getElementById('fCity');
@@ -878,6 +638,9 @@ var CITIES = ["الدار البيضاء","الرباط","مراكش","فاس","
   });
 })();
 
+/* ==================================================
+   الإشعارات
+   ================================================== */
 var NOTIFS = [
   {n:"فاطمة",c:"الدار البيضاء",t:"قبل دقيقة"},
   {n:"سلمى",c:"الرباط",t:"قبل 3 دقائق"},
@@ -891,6 +654,9 @@ var NOTIFS = [
   {n:"أمينة",c:"القنيطرة",t:"قبل دقيقة"}
 ];
 
+/* ==================================================
+   التقييمات
+   ================================================== */
 var REVIEWS = [
   {i:"ف",n:"فاطمة الزهراء",c:"الدار البيضاء",t:"بنتي فرحت بزاف ملي وصلاتها، الجودة أحسن مما توقعت واللون بحال ما كاين فالصورة.",e:"🎒"},
   {i:"س",n:"سلمى بنعلي",c:"الرباط",t:"الحقيبة واسعة وكافيها كلشي، الخياطة قوية والقماش سميك. نصحت بها خواتي.",e:"🛍️"},
@@ -915,6 +681,9 @@ var REVIEWS = [
   document.getElementById('reviewsWrap').innerHTML = html;
 })();
 
+/* ==================================================
+   الأسئلة الشائعة
+   ================================================== */
 var FAQS = [
   {q:"واش الدفع عند الاستلام؟",a:"نعم 100%. كتخلصي غير ملي توصلك الطلبية وكتشوفي الحقيبة بعينيك."},
   {q:"شحال كتاخد الطلبية باش توصل؟",a:"بين 24 و 48 ساعة فالمدن الكبرى، و48-72 ساعة فالمناطق البعيدة."},
@@ -945,8 +714,14 @@ var FAQS = [
   });
 })();
 
+/* ==================================================
+   الحالة
+   ================================================== */
 var state = {color:"وردي", qty:1, userPicked:false};
 
+/* ==================================================
+   العدّاد التنازلي
+   ================================================== */
 var cd = 2*3600 + 14*60 + 33;
 function renderCd(){
   var h = Math.floor(cd/3600), m = Math.floor((cd%3600)/60), s = cd%60;
@@ -958,6 +733,9 @@ function renderCd(){
 setInterval(function(){cd--;if(cd<0)cd=2*3600+14*60+33;renderCd();},1000);
 renderCd();
 
+/* ==================================================
+   الأثمنة
+   ================================================== */
 function updateAllPrices(){
   document.querySelectorAll('[data-price-display]').forEach(function(el){el.textContent = PRICE;});
   document.querySelectorAll('[data-old-price-display]').forEach(function(el){el.textContent = OLD_PRICE + ' درهم';});
@@ -965,6 +743,9 @@ function updateAllPrices(){
   renderQty();
 }
 
+/* ==================================================
+   تغيير اللون
+   ================================================== */
 var mainImg = document.getElementById('mainImage');
 function applyColor(c, fromUser){
   if(fromUser === undefined) fromUser = true;
@@ -994,6 +775,9 @@ setInterval(function(){
   applyColor(avail[idx].name, false);
 }, 4500);
 
+/* ==================================================
+   الكمية
+   ================================================== */
 var qtyEl = document.getElementById('qtyValue');
 var sumQty = document.getElementById('sumQty');
 var sumTotal = document.getElementById('sumTotal');
@@ -1009,6 +793,9 @@ document.getElementById('qtyMinus').addEventListener('click', function(){
   if(state.qty > 1){state.qty--; renderQty();}
 });
 
+/* ==================================================
+   النجوم
+   ================================================== */
 (function(){
   var r = document.getElementById('starsRow');
   for(var i=0; i<5; i++){
@@ -1045,6 +832,9 @@ function playRating(){
   }, 24);
 }
 
+/* ==================================================
+   Intersection Observers
+   ================================================== */
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){
     if(e.isIntersecting){
@@ -1062,6 +852,9 @@ var sObs = new IntersectionObserver(function(es){
 }, {threshold:0.4});
 sObs.observe(document.getElementById('starsRow'));
 
+/* ==================================================
+   Toast notifications
+   ================================================== */
 var toast = document.getElementById('toast');
 var ni = 0;
 function showToast(){
@@ -1079,6 +872,9 @@ function showToast(){
 setTimeout(showToast, 4000);
 setInterval(showToast, 7000);
 
+/* ==================================================
+   استمارة الطلب
+   ================================================== */
 var form = document.getElementById('orderForm');
 var submitBtn = document.getElementById('submitBtn');
 var successBox = document.getElementById('formSuccess');
@@ -1091,21 +887,6 @@ function setErr(el, show){
   if(e) e.classList.toggle('hidden', !show);
   el.classList.toggle('!border-red-400', show);
   el.classList.toggle('!bg-red-50', show);
-}
-
-async function sendToSheet(p){
-  if(!SHEET_URL || SHEET_URL.indexOf("ضع هنا") !== -1) return;
-  try {
-    await Promise.race([
-      fetch(SHEET_URL + '?t=' + Date.now(), {
-        method:"POST",
-        cache: 'no-store',
-        headers:{"Content-Type":"text/plain;charset=utf-8"},
-        body: JSON.stringify(p)
-      }),
-      new Promise(function(r){setTimeout(r, 4000);})
-    ]);
-  } catch(e) { console.warn(e); }
 }
 
 form.addEventListener('submit', async function(e){
@@ -1131,6 +912,19 @@ form.addEventListener('submit', async function(e){
   if(address.length < 8){setErr(aEl, true); ok = false;} else setErr(aEl, false);
   if(!ok) return;
 
+  // كنسجلو الطلب فالمتصفح (اختياري للرجوع)
+  try {
+    var orders = JSON.parse(localStorage.getItem('katakit_orders') || '[]');
+    orders.push({
+      name: name, phone: phone, city: city, color: color,
+      qty: qty, address: address, product: texts.productName,
+      price: PRICE, total: PRICE*qty, date: new Date().toISOString()
+    });
+    // خلّي فقط آخر 50 طلب
+    if(orders.length > 50) orders = orders.slice(-50);
+    localStorage.setItem('katakit_orders', JSON.stringify(orders));
+  } catch(e){}
+
   var wa = null;
   try { wa = window.open('', '_blank'); } catch(_) {}
 
@@ -1138,16 +932,11 @@ form.addEventListener('submit', async function(e){
   submitBtn.className = BTN_LD;
   submitBtn.innerHTML = '<span class="spinner"></span> جاري الإرسال...';
 
-  var payload = {
-    _site: SITE_ID,
-    name:name, phone:phone, city:city, color:color,
-    qty:qty, address:address, product:texts.productName,
-    price:PRICE, total:PRICE*qty, date:new Date().toLocaleString('ar-MA')
-  };
-
-  await sendToSheet(payload);
-
-  var msg = 'سلام ' + texts.brandSub + '، بغيت ' + texts.productName + ' اللون ' + color + ' الكمية ' + qty + ' المدينة ' + city + ' السمية ' + name;
+  // تجهيز رسالة الواتساب
+  var msg = 'سلام ' + texts.brandSub + '، بغيت ' + texts.productName + ' اللون ' + color + ' الكمية ' + qty + ' المدينة ' + city + ' السمية ' + name + '\n' +
+            '📞 ' + phone + '\n' +
+            '📍 ' + address + '\n' +
+            '💰 المجموع: ' + (PRICE * qty) + ' درهم';
   var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
 
   if(wa && !wa.closed) wa.location.href = url;
@@ -1171,186 +960,26 @@ form.addEventListener('submit', async function(e){
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
+/* ==================================================
+   التشغيل
+   ================================================== */
 migrateOld();
 PRICE = getPrice();
 OLD_PRICE = getOldPrice();
 applyAll();
 
+// جلب config.json
 fetchFromServer().then(function(data){
   if(data){
     applyServerData(data);
     PRICE = getPrice();
     OLD_PRICE = getOldPrice();
     applyAll();
-    console.log('✅ تم التحديث من السيرفر');
+    console.log('✅ تم التحديث من config.json');
   } else {
-    console.log('ℹ️ ما كاينش بيانات من السيرفر — كنستعملو الإعدادات المحلية');
+    console.log('ℹ️ كنستعملو الإعدادات المحلية');
   }
 });
-
-(function(){
-  if(!IS_ADMIN) return;
-
-  var pass = prompt('🔐 أدخل كلمة السر:');
-  if(pass !== '1234'){
-    location.href = '/';
-    return;
-  }
-
-  var panel = document.getElementById('adminPanel');
-  panel.classList.add('show');
-  renderAdminPanel();
-
-  var syncStatus = document.getElementById('adminSyncStatus');
-  syncStatus.className = 'admin-status ok';
-  syncStatus.textContent = '✅ كلمة السر صحيحة — SITE: ' + SITE_ID;
-
-  panel.querySelectorAll('.admin-tab').forEach(function(tab){
-    tab.addEventListener('click', function(){
-      panel.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active');});
-      panel.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});
-      tab.classList.add('active');
-      panel.querySelector('[data-section="'+tab.dataset.tab+'"]').classList.add('active');
-      if(tab.dataset.tab === 'texts') renderAdminTexts();
-    });
-  });
-
-  var newImgInput = document.getElementById('adminNewImg');
-  var newPreview = document.getElementById('adminNewPreview');
-
-  newImgInput.addEventListener('input', async function(){
-    var v = newImgInput.value.trim();
-    if(v.indexOf('http') !== 0){
-      newPreview.textContent = 'معاينة الصورة';
-      return;
-    }
-    newPreview.textContent = '⏳ جاري التحميل...';
-    var direct = await toDirectImgBB(v);
-    newPreview.innerHTML = '<img src="' + direct + '" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.parentElement.innerHTML=\'❌ ما تحملتش\'">';
-  });
-
-  document.getElementById('adminAddColor').addEventListener('click', async function(){
-    var name = document.getElementById('adminNewName').value.trim();
-    var hex = document.getElementById('adminNewHex').value;
-    var img = document.getElementById('adminNewImg').value.trim();
-
-    if(!name){ alert('عافاك كتبي اسم اللون'); return; }
-    if(!img || img.indexOf('http') !== 0){ alert('عافاك حط رابط صورة صحيح'); return; }
-
-    var btn = document.getElementById('adminAddColor');
-    btn.textContent = '⏳ جاري...';
-    btn.disabled = true;
-
-    img = await toDirectImgBB(img);
-
-    btn.textContent = '➕ إضافة اللون';
-    btn.disabled = false;
-
-    var colors = getColors();
-    if(colors.find(function(x){return x.name === name;})){
-      alert('هاد اللون موجود من قبل!');
-      return;
-    }
-
-    colors.push({name:name, hex:hex, img:img, available:true});
-    saveColorsLocal(colors);
-
-    document.getElementById('adminNewName').value = '';
-    document.getElementById('adminNewImg').value = '';
-    newPreview.textContent = 'معاينة الصورة';
-
-    state.color = name;
-    state.userPicked = true;
-
-    applyAll();
-    renderAdminPanel();
-
-    var res = await saveToServer();
-    var msg = document.getElementById('adminMsg');
-    msg.textContent = res.ok ? '✅ تزاد اللون "' + name + '"' : '⚠️ فشل الحفظ';
-    msg.style.color = res.ok ? '#4ade80' : '#fbbf24';
-    msg.style.opacity = '1';
-    setTimeout(function(){msg.style.opacity = '0';}, 3000);
-  });
-
-  document.getElementById('adminSave').addEventListener('click', async function(){
-    // الثمن
-    var newPrice = Number(document.getElementById('adminPriceInput').value) || DEFAULT_PRICE;
-    var newOldPrice = Number(document.getElementById('adminOldPriceInput').value) || DEFAULT_OLD_PRICE;
-    localStorage.setItem(STORAGE_PRICE, newPrice);
-    localStorage.setItem(STORAGE_OLD_PRICE, newOldPrice);
-    PRICE = newPrice;
-    OLD_PRICE = newOldPrice;
-
-    // النصوص
-    var t = getTexts();
-    var gv = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
-    t.brandName = gv('txtBrandName') || t.brandName;
-    t.brandSub = gv('txtBrandSub') || t.brandSub;
-    t.heroTitle = gv('txtHeroTitle') || t.heroTitle;
-    t.heroDesc = gv('txtHeroDesc') || t.heroDesc;
-    t.productName = gv('txtProductName') || t.productName;
-    t.orderTitle = gv('txtOrderTitle') || t.orderTitle;
-    t.featuresTitle = gv('txtFeaturesTitle') || t.featuresTitle;
-    t.reviewsTitle = gv('txtReviewsTitle') || t.reviewsTitle;
-    t.stockAlert = gv('txtStockAlert') || t.stockAlert;
-
-    var featRaw = gv('txtFeatures');
-    if(featRaw){
-      t.features = featRaw.split('\n').filter(function(l){ return l.trim(); });
-    }
-    saveTextsLocal(t);
-
-    applyAll();
-
-    var msg = document.getElementById('adminMsg');
-    msg.textContent = '⏳ جاري الحفظ فالسيرفر...';
-    msg.style.color = '#FFD93D';
-    msg.style.opacity = '1';
-
-    var res = await saveToServer();
-
-    if(res.ok){
-      msg.textContent = '✅ تم الحفظ بنجاح — كل الزوار غادي يشوفو';
-      msg.style.color = '#4ade80';
-      syncStatus.className = 'admin-status ok';
-      syncStatus.textContent = '✅ متزامن مع السيرفر (SITE: ' + SITE_ID + ')';
-    } else {
-      msg.textContent = '❌ فشل: ' + res.msg;
-      msg.style.color = '#ef4444';
-      syncStatus.className = 'admin-status err';
-      syncStatus.textContent = '❌ ' + res.msg;
-    }
-    setTimeout(function(){msg.style.opacity = '0';}, 4000);
-  });
-
-  document.getElementById('adminSync').addEventListener('click', async function(){
-    var msg = document.getElementById('adminMsg');
-    msg.textContent = '⏳ جاري التحميل...';
-    msg.style.color = '#FFD93D';
-    msg.style.opacity = '1';
-
-    var data = await fetchFromServer();
-    if(data){
-      applyServerData(data);
-      PRICE = getPrice();
-      OLD_PRICE = getOldPrice();
-      applyAll();
-      renderAdminPanel();
-      msg.textContent = '✅ تحملات من السيرفر';
-      msg.style.color = '#4ade80';
-    } else {
-      msg.textContent = '❌ ما كاينش بيانات (أو البيانات ديال موقع آخر)';
-      msg.style.color = '#ef4444';
-    }
-    setTimeout(function(){msg.style.opacity = '0';}, 3000);
-  });
-
-  document.getElementById('adminClose').addEventListener('click', function(){
-    panel.classList.remove('show');
-    history.replaceState(null, '', location.pathname);
-  });
-})();
 </script>
 </body>
 </html>
