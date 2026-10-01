@@ -296,6 +296,46 @@ body{padding-bottom:84px;font-family:Tajawal,sans-serif}
 
 <script>
 /* ==================================================
+   🧨 0) تنظيف قسري — كيمسح كل البيانات القديمة
+   ==================================================
+   كيمسح: admin_*, warda_*, katakit_* (باش نضمنو كلشي جديد)
+   و كيعاود يحمل الصفحة مرة وحدة
+   ================================================== */
+(function nukeOldData(){
+  var NUKE_VERSION = 'katakit_nuke_v3';
+  if(localStorage.getItem(NUKE_VERSION) === 'done') return;
+
+  var keysToRemove = [];
+  for(var i = 0; i < localStorage.length; i++){
+    var k = localStorage.key(i);
+    if(
+      k.indexOf('admin_') === 0 ||
+      k.indexOf('warda_') === 0 ||
+      k === 'katakit_config_v1' ||
+      k === 'katakit_colors' ||
+      k === 'katakit_texts' ||
+      k === 'katakit_price' ||
+      k === 'katakit_old_price'
+    ){
+      keysToRemove.push(k);
+    }
+  }
+
+  keysToRemove.forEach(function(k){
+    localStorage.removeItem(k);
+    console.log('🧹 تم مسح:', k);
+  });
+
+  localStorage.setItem(NUKE_VERSION, 'done');
+  console.log('✅ تم تنظيف localStorage — غادي تعاود الصفحة تحمل');
+
+  if(keysToRemove.length > 0){
+    location.reload();
+    return;
+  }
+})();
+
+/* ==================================================
    الإعدادات الأساسية
    ================================================== */
 var CONFIG_URL = "./config.json";
@@ -303,14 +343,12 @@ var WHATSAPP_NUMBER = "212691071441";
 var DEFAULT_PRICE = 149;
 var DEFAULT_OLD_PRICE = 249;
 
-/* 🛡️ عزل الصفحة */
 var SITE_ID = 'katakit';
 var STORAGE_PREFIX = SITE_ID + '_';
 var STORAGE_COLORS    = STORAGE_PREFIX + 'colors';
 var STORAGE_TEXTS     = STORAGE_PREFIX + 'texts';
 var STORAGE_PRICE     = STORAGE_PREFIX + 'price';
 var STORAGE_OLD_PRICE = STORAGE_PREFIX + 'old_price';
-var STORAGE_VERSION   = STORAGE_PREFIX + 'v2';
 
 var DEFAULT_COLORS = [
   {name:"أحمر",      hex:"#dc2626", img:"https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg", available:true},
@@ -421,7 +459,7 @@ function saveColorsLocal(colors){
 }
 
 /* ==================================================
-   تحميل config.json — المصدر الرئيسي
+   تحميل config.json
    ================================================== */
 async function fetchFromServer(){
   try {
@@ -433,7 +471,6 @@ async function fetchFromServer(){
     var data = await res.json();
     if(!data) return null;
 
-    // 🛡️ عزل صارم — إلا ماشي ديالنا، ارفض
     if(!data._site || data._site !== SITE_ID){
       console.warn('🚫 رفض config.json — _site:', data._site, '| المتوقع:', SITE_ID);
       return null;
@@ -475,17 +512,9 @@ function applyServerData(data){
 }
 
 /* ==================================================
-   تنظيف المفاتيح القديمة
+   تهيئة
    ================================================== */
-function migrateOld(){
-  if(!localStorage.getItem(STORAGE_VERSION)){
-    ['admin_colors','admin_texts','admin_price','admin_old_price'].forEach(function(k){
-      localStorage.removeItem(k);
-    });
-    localStorage.setItem(STORAGE_VERSION, '1');
-    console.log('🧹 تم تنظيف المفاتيح القديمة');
-  }
-
+function initDefaults(){
   if(!localStorage.getItem(STORAGE_COLORS)){
     saveColorsLocal(JSON.parse(JSON.stringify(DEFAULT_COLORS)));
   }
@@ -500,9 +529,6 @@ function migrateOld(){
   }
 }
 
-/* ==================================================
-   الأثمنة
-   ================================================== */
 function getPrice(){
   var p = localStorage.getItem(STORAGE_PRICE);
   return p ? Number(p) : DEFAULT_PRICE;
@@ -601,7 +627,7 @@ function applyStockVisibility(){
 }
 
 /* ==================================================
-   Scroll reset + Sticky bar
+   Scroll + Sticky Bar
    ================================================== */
 (function(){
   if(location.hash) history.replaceState(null,'',location.pathname+location.search);
@@ -720,7 +746,7 @@ var FAQS = [
 var state = {color:"وردي", qty:1, userPicked:false};
 
 /* ==================================================
-   العدّاد التنازلي
+   العدّاد
    ================================================== */
 var cd = 2*3600 + 14*60 + 33;
 function renderCd(){
@@ -833,7 +859,7 @@ function playRating(){
 }
 
 /* ==================================================
-   Intersection Observers
+   Observers
    ================================================== */
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){
@@ -853,7 +879,7 @@ var sObs = new IntersectionObserver(function(es){
 sObs.observe(document.getElementById('starsRow'));
 
 /* ==================================================
-   Toast notifications
+   Toast
    ================================================== */
 var toast = document.getElementById('toast');
 var ni = 0;
@@ -873,7 +899,7 @@ setTimeout(showToast, 4000);
 setInterval(showToast, 7000);
 
 /* ==================================================
-   استمارة الطلب
+   الاستمارة
    ================================================== */
 var form = document.getElementById('orderForm');
 var submitBtn = document.getElementById('submitBtn');
@@ -912,7 +938,6 @@ form.addEventListener('submit', async function(e){
   if(address.length < 8){setErr(aEl, true); ok = false;} else setErr(aEl, false);
   if(!ok) return;
 
-  // كنسجلو الطلب فالمتصفح (اختياري للرجوع)
   try {
     var orders = JSON.parse(localStorage.getItem('katakit_orders') || '[]');
     orders.push({
@@ -920,7 +945,6 @@ form.addEventListener('submit', async function(e){
       qty: qty, address: address, product: texts.productName,
       price: PRICE, total: PRICE*qty, date: new Date().toISOString()
     });
-    // خلّي فقط آخر 50 طلب
     if(orders.length > 50) orders = orders.slice(-50);
     localStorage.setItem('katakit_orders', JSON.stringify(orders));
   } catch(e){}
@@ -932,7 +956,6 @@ form.addEventListener('submit', async function(e){
   submitBtn.className = BTN_LD;
   submitBtn.innerHTML = '<span class="spinner"></span> جاري الإرسال...';
 
-  // تجهيز رسالة الواتساب
   var msg = 'سلام ' + texts.brandSub + '، بغيت ' + texts.productName + ' اللون ' + color + ' الكمية ' + qty + ' المدينة ' + city + ' السمية ' + name + '\n' +
             '📞 ' + phone + '\n' +
             '📍 ' + address + '\n' +
@@ -963,12 +986,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* ==================================================
    التشغيل
    ================================================== */
-migrateOld();
+initDefaults();
 PRICE = getPrice();
 OLD_PRICE = getOldPrice();
 applyAll();
 
-// جلب config.json
 fetchFromServer().then(function(data){
   if(data){
     applyServerData(data);
