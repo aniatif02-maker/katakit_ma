@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KATAKIT — لوحة التحكم</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Tajawal,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;padding:20px}
+.wrap{max-width:900px;margin:0 auto}
+.card{background:#141414;border:1px solid #222;border-radius:18px;padding:22px;margin-bottom:16px}
+h1{font-size:24px;font-weight:900;margin-bottom:4px}
+h1 span{color:#FFD93D}
+.sub{color:#888;font-size:13px;margin-bottom:20px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:10px 16px;border-radius:12px;background:#1a1a1a;color:#888;cursor:pointer;font-weight:800;font-size:13px;border:2px solid transparent;transition:.2s}
+.tab:hover{color:#fff}
+.tab.active{background:#FFD93D;color:#111;border-color:#FFD93D}
+.section{display:none}
+.section.active{display:block;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.lbl{display:block;font-size:13px;font-weight:800;margin-bottom:6px;color:#ddd}
+.inp{width:100%;background:#0a0a0a;border:2px solid #2a2a2a;color:#fff;padding:11px 14px;border-radius:10px;font-family:inherit;font-size:14px;outline:0;margin-bottom:12px;transition:.2s}
+.inp:focus{border-color:#FFD93D;background:#111}
+textarea.inp{resize:vertical;min-height:80px;line-height:1.7}
+.hint{font-size:11.5px;color:#666;margin-bottom:8px;line-height:1.6}
+.btn{padding:12px 20px;border-radius:12px;font-weight:900;border:0;cursor:pointer;font-family:inherit;font-size:14px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-y{background:#FFD93D;color:#111}
+.btn-g{background:#22c55e;color:#fff}
+.btn-b{background:#3b82f6;color:#fff}
+.btn-r{background:#ef4444;color:#fff}
+.btn-o{background:transparent;color:#fff;border:2px solid #333}
+.btn-sm{padding:8px 14px;font-size:12px}
+.color-row{display:grid;grid-template-columns:44px 1fr 1fr 40px 40px;gap:8px;align-items:center;padding:12px;background:#0a0a0a;border-radius:12px;margin-bottom:8px;border:1px solid #1f1f1f}
+.color-row input[type="text"]{background:#141414;border:1px solid #2a2a2a;color:#fff;padding:8px 10px;border-radius:8px;font-size:13px;width:100%;font-family:inherit;outline:0}
+.color-row input[type="text"]:focus{border-color:#FFD93D}
+.color-row input[type="color"]{width:44px;height:44px;border:0;border-radius:10px;cursor:pointer;background:transparent;padding:0}
+.thumb{width:44px;height:44px;border-radius:10px;object-fit:cover;border:1px solid #2a2a2a;background:#111}
+.chk{width:20px;height:20px;accent-color:#22c55e;cursor:pointer}
+.del{background:transparent;border:0;color:#ef4444;font-size:18px;cursor:pointer;padding:4px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:20px;border-top:1px solid #222}
+.msg{padding:12px 16px;border-radius:12px;font-weight:800;font-size:13px;margin-top:14px;text-align:center;display:none}
+.msg.ok{background:rgba(34,197,94,.15);color:#22c55e;display:block}
+.msg.err{background:rgba(239,68,68,.15);color:#ef4444;display:block}
+.msg.warn{background:rgba(251,191,36,.15);color:#fbbf24;display:block}
+.login-screen{max-width:400px;margin:80px auto;text-align:center}
+.login-screen h1{font-size:32px;margin-bottom:8px}
+.preview-box{background:#FFE3EF;border-radius:12px;padding:16px;color:#111;margin-top:12px;font-size:14px}
+.preview-box img{max-width:100%;border-radius:8px;margin-top:8px}
+.info{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:12px;padding:14px;margin-bottom:16px;font-size:13px;line-height:1.7;color:#93c5fd}
+@media(max-width:640px){.color-row{grid-template-columns:1fr;padding:14px}.color-row input[type="color"]{width:100%;height:50px}}
+</style>
+</head>
+<body>
+
+<!-- شاشة تسجيل الدخول -->
+<div id="loginScreen" class="login-screen">
+  <h1>🎛️ <span style="color:#FFD93D">KATAKIT</span></h1>
+  <p class="sub">لوحة التحكم — أدخل كلمة السر</p>
+  <div class="card" style="text-align:right">
+    <label class="lbl">🔐 كلمة السر</label>
+    <input type="password" id="passInput" class="inp" placeholder="••••••••" autofocus>
+    <button class="btn btn-y" style="width:100%;justify-content:center" onclick="login()">دخول</button>
+    <div id="loginMsg" class="msg err"></div>
+  </div>
+  <p style="color:#444;font-size:12px;margin-top:20px">الافتراضية: 1234 — بدّلها من الكود</p>
+</div>
+
+<!-- لوحة التحكم -->
+<div id="adminPanel" class="wrap" style="display:none">
+  
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+    <div>
+      <h1>🎛️ <span>KATAKIT</span> — لوحة التحكم</h1>
+      <p class="sub">عدّل كلشي، ومن بعد حمّل config.json وارفعو لـ GitHub</p>
+    </div>
+    <div style="display:flex;gap:8px">
+      <a href="./index.html" target="_blank" class="btn btn-o btn-sm">👁️ معاينة الموقع</a>
+      <button class="btn btn-o btn-sm" onclick="logout()">🚪 خروج</button>
+    </div>
+  </div>
+
+  <div class="info">
+    💡 <b>كيفاش كتخدم:</b> عدّل، دير <b>حفظ</b>، دير <b>تحميل config.json</b>، وارفع الملف لـ GitHub. Vercel غادي ينشر التحديثات تلقائياً.
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="colors">🎨 الألوان والصور</button>
+    <button class="tab" data-tab="texts">✏️ النصوص</button>
+    <button class="tab" data-tab="prices">💰 الأثمنة</button>
+    <button class="tab" data-tab="preview">👁️ معاينة</button>
+    <button class="tab" data-tab="io">📁 استيراد/تصدير</button>
+  </div>
+
+  <!-- الألوان -->
+  <div class="section active" data-section="colors">
+    <div class="card">
+      <h3 style="font-size:16px;font-weight:900;margin-bottom:8px">🎨 الألوان والصور</h3>
+      <p class="hint">لكل لون: الصورة، الاسم، اللون، متوفر ولا لا</p>
+      <div id="colorsList"></div>
+      <button class="btn btn-g" style="width:100%;justify-content:center;margin-top:12px" onclick="addColor()">➕ إضافة لون جديد</button>
+    </div>
+  </div>
+
+  <!-- النصوص -->
+  <div class="section" data-section="texts">
+    <div class="card">
+      <h3 style="font-size:16px;font-weight:900;margin-bottom:14px">✏️ النصوص والعناوين</h3>
+      
+      <label class="lbl">🏪 اسم البراند (إنجليزي)</label>
+      <input type="text" id="t_brandName" class="inp">
+      
+      <label class="lbl">🏷️ اسم البراند (عربي)</label>
+      <input type="text" id="t_brandSub" class="inp">
+      
+      <label class="lbl">🎯 العنوان الرئيسي</label>
+      <input type="text" id="t_heroTitle" class="inp">
+      
+      <label class="lbl">📝 وصف المنتج</label>
+      <textarea id="t_heroDesc" class="inp"></textarea>
+      
+      <label class="lbl">🏷️ اسم المنتج (في الاستمارة)</label>
+      <input type="text" id="t_productName" class="inp">
+      
+      <label class="lbl">📋 عنوان استمارة الطلب</label>
+      <input type="text" id="t_orderTitle" class="inp">
+      
+      <label class="lbl">💛 عنوان قسم المميزات</label>
+      <input type="text" id="t_featuresTitle" class="inp">
+      
+      <label class="lbl">📌 المميزات (كل ميزة في سطر — استعمل || للفصل)</label>
+      <textarea id="t_features" class="inp" style="min-height:140px"></textarea>
+      
+      <label class="lbl">⭐ عنوان التقييمات</label>
+      <input type="text" id="t_reviewsTitle" class="inp">
+      
+      <label class="lbl">📢 نص المخزون المحدود</label>
+      <input type="text" id="t_stockAlert" class="inp">
+      
+      <label class="lbl">📄 وصف الفوتر</label>
+      <input type="text" id="t_footerDesc" class="inp">
+    </div>
+  </div>
+
+  <!-- الأثمنة -->
+  <div class="section" data-section="prices">
+    <div class="card">
+      <h3 style="font-size:16px;font-weight:900;margin-bottom:14px">💰 الأثمنة</h3>
+      
+      <label class="lbl">💰 الثمن الحالي (درهم)</label>
+      <input type="number" id="p_price" class="inp">
+      
+      <label class="lbl">✂️ الثمن القديم (مشطوب)</label>
+      <input type="number" id="p_oldPrice" class="inp">
+    </div>
+  </div>
+
+  <!-- معاينة -->
+  <div class="section" data-section="preview">
+    <div class="card">
+      <h3 style="font-size:16px;font-weight:900;margin-bottom:14px">👁️ معاينة مباشرة</h3>
+      <div class="preview-box">
+        <div style="font-weight:900;font-size:18px" id="pv_title">—</div>
+        <div style="color:#666;margin-top:6px;font-size:13px" id="pv_desc">—</div>
+        <div style="margin-top:12px;font-size:24px;font-weight:900;color:#F0649B">
+          <span id="pv_price">0</span> درهم
+          <span style="text-decoration:line-through;color:#999;font-size:14px;font-weight:700;margin-right:10px">
+            <span id="pv_oldPrice">0</span> درهم
+          </span>
+        </div>
+        <img id="pv_img" src="" alt="" style="display:none">
+      </div>
+    </div>
+  </div>
+
+  <!-- استيراد/تصدير -->
+  <div class="section" data-section="io">
+    <div class="card">
+      <h3 style="font-size:16px;font-weight:900;margin-bottom:14px">📁 استيراد / تصدير</h3>
+      
+      <label class="lbl">📤 تحميل config.json</label>
+      <p class="hint">حمّل الملف وارفعو لـ GitHub (فالمجلد الرئيسي)</p>
+      <button class="btn btn-b" style="width:100%;justify-content:center" onclick="exportConfig()">📥 تحميل config.json</button>
+      
+      <label class="lbl" style="margin-top:20px">📥 رفع config.json</label>
+      <p class="hint">استرجع إعدادات قديمة</p>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importConfig(event)">
+      <button class="btn btn-g" style="width:100%;justify-content:center" onclick="document.getElementById('importFile').click()">📤 رفع ملف</button>
+      
+      <label class="lbl" style="margin-top:20px">🔄 نسخ الإعدادات الحالية</label>
+      <button class="btn btn-o" style="width:100%;justify-content:center" onclick="copyJSON()">📋 نسخ JSON</button>
+      
+      <label class="lbl" style="margin-top:20px;color:#ef4444">🗑️ منطقة الخطر</label>
+      <button class="btn btn-r" style="width:100%;justify-content:center" onclick="resetAll()">🔄 إعادة كلشي للافتراضي</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-y" onclick="saveToLocal()" style="flex:1;justify-content:center">💾 حفظ</button>
+    <button class="btn btn-b" onclick="exportConfig()" style="flex:1;justify-content:center">📥 تحميل config.json</button>
+  </div>
+
+  <div id="mainMsg" class="msg"></div>
+</div>
+
+<script>
+/* ==================================================
+   الإعدادات
+   ================================================== */
+const ADMIN_PASSWORD = "1234";  // ⚠️ بدّلها
+const STORAGE_KEY = "katakit_config_v1";
+
+/* ==================================================
+   الإعدادات الافتراضية
+   ================================================== */
+const DEFAULTS = {
+  _site: "katakit",
+  _version: 1,
+  _updated: new Date().toISOString(),
+  price: 149,
+  oldPrice: 249,
+  colors: [
+    {name:"أحمر",      hex:"#dc2626", img:"https://i.ibb.co/nMNXmm9F/Whats-App-Image-2026-09-16-at-22-03-29.jpg", available:true},
+    {name:"وردي",      hex:"#f472b6", img:"https://i.ibb.co/8g6xCTkj/Whats-App-Image-2026-09-16-at-22-03-29-2.jpg", available:true},
+    {name:"أبيض منقط", hex:"#ffffff", img:"https://i.ibb.co/x866ZgHS/Whats-App-Image-2026-09-16-at-22-03-30-2.jpg", available:true, pattern:true},
+    {name:"أسود",      hex:"#000000", img:"https://i.ibb.co/qFMh7CzR/Whats-App-Image-2026-09-16-at-22-03-29-1.jpg", available:true},
+    {name:"بنفسجي",    hex:"#a855f7", img:"https://i.ibb.co/99b4400J/Whats-App-Image-2026-09-16-at-22-03-30.jpg", available:true}
+  ],
+  texts: {
+    brandName: "KATAKIT",
+    brandSub: "كتاكيت",
+    heroTitle: "حقيبة ميكي اللي كل البنات هبلو عليها 🎒",
+    heroDesc: "حقيبة مدرسية كيوت بتصميم ميكي ماوس الأصلي، قماش متين وخياطة قوية، واسعة بزاف ومريحة للظهر.",
+    productName: "حقيبة ميكي ماوس الكيوت",
+    orderTitle: "أطلبي الآن — الدفع عند الاستلام",
+    featuresTitle: "لماذا سيحبها طفلك؟",
+    reviewsTitle: "شنو قالو الزبناء؟",
+    stockAlert: "المخزون محدود — سارع قبل ما يسالي",
+    footerDesc: "متجر مغربي متخصص فالمستلزمات المدرسية الكيوت للأطفال.",
+    features: [
+      "تصميم كيوت بزاف||رسومات ميكي ماوس بألوان زاهية.||🎨",
+      "جودة كتدوم||قماش سميك وخياطة مقواة.||🧵",
+      "واسعة ومنظمة||جيب كبير + جيوب صغيرة.||📚",
+      "مريحة على الظهر||حمالات مبطنة وخفيفة.||🎒"
+    ]
+  }
+};
+
+let current = null;
+
+/* ==================================================
+   تسجيل الدخول
+   ================================================== */
+function login(){
+  const pass = document.getElementById('passInput').value;
+  if(pass === ADMIN_PASSWORD){
+    sessionStorage.setItem('katakit_admin', '1');
+    showPanel();
+  } else {
+    const msg = document.getElementById('loginMsg');
+    msg.textContent = '❌ كلمة السر غالطة';
+    msg.className = 'msg err';
+  }
+}
+function logout(){
+  sessionStorage.removeItem('katakit_admin');
+  location.reload();
+}
+document.getElementById('passInput').addEventListener('keydown', e => {
+  if(e.key === 'Enter') login();
+});
+
+function showPanel(){
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+  loadData();
+  renderAll();
+  bindTabs();
+  bindInputs();
+}
+
+function bindTabs(){
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector('[data-section="'+tab.dataset.tab+'"]').classList.add('active');
+      if(tab.dataset.tab === 'preview') renderPreview();
+    });
+  });
+}
+
+/* ==================================================
+   تحميل وحفظ
+   ================================================== */
+function loadData(){
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    if(saved && saved.colors) {
+      current = JSON.parse(JSON.stringify(DEFAULTS));
+      Object.assign(current, saved);
+      if(saved.texts) current.texts = Object.assign({}, DEFAULTS.texts, saved.texts);
+      return;
+    }
+  } catch(e){}
+  current = JSON.parse(JSON.stringify(DEFAULTS));
+}
+
+function saveToLocal(){
+  collectInputs();
+  current._updated = new Date().toISOString();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+  showMsg('✅ تم الحفظ فالمتصفح — دابا حمّل config.json وارفعو لـ GitHub', 'ok');
+}
+
+/* ==================================================
+   عرض الألوان
+   ================================================== */
+function renderColors(){
+  const wrap = document.getElementById('colorsList');
+  wrap.innerHTML = '';
+  current.colors.forEach((c, i) => {
+    const row = document.createElement('div');
+    row.className = 'color-row';
+    row.innerHTML = `
+      <img class="thumb" src="${c.img}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22><rect width=%2244%22 height=%2244%22 fill=%22%23222%22/></svg>'">
+      <input type="text" value="${escapeHtml(c.name)}" placeholder="اسم اللون" data-i="${i}" data-f="name">
+      <input type="text" value="${escapeHtml(c.img)}" placeholder="رابط الصورة" data-i="${i}" data-f="img" style="font-family:monospace;font-size:11px;direction:ltr">
+      <input type="color" value="${c.hex}" data-i="${i}" data-f="hex">
+      <button class="del" onclick="removeColor(${i})" title="حذف">🗑️</button>
+    `;
+    wrap.appendChild(row);
+  });
+  
+  wrap.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const i = +e.target.dataset.i;
+      const f = e.target.dataset.f;
+      current.colors[i][f] = e.target.value;
+      if(f === 'img'){
+        const thumb = e.target.parentElement.querySelector('.thumb');
+        thumb.src = e.target.value;
+      }
+    });
+  });
+}
+
+function addColor(){
+  current.colors.push({
+    name:"لون جديد",
+    hex:"#3b82f6",
+    img:"https://i.ibb.co/placeholder.jpg",
+    available:true
+  });
+  renderColors();
+}
+
+function removeColor(i){
+  if(current.colors.length <= 1){
+    showMsg('⚠️ لازم يبقى على الأقل لون واحد', 'warn');
+    return;
+  }
+  if(!confirm('متأكد من حذف "' + current.colors[i].name + '"؟')) return;
+  current.colors.splice(i, 1);
+  renderColors();
+}
+
+/* ==================================================
+   عرض النصوص
+   ================================================== */
+function renderTexts(){
+  const t = current.texts;
+  document.getElementById('t_brandName').value = t.brandName || '';
+  document.getElementById('t_brandSub').value = t.brandSub || '';
+  document.getElementById('t_heroTitle').value = t.heroTitle || '';
+  document.getElementById('t_heroDesc').value = t.heroDesc || '';
+  document.getElementById('t_productName').value = t.productName || '';
+  document.getElementById('t_orderTitle').value = t.orderTitle || '';
+  document.getElementById('t_featuresTitle').value = t.featuresTitle || '';
+  document.getElementById('t_features').value = (t.features || []).join('\n');
+  document.getElementById('t_reviewsTitle').value = t.reviewsTitle || '';
+  document.getElementById('t_stockAlert').value = t.stockAlert || '';
+  document.getElementById('t_footerDesc').value = t.footerDesc || '';
+}
+
+/* ==================================================
+   عرض الأثمنة
+   ================================================== */
+function renderPrices(){
+  document.getElementById('p_price').value = current.price || 149;
+  document.getElementById('p_oldPrice').value = current.oldPrice || 249;
+}
+
+/* ==================================================
+   ربط المدخلات
+   ================================================== */
+function bindInputs(){
+  const tFields = ['brandName','brandSub','heroTitle','heroDesc','productName','orderTitle','featuresTitle','reviewsTitle','stockAlert','footerDesc'];
+  tFields.forEach(f => {
+    const el = document.getElementById('t_' + f);
+    el.addEventListener('input', () => {
+      current.texts[f] = el.value;
+    });
+  });
+  
+  document.getElementById('t_features').addEventListener('input', e => {
+    current.texts.features = e.target.value.split('\n').filter(l => l.trim());
+  });
+  
+  document.getElementById('p_price').addEventListener('input', e => {
+    current.price = +e.target.value || 0;
+  });
+  document.getElementById('p_oldPrice').addEventListener('input', e => {
+    current.oldPrice = +e.target.value || 0;
+  });
+}
+
+/* ==================================================
+   جمع المدخلات قبل الحفظ
+   ================================================== */
+function collectInputs(){
+  // الألوان كيتجمعو مباشرة فـ renderColors
+  // النصوص كيتجمعو فـ bindInputs
+  // الأثمنة كيتجمعو فـ bindInputs
+}
+
+/* ==================================================
+   معاينة
+   ================================================== */
+function renderPreview(){
+  document.getElementById('pv_title').textContent = current.texts.heroTitle || '';
+  document.getElementById('pv_desc').textContent = current.texts.heroDesc || '';
+  document.getElementById('pv_price').textContent = current.price || 0;
+  document.getElementById('pv_oldPrice').textContent = current.oldPrice || 0;
+  const img = document.getElementById('pv_img');
+  if(current.colors[0]){
+    img.src = current.colors[0].img;
+    img.style.display = 'block';
+  }
+}
+
+/* ==================================================
+   تصدير / استيراد
+   ================================================== */
+function exportConfig(){
+  collectInputs();
+  current._updated = new Date().toISOString();
+  current._site = 'katakit';
+  current._version = 1;
+  
+  const blob = new Blob([JSON.stringify(current, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'config.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  
+  showMsg('✅ تم تحميل config.json — دابا ارفعو لـ GitHub', 'ok');
+}
+
+function importConfig(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if(!data.colors || !data.texts){
+        throw new Error('ملف غير صالح');
+      }
+      current = data;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+      renderAll();
+      showMsg('✅ تم استيراد الإعدادات بنجاح', 'ok');
+    } catch(err) {
+      showMsg('❌ فشل الاستيراد: ' + err.message, 'err');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+function copyJSON(){
+  collectInputs();
+  const json = JSON.stringify(current, null, 2);
+  navigator.clipboard.writeText(json).then(() => {
+    showMsg('✅ تم نسخ JSON — الصقو فأي مكان', 'ok');
+  }).catch(() => {
+    showMsg('❌ فشل النسخ', 'err');
+  });
+}
+
+function resetAll(){
+  if(!confirm('⚠️ غادي يتحيدو كل التعديلات وترجع للافتراضي. متأكد؟')) return;
+  current = JSON.parse(JSON.stringify(DEFAULTS));
+  localStorage.removeItem(STORAGE_KEY);
+  renderAll();
+  showMsg('✅ تم إعادة كلشي للافتراضي', 'ok');
+}
+
+/* ==================================================
+   أدوات
+   ================================================== */
+function showMsg(text, type){
+  const msg = document.getElementById('mainMsg');
+  msg.textContent = text;
+  msg.className = 'msg ' + type;
+  setTimeout(() => { msg.className = 'msg'; }, 4000);
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderAll(){
+  renderColors();
+  renderTexts();
+  renderPrices();
+}
+
+/* ==================================================
+   تشغيل
+   ================================================== */
+if(sessionStorage.getItem('katakit_admin') === '1'){
+  showPanel();
+}
+</script>
+</body>
+</html>
